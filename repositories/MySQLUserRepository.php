@@ -24,7 +24,7 @@ class MySQLUserRepository implements UserRepositoryInterface {
         $stmt->execute([$id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $row ? new User($row['id'], $row['name'], $row['email']) : null;
+        return $row ? new User($row['id'], $row['username'], $row['email']) : null;
     }
 
     public function create(User $user) {
@@ -45,6 +45,21 @@ class MySQLUserRepository implements UserRepositoryInterface {
     public function findByEmail($email) {
         $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$email]);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($res) {
+            return new User($res['id'], $res['username'], $res['email'], $res['password']);
+        }
+        return null;
+    }
+
+    public function savePasswordResetToken($email, $token) {
+        $stmt = $this->conn->prepare("UPDATE users SET password = ? WHERE email = ?");
+        return $stmt->execute([$token, $email]);
+    }
+
+    public function findByPasswordResetToken($token) {
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE password = ?");
+        $stmt->execute([$token]);
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($res) {
             return new User($res['id'], $res['username'], $res['email'], $res['password']);

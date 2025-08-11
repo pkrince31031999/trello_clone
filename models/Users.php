@@ -42,6 +42,17 @@ class User {
         $this->fullName = $fullName;
     }
 
-    
+    public function toArray() {
+        return [
+            'id'       => $this->id,
+            'username' => $this->username,
+            'email'    => $this->email,
+            'fullName' => $this->fullName,
+        ];
+    }
+
+    public function __toString(): string {
+        return json_encode($this->toArray(), JSON_PRETTY_PRINT);
+    }
 
 }

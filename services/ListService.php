@@ -27,6 +27,8 @@ class ListService {
         return $this->listRepo->deleteList($id);
     }
 
-    
+    public function getListsByBoardId($boardId) {
+        return $this->listRepo->getListsByBoardId($boardId);
+    }
         
 }

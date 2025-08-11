@@ -6,7 +6,7 @@ class Database {
     private $host = "localhost";
     private $db_name = "trello_clone";
     private $username = "root";
-    private $password = "";
+    private $password = "password";
 
     private function __construct() {
         $this->connection = new PDO(

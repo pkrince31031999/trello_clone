@@ -237,7 +237,10 @@
             </button>
         </div> -->
 
-        <p>Don't have an account? <a href="register.php">Sign up</a></p>
+        <p>
+            Don't have an account? <a href="register.php" class="register-link">Sign up</a><br>
+            Forgot password? <a href="forgot_password.php" class="forgot-password-link">Click here</a>
+        </p>
     </div>
     
     <script>
@@ -256,7 +259,7 @@
             success: function(response) {
                 if (response.success) {
                     alert(response.message);
-                    window.location.href = 'dashboard.php';
+                    window.location.href = 'index.php?action=showDashboard&controller=board';
                 } else {
                     alert(response.error);
                 }
@@ -267,7 +270,15 @@
             });
         });
 
-        
+        document.querySelector(".forgot-password-link").addEventListener("click", function(e) {
+            e.preventDefault();
+            window.location.href = "index.php?action=showForgotPassword&controller=user";
+        });
+
+        document.querySelector(".register-link").addEventListener("click", function(e) {
+            e.preventDefault();
+            window.location.href = "index.php?action=showRegister&controller=user";
+        });
     </script>
 </body>
 </html>

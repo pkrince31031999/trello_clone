@@ -38,7 +38,7 @@ class UserController {
             } else {
                 $response = json_encode([
                     'success' => false,
-                    'error' => 'Invalid login.'
+                    'error' => 'Invalid email or password.'
                 ]);
             }
             echo $response; exit; // stop PHP execution after sending JSON
@@ -73,13 +73,47 @@ class UserController {
             } else {
                 $response = json_encode([
                     'success' => false,
-                    'message' => 'User creation failed. Please try again.'
+                    'error' => 'User creation failed. Please try again.'
                 ]);
             }
             
             header('Content-Type: application/json');
             echo $response; exit;
             
+        }
+    }
+
+    public function showForgotPassword()
+    {
+        include __DIR__ . '/../views/forgot-password.php';// Loads forgot password UI
+    }
+
+    public function forgotPassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'];
+            $this->userService->sendPasswordResetLink($email);
+            $response = json_encode([
+                'success' => true,
+                'message' => 'Password reset link sent. Please check your email.'
+            ]);
+            header('Content-Type: application/json');
+            echo $response; exit;
+        }
+    }
+
+    public function resetPassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $token = $_POST['token'];
+            $password = $_POST['password'];
+            $this->userService->resetPassword($token, $password);
+            $response = json_encode([
+                'success' => true,
+                'message' => 'Password reset successful. Redirecting to login page.'
+            ]);
+            header('Content-Type: application/json');
+            echo $response; exit;
         }
     }
 
