@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
 $user = 'root';
-$pass = 'password';
+$pass = '';
 $db = 'trello_clone';
 
 $conn = new mysqli($host, $user, $pass, $db);

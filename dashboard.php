@@ -41,6 +41,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard with Enhanced Header</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* Add New Board Card */
         .board-cards {
@@ -460,7 +461,7 @@ $stmt->close();
     </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script>
         function toggleDropdown() {
             const dropdownMenu = document.getElementById('dropdownMenu');

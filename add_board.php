@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 include 'db.php';
 
@@ -19,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $boardName = strtoupper($_POST['boardName']);
     $boardDescription = $_POST['boardDescription'];
-    $userName = $_SESSION['user_name']; // Assuming you have stored the user ID in a session variable named user_name
+    $userName = $_SESSION['user_id']; // Assuming you have stored the user ID in a session variable named user_name
     $is_archived = 0; 
     // $user_id = $_SESSION['user_id'];
     $alreadyBorad = $conn->prepare("SELECT * FROM boards WHERE name = ?");
@@ -29,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($res)) {
         $stmtBoard = $conn->prepare("INSERT INTO boards(name, description,created_by,is_archived) VALUES (?, ?, ?, ?)");
-        $stmtBoard->bind_param("sssi", $boardName, $boardDescription, $userName, $is_archived);
+        $stmtBoard->bind_param("ssii", $boardName, $boardDescription, $userName, $is_archived);
         $stmtBoard->execute();
-
+        
         $listName = "Assigned";
         $boardId = $stmtBoard->insert_id;
         $stmt = $conn->prepare("INSERT INTO lists(title, board_id) VALUES (?, ?)");
