@@ -15,10 +15,11 @@ class MySQLListRepository implements ListRepositoryInterface
         $this->conn = $dbInstance->getConnection();
     }
 
-    public function createList(Lists $list)
+    public function createList($list)
     {
-        $stmt = $this->conn->prepare("INSERT INTO lists (name, board_id) VALUES (?, ?)");
-        return $stmt->execute([$listName, $boardId]);
+        $listData = $list->toArray();
+        $stmt = $this->conn->prepare("INSERT INTO lists (title, board_id) VALUES (?, ?)");
+        return $stmt->execute([$listData['title'], $listData['board_id']]);
     }
 
     public function getListsByBoardId($boardId)

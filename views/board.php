@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head> 
@@ -1256,7 +1257,7 @@
             <div class="dropdown">
                 <div class="profile" onclick="toggleDropdown()">
                     <img src="" alt="Profile Picture">
-                    <span><?php echo $result['username']; ?></span>
+                    <span><?php echo $response['userdata']['username']; ?></span>
                 </div>
                 <div class="dropdown-menu" id="dropdownMenuBoard">
                     <a href="#">Account Settings</a>
@@ -1267,16 +1268,9 @@
          </div>
     </header>
 
-    <main class="dashboard" data-board-id="<?php echo $boardId; ?>">
+    <main class="dashboard" data-board-id="<?php echo $response['boardId']; ?>">
 
-        <?php
-            $stmt = $conn->prepare("SELECT * FROM lists WHERE board_id = ?");
-            $stmt->bind_param("i", $boardId);
-            $stmt->execute();
-            $res = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-
-        ?>
-        <?php foreach ($res as $list) : ?>
+        <?php foreach ($response['listData'] as $list) : ?>
             <div class="board" data-list-id="<?php echo $list['id']; ?>" data-list-position="<?php echo $list['position']; ?>">
                 <h2><?php echo htmlspecialchars($list['title']); ?></h2>
                 <?php if ($list['position'] == 1): ?>
@@ -1286,13 +1280,9 @@
                         <button id="addTask" onclick="CreateTask()">Add</button>
                     </div>
                 <?php endif; ?>
-                   <?php $getCards = $conn->prepare("SELECT * FROM cards WHERE list_id = ?");
-                    $getCards->bind_param("i", $list['id']);
-                    $getCards->execute();
-                    $resCards = $getCards->get_result()->fetch_all(MYSQLI_ASSOC);
-                    ?>
+                  
                     <?php $i = 1; ?>
-                    <?php foreach ($resCards as $task): ?>
+                    <?php foreach ($list['cards'] as $task): ?>
                         <div class="card" draggable="true"data-card-position-no="<?php echo $i; ?>" data-card-id="<?php echo $task['id']; ?>"><?php echo htmlspecialchars($task['title']); ?></div>
                         <?php $i++; ?>
                     <?php endforeach; ?>
@@ -1411,9 +1401,7 @@
     </div>
 
     <script>
-        
-           
-            
+    
             $(document).ready(function () {
                 $('#toggleTaskInput').click(function () {
                 $('#taskInputContainer').slideToggle(); // Toggle the input field with animation
@@ -1437,7 +1425,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: 'add_card.php',
+                        url: 'index.php?action=createCard&controller=card',
                         data: {
                             title: title,
                             listId: listId,
@@ -1446,7 +1434,12 @@
 
                         },
                         success: function(response) {
-                            console.log(response);
+                            if (response.success) {
+                                alert(response.message);
+                            }else{
+                                alert(response.message);
+                            }
+                                
                         },
                         error: function(xhr, status, error) {
                             alert(error);
@@ -1544,7 +1537,7 @@
                         // Send AJAX request to update positions in the database
                         $.ajax({
                             type: "POST",
-                            url: "update_card.php",
+                            url: "index.php?action=updateCardPositions&controller=card",
                             data: {
                                 sourceListId,
                                 sourceCardIds,
@@ -1553,10 +1546,14 @@
                                 movedCardId: draggedCard.getAttribute('data-card-id')
                             },
                             success: function (response) {
-                                console.log("Lists updated successfully:", response);
+                                if (response.success) {
+                                    alert(response.message);
+                                }else{
+                                    alert(response.error);   
+                                } 
                             },
                             error: function (xhr, status, error) {
-                                console.error("Error updating lists:", error);
+                                alert(error);
                             }
                         });
                     }
@@ -1592,23 +1589,33 @@
             // Create a new list (placeholder functionality)
             function createList() {
                 const listName = $('#listName').val();
-                const boardId = $('.dashboard').attr('data-board-id');
+                const boardId  = $('.dashboard').attr('data-board-id');
                 if (listName.trim() === '') {
                     alert('List name is required!');
-                    return;
                 }
 
                 $.ajax({
                     type: 'POST',
-                    url: 'add_list.php',
+                    url: 'index.php?action=createList&controller=list',
                     data: {
-                    listName: listName,
-                    listDescription: listName,
-                    boardId: boardId
+                        listName: listName,
+                        listDescription: listName,
+                        boardId: boardId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert(error);
                     }
                 });
+                
 
-                alert(`List "${listName}" created successfully!`);
+                // alert(`List "${listName}" created successfully!`);
                 closeModal();
 
             // Here, you can implement actual functionality to add the list to the UI or backend.
@@ -1663,7 +1670,7 @@
                     modal.style.display = 'flex';
                     $.ajax({
                             type: 'GET',
-                            url: 'cardDetails.php',
+                            url: 'index.php?action=getCardById&controller=card',
                             data: { cardid : currentCardId, boardId: $('.dashboard').attr('data-board-id') },
                             success: (response) => {
                                 const data = JSON.parse(response);
@@ -1673,10 +1680,7 @@
                                 // boardMembersDropdown.innerHTML = boardMembersHTML;
                                 document.querySelector('.task-title').textContent = data.title;
                                 document.querySelector('.list-status').textContent = data.listDetails.title;
-                                document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);
-                                
-
-                                
+                                document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);  
                                 
                             },
                             error: (xhr, status, error) => {

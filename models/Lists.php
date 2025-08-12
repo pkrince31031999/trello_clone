@@ -1,18 +1,20 @@
 <?php
 
-class ListModel
+class Lists
 {
     private $id;
     private $title;
     private $boardId;
     private $position;
+    private $description;
 
-    public function __construct($id = null, $title = null, $boardId = null, $position = null)
+    public function __construct($id = null, $title = null, $boardId = null, $position = null, $description = null)
     {
         $this->id       = $id;
         $this->title    = $title;
         $this->boardId  = $boardId;
         $this->position = $position;
+        $this->description = $description;
     }
 
     // --- Getters ---
@@ -36,6 +38,11 @@ class ListModel
         return $this->position;
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
     // --- Setters ---
     public function setId($id)
     {
@@ -57,6 +64,10 @@ class ListModel
         $this->position = $position;
     }
 
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
     // --- Utility: Convert to array ---
     public function toArray()
     {
@@ -64,7 +75,8 @@ class ListModel
             'id'        => $this->id,
             'title'     => $this->title,
             'board_id'  => $this->boardId,
-            'position'  => $this->position
+            'position'  => $this->position,
+            'description' => $this->description
         ];
     }
 }

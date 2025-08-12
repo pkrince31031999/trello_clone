@@ -7,14 +7,18 @@ class Card
     private $listId;
     private $isArchived;
     private $position;
+    private $description;
+    private $createdBy;
 
-    public function __construct($id = null, $title = null, $listId = null, $isArchived = 0, $position = null)
+    public function __construct($id = null, $title = null, $description = null, $listId = null, $isArchived = 0, $position = null, $createdBy = null)
     {
         $this->id         = $id;
         $this->title      = $title;
         $this->listId     = $listId;
         $this->isArchived = $isArchived;
         $this->position   = $position;
+        $this->description = $description;
+        $this->createdBy  = $createdBy;
     }
 
     // --- Getters ---
@@ -43,6 +47,16 @@ class Card
         return $this->position;
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
     // --- Setters ---
     public function setId($id)
     {
@@ -67,5 +81,28 @@ class Card
     public function setPosition($position)
     {
         $this->position = $position;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    public function toArray()
+    {
+        return [
+            'id'         => $this->id,
+            'title'      => $this->title,
+            'list_id'    => $this->listId,
+            'is_archived' => $this->isArchived,
+            'position'   => $this->position,
+            'description' => $this->description,
+            'created_by'  => $this->createdBy
+        ];
     }
 }  

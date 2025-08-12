@@ -3,7 +3,8 @@
 require_once __DIR__ . '/../repositories/MySQLListRepository.php';
 
 class ListService {
-    public function __construct(ListRepositoryInterface $listRepo) {
+    private $listRepo;
+    public function __construct($listRepo) {
         $this->listRepo = $listRepo;
     }
 
@@ -15,7 +16,8 @@ class ListService {
         return $this->listRepo->getListById($id);
     }
 
-    public function createList($data) {
+
+    public function createList(Lists $data) {
         return $this->listRepo->createList($data);
     }
 

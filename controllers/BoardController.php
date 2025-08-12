@@ -5,14 +5,17 @@ session_start();
 require_once __DIR__ . '/../repositories/MySQLBoardRepository.php';
 require_once __DIR__ . '/../repositories/MySQLUserRepository.php';
 require_once __DIR__ . '/../repositories/MySQLListRepository.php';
+require_once __DIR__ . '/../repositories/MySQLCardRepository.php';
 require_once __DIR__ . '/../services/BoardService.php';
 require_once __DIR__ . '/../services/UserService.php';
 require_once __DIR__ . '/../services/ListService.php';
+require_once __DIR__ . '/../services/CardService.php';
 
 class BoardController {
     private $boardService;
     private $userService;
     private $listService;
+    private $cardService;
     public function __construct() {
         $BoardRepository = new MySQLBoardRepository();
         $this->boardService = new BoardService($BoardRepository);
@@ -20,6 +23,8 @@ class BoardController {
         $this->userService = new UserService($UserRepository);
         $ListRepository = new MySQLListRepository();
         $this->listService = new ListService($ListRepository);
+        $CardRepository = new MySQLCardRepository();
+        $this->cardService = new CardService($CardRepository);
     }
     public function showDashboard() {
         // Fetch necessary data
@@ -44,12 +49,15 @@ class BoardController {
     public function showBoard() {
 
         if($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $boardId = $_GET['id'];
-            $board = $this->listService->getListsByBoardId($boardId);
-            foreach ($board as $key => $value) {
-                $board[$key]['cards'] = $this->listService->getCardsByListId($value['id']);
+            $cardData = [];
+            $boardId  = $_GET['id'];
+            $userData = $this->userService->findById($_SESSION['user_id']);
+            $listData    = $this->listService->getListsByBoardId($boardId);
+            foreach ($listData as $key => $value) {
+             $listData[$key]['cards']  = $this->cardService->getCardsByListId($value['id']);
             }
-            
+
+            $response = array('boardId' => $boardId, 'listData' => $listData,'userdata' => $userData->toArray());  
         }
         include __DIR__ . '/../views/board.php'; // Loads board UI
     }
@@ -69,5 +77,4 @@ class BoardController {
             echo $response; exit;
        }
     }
-
 }
