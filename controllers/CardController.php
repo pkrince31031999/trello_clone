@@ -6,16 +6,30 @@ require_once __DIR__ . '/../repositories/MySQLBoardRepository.php';
 require_once __DIR__ . '/../repositories/MySQLUserRepository.php';
 require_once __DIR__ . '/../repositories/MySQLListRepository.php';
 require_once __DIR__ . '/../repositories/MySQLCardRepository.php';
+require_once __DIR__ . '/../repositories/MySQLActivityRepository.php';
 require_once __DIR__ . '/../services/BoardService.php';
 require_once __DIR__ . '/../services/UserService.php';
 require_once __DIR__ . '/../services/ListService.php';
 require_once __DIR__ . '/../services/CardService.php';
+require_once __DIR__ . '/../services/ActivityService.php';
 
 class CardController {
     private $cardService;
+    private $listService;
+    private $activityService;
+    private $userService;
+    private $boardService;
     public function __construct() {
-        $CardRepository = new MySQLCardRepository();
-        $this->cardService = new CardService($CardRepository);
+        $CardRepository     = new MySQLCardRepository();
+        $this->cardService  = new CardService($CardRepository);
+        $listRepository     = new MySQLListRepository();
+        $this->listService  = new ListService($listRepository);
+        $activityRepository = new MySQLActivityRepository();
+        $this->activityService = new ActivityService($activityRepository);
+        $userRepository     = new MySQLUserRepository();
+        $this->userService  = new UserService($userRepository);
+        $boardRepository    = new MySQLBoardRepository();
+        $this->boardService = new BoardService($boardRepository);
     }
 
     public function getAllCards() {
@@ -25,12 +39,38 @@ class CardController {
     public function getCardById() {
         if($_SERVER['REQUEST_METHOD'] === 'GET') {
             $cardId = $_GET['cardid'];
+            $responseData = [];
             $cardDetail = $this->cardService->getCardById($cardId);
-            $listDetail = $this->listService->getListById($cardDetail['list_id']);
-            if($cardDetail) {
-                
+            if($cardDetail && isset($cardDetail['list_id']) && !empty($cardDetail['list_id'])) {
+                $responseData = $cardDetail;
+                $user_ids_str = $cardDetail['assigned_users']; 
+                $user_ids_raw = explode(',', $user_ids_str);
+                $user_ids = array_map(function($id) {
+                    return trim($id, " \t\n\r\0\x0B'\""); // removes spaces, quotes, newlines
+                }, $user_ids_raw);
+                $placeholders = implode(',', array_fill(0, count($user_ids), '?'));
+                $data['placeholders'] = $placeholders;
+                $data['user_ids'] = $user_ids;
+                $assigneeCard = $this->userService->getUserDetailsByIds($data);
+                if($assigneeCard) {
+                    $responseData['assignees'] = $assigneeCard;
+                }
+                $listDetail = $this->listService->getListById($cardDetail['list_id']);
+                if($listDetail){
+                    $responseData['listDetails'] = $listDetail[0];
+                }
+            }
+            
+            $activityDetail = $this->activityService->getActivityByCardId($cardId);
+            if($activityDetail) {
+                $responseData['comments'] = $activityDetail;   
             }
 
+            $boardMembers = $this->boardService->getBoardMembers($_GET['boardId']);
+            if($boardMembers) {
+                $responseData['boardMembers'] = $boardMembers;
+            }
+            echo json_encode($responseData);
         }
        
     }
@@ -77,5 +117,15 @@ class CardController {
             echo $response;
 
         }
+    }
+
+    public function updateCardDate($cardId, $startDate, $endDate) {
+        $updateDate = $this->cardService->updateCardDate($cardId, $startDate, $endDate);
+        if($updateDate) {
+            $response = json_encode(array('success' => true, 'message' => "Card date updated successfully."));   
+        }else{
+            $response = json_encode(array('success' => false, 'message' => 'Failed to update card date.'));
+        }
+        echo $response;
     }
 }

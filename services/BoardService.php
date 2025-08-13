@@ -44,4 +44,8 @@ class BoardService {
     public function getBoardByCreatedBy($createdBy) {
         return $this->boardRepo->getBoardByCreatedBy($createdBy);
     }
+
+    public function getBoardMembers($boardId){
+        return $this->boardRepo->getBoardMembers($boardId);
+    }
 }

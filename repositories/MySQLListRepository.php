@@ -50,9 +50,8 @@ class MySQLListRepository implements ListRepositoryInterface
     public function getListById($listId)
     {
         $stmt = $this->conn->prepare("SELECT * FROM lists WHERE id = ?");
-        $stmt->bind_param("i", $listId);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        $stmt->execute([$listId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllLists()

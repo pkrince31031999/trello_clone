@@ -53,4 +53,8 @@ class UserService {
         }
         return false;
     }
+
+    public function getUserDetailsByIds($userId) {
+        return $this->userRepo->getUserDetailsByIds($userId);
+    }
 }

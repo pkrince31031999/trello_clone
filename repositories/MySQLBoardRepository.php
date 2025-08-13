@@ -79,6 +79,13 @@ class MySQLBoardRepository implements BoardRepositoryInterface
         return $row;
     }
 
+    public function getBoardMembers($boardId){
+        $stmt = $this->conn->prepare("Select U.id as user_id, U.username,BM.id as board_member_id,BM.board_id from board_members as BM inner join users as U on BM.user_id = U.id where board_id = ?");
+        $stmt->execute([$boardId]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    }
+
     // public function getBoardByNameAndDescription($name, $description)
     // {
     //     $stmt = $this->conn->prepare("SELECT * FROM boards WHERE name = ? AND description = ?");

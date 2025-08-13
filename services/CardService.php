@@ -33,6 +33,10 @@ class CardService {
         return $this->cardRepository->getCardsByListId($listId);
     }
 
+    public function updateCardDate($cardId, $startDate, $endDate) {
+        return $this->cardRepository->updateCardDate($cardId, $startDate, $endDate);
+    }
+
     public function moveCard($cardId, $listId) {
         return $this->cardRepository->moveCard($cardId, $listId);
     }

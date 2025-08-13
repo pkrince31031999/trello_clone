@@ -80,6 +80,12 @@ class MySQLCardRepository implements CardRepositoryInterface
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function updateCardDate($cardId, $startDate, $endDate)
+    {
+        $stmt = $this->conn->prepare("UPDATE cards SET start_date = ?, end_date = ? WHERE id = ?");
+        $stmt->execute([$startDate, $endDate, $cardId]);
+        return $stmt->rowCount();
+    }
     public function archiveCard($cardId)
     {
         $stmt = $this->conn->prepare("UPDATE cards SET is_archived = 1 WHERE id = ?");

@@ -1812,16 +1812,15 @@
                 } else {
                     $.ajax({
                         type: 'POST',
-                        url: 'save_due_date.php',
+                        url: 'index.php?action=updateCardDate&controller=card',
                         data: {
                             cardId: currentCardId,
                             startDate: startDate,
-                            endDate: endDate,
-                            tab : "card-date-update"
+                            endDate: endDate
                         },
                         success: function(response) {
                             if (response.success) {
-                                alert(`Due date saved successfully!`);
+                                alert(response.message);
                             } else {
                                 alert(response.error);
                             }

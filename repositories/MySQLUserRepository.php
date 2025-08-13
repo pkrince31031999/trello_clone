@@ -66,4 +66,14 @@ class MySQLUserRepository implements UserRepositoryInterface {
         }
         return null;
     }
+
+    public function getUserDetailsByIds($userData) {
+        $placeholders = $userData['placeholders'];
+        $ids = $userData['user_ids'];
+        $stmt = $this->conn->prepare("SELECT id, username FROM users WHERE id IN ($placeholders)");
+        $stmt->execute($ids);
+        $responseUserDetailsByIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $responseUserDetailsByIds;
+    }
+    
 }
