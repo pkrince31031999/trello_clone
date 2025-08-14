@@ -1244,6 +1244,180 @@
         .hidden {
             display: none;
         }
+
+        /* General Styles */
+        /* * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        } */
+
+        /* Custom Modal Background */
+        /* Popover Trigger Button */
+        .popover-btn {
+            padding: 12px 25px;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Popover Container */
+        .custom-popover {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease;
+            z-index: 1000;
+        }
+
+        .custom-popover.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Popover Header */
+        .popover-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .popover-header h3 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .popover-header button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .popover-header button:hover {
+            color: #6a11cb;
+        }
+
+        /* Members Section */
+        .members-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Member List Section */
+        .member-list-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .member-list-section h4 {
+            font-size: 16px;
+            color: #6a11cb;
+        }
+
+        /* Scrollable Member List */
+        .popover-members-list {
+            max-height: 150px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-right: 5px;
+        }
+
+        .popover-members-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .popover-members-list::-webkit-scrollbar-thumb {
+            background: #6a11cb;
+            border-radius: 4px;
+        }
+
+        .popover-members-list::-webkit-scrollbar-track {
+            background: #f4f4f9;
+        }
+
+        /* Member Item */
+        .popover-member {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .popover-member:hover {
+            background: #eaeaea;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .popover-member span {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .popover-add-member {
+            font-size: 13px;
+            color: #6a11cb;
+            cursor: pointer;
+        }
+
+        @media (max-width: 500px) {
+            .custom-popover {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .popover-header h3 {
+                font-size: 16px;
+            }
+
+            .popover-member span {
+                font-size: 12px;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -1366,13 +1540,14 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="members-section">
                         <h4>Members</h4>
                         <div class="members" id="members-list">
                             <div class="member" title="Chetan Gupta">CG</div>
                             <div class="member" title="John Doe">JD</div>
                             <div class="member" title="Alice Smith">AS</div>
-                            <div class="add-member" title="Add Member">+</div>
+                            <div class="add-member" title="Add Member" onclick="openCustomMembersModal()">+</div>
                         </div>
                     </div>
                     <div class="description">
@@ -1394,6 +1569,48 @@
                             <input type="text" placeholder="Write a comment...">
                             <button>Add</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Custom Modal -->
+   <div class="custom-popover" id="custom-members-modal">
+        <!-- Popover Header -->
+        <div class="popover-header">
+            <h3>Manage Members</h3>
+            <button onclick="closeCustomPopover()">&times;</button>
+        </div>
+
+        <!-- Members Section -->
+        <div class="members-section">
+            <!-- Card Members -->
+            <div class="member-list-section">
+                <h4>Card Members</h4>
+                <div class="popover-members-list" id="card-members">
+                    <div class="popover-member" data-name="John Doe">
+                        <span>John Doe</span>
+                        <span class="popover-add-member" onclick="removeFromCardMembers(this)">Remove</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Board Members -->
+            <div class="member-list-section">
+                <h4>Board Members</h4>
+                <div class="popover-members-list" id="board-members">
+                    <div class="popover-member" data-name="Alice Smith">
+                        <span>Alice Smith</span>
+                        <span class="popover-add-member" onclick="moveToCardMembers(this)">Add</span>
+                    </div>
+                    <div class="popover-member" data-name="David Lee">
+                        <span>David Lee</span>
+                        <span class="popover-add-member" onclick="moveToCardMembers(this)">Add</span>
+                    </div>
+                    <div class="popover-member" data-name="Emma Watson">
+                        <span>Emma Watson</span>
+                        <span class="popover-add-member" onclick="moveToCardMembers(this)">Add</span>
                     </div>
                 </div>
             </div>
@@ -1675,7 +1892,16 @@
                             success: (response) => {
                                 const data = JSON.parse(response);
                                 const membersHTML = data.assignees.map(assignee => `<div class="member" title="${assignee.username}"><div class="inside">${assignee.username[0]}</div></div>`).join('');
-                                membersList.innerHTML = membersHTML + '<div class="add-member" id="add-member-btn" title="Add Member">+</div>';
+                                membersList.innerHTML = membersHTML;
+                                const addMemberBtn = document.createElement('div');
+                                addMemberBtn.className = 'add-member';
+                                addMemberBtn.id = 'add-member-btn';
+                                addMemberBtn.title = 'Add Member';
+                                addMemberBtn.onclick = function() {
+                                    openCustomMembersModal();
+                                };
+                                addMemberBtn.textContent = '+';
+                                membersList.appendChild(addMemberBtn);
                                 // const boardMembersHTML = data.boardMembers.map(member => `<div class="board-member-item" data-initials="${member.username.split(' ').map(name => name[0]).join('')}" title="${member.username}">${member.username.split(' ').map(name => name[0]).join('')}</div>`).join('');
                                 // boardMembersDropdown.innerHTML = boardMembersHTML;
                                 document.querySelector('.task-title').textContent = data.title;
@@ -1692,16 +1918,16 @@
 
 
             // Use event delegation on the parent element (membersList)
-            membersList.addEventListener('click', (event) => {
-                if (event.target && event.target.id === 'add-member-btn') {
-                    event.stopPropagation(); // Prevent hiding dropdown
-                    boardMembersDropdown.style.display = 'block';
-                }
-            });
+            // membersList.addEventListener('click', (event) => {
+            //     if (event.target && event.target.id === 'add-member-btn') {
+            //         event.stopPropagation(); // Prevent hiding dropdown
+            //         boardMembersDropdown.style.display = 'block';
+            //     }
+            // });
             
-            membersList.addEventListener('click', () => {
-                boardMembersDropdown.style.display = 'none';
-            });
+            // membersList.addEventListener('click', () => {
+            //     boardMembersDropdown.style.display = 'none';
+            // });
 
             //  boardMembersDropdown.addEventListener('click', (event) => {
             //     alert('click');
@@ -1832,6 +2058,49 @@
                     });
                 }
             });
+
+
+            function openCustomMembersModal() {
+            document.getElementById('custom-members-modal').classList.add('active');
+            }
+
+            // Close Custom Modal
+            function closeCustomModal() {
+                document.getElementById('custom-members-modal').classList.remove('active');
+            }
+
+            // Filter Members
+            function filterCustomMembers() {
+                const searchTerm = document.getElementById('custom-search').value.toLowerCase();
+                const allMembers = document.querySelectorAll('.custom-member');
+
+                allMembers.forEach(member => {
+                    const name = member.getAttribute('data-name').toLowerCase();
+                    if (name.includes(searchTerm)) {
+                        member.style.display = 'flex';
+                    } else {
+                        member.style.display = 'none';
+                    }
+                });
+            }
+
+            // Move Board Member to Card Members
+            function moveToCustomCardMembers(element) {
+                const member = element.parentElement;
+                const cardMembersList = document.getElementById('custom-card-members');
+                member.querySelector('.custom-add-member').textContent = 'Remove';
+                member.querySelector('.custom-add-member').setAttribute('onclick', 'removeFromCustomCardMembers(this)');
+                cardMembersList.appendChild(member);
+            }
+
+            // Remove Member from Card Members
+            function removeFromCustomCardMembers(element) {
+                const member = element.parentElement;
+                const boardMembersList = document.getElementById('custom-board-members');
+                member.querySelector('.custom-add-member').textContent = 'Add';
+                member.querySelector('.custom-add-member').setAttribute('onclick', 'moveToCustomCardMembers(this)');
+                boardMembersList.appendChild(member);
+            }
             
     </script>
 </body>

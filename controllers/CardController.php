@@ -119,13 +119,20 @@ class CardController {
         }
     }
 
-    public function updateCardDate($cardId, $startDate, $endDate) {
-        $updateDate = $this->cardService->updateCardDate($cardId, $startDate, $endDate);
-        if($updateDate) {
-            $response = json_encode(array('success' => true, 'message' => "Card date updated successfully."));   
-        }else{
-            $response = json_encode(array('success' => false, 'message' => 'Failed to update card date.'));
+    public function updateCardDate() {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $cardId    = $_POST['cardId'];
+            $startDate = isset($_POST['startDate']) && !empty($_POST['startDate']) ? $_POST['startDate'] : NULL;
+            $endDate   = isset($_POST['endDate'])   && !empty($_POST['endDate'])   ? $_POST['endDate']   : NULL;
+
+            $updateDate = $this->cardService->updateCardDate($cardId, $startDate, $endDate);
+            if($updateDate) {
+                $response = json_encode(array('success' => true, 'message' => "Card date updated successfully."));   
+            }else{
+                $response = json_encode(array('success' => false, 'message' => 'Failed to update card date.'));
+            }
+            echo $response;
         }
-        echo $response;
+       
     }
 }
