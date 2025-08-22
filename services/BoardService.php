@@ -17,7 +17,7 @@ class BoardService {
         return $this->boardRepo->getBoardById($id);
     }
 
-    public function createBoard($data) {
+    public function createBoard(Boards $data) {
         return $this->boardRepo->createBoard($data);
     }
 

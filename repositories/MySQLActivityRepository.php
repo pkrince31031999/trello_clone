@@ -13,6 +13,7 @@ class MySQLActivityRepository implements ActivityRepositoryInterface
         $this->conn = $dbInstance->getConnection();
     }
     public function createActivity($activityData) {
+        print_r($activityData);die;
         $stmt = $this->conn->prepare('INSERT INTO activities (user_id, card_id, description, created_at) VALUES (?, ?, ?, NOW())');
         $stmt->execute([$activityData['user_id'], $activityData['card_id'], $activityData['description']]);
     }

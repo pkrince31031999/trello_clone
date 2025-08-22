@@ -1278,11 +1278,11 @@
         .custom-popover {
             display: none;
             position: absolute;
-            top: 70px;
-            left: 50%;
+            top: 319px;
+            left: 38%;
             transform: translateX(-50%);
             background: #ffffff;
-            width: 90%;
+            width: 10%;
             max-width: 400px;
             padding: 20px;
             border-radius: 20px;
@@ -1600,10 +1600,7 @@
             <div class="member-list-section">
                 <h4>Board Members</h4>
                 <div class="popover-members-list" id="board-members">
-                    <div class="popover-member" data-name="Alice Smith">
-                        <span>Alice Smith</span>
-                        <span class="popover-add-member" onclick="moveToCardMembers(this)">Add</span>
-                    </div>
+                    
                     <div class="popover-member" data-name="David Lee">
                         <span>David Lee</span>
                         <span class="popover-add-member" onclick="moveToCardMembers(this)">Add</span>
@@ -1838,85 +1835,222 @@
             // Here, you can implement actual functionality to add the list to the UI or backend.
             }
 
-            const modal = document.getElementById('task-modal');
-            const modalTitle = document.getElementById('task-title');
-            const modalDesc = document.getElementById('task-desc');
-            const saveBtn = document.getElementById('save-btn');
-            const commentList = document.getElementById('comment-list');
-            const newComment = document.getElementById('new-comment');
-            const membersList = document.getElementById('members-list');
-            const boardMembersDropdown = document.getElementById('board-members-dropdown');
-            let currentCardId = null;
-            const addMemberBtn = document.getElementById('add-member-btn');
-            const descriptionTextarea = document.getElementById('description-textarea');
-            const descriptionActions = document.getElementById('description-actions');
-
-            descriptionTextarea.addEventListener('focus', () => {
-            descriptionActions.style.display = 'block';
-            });
-
-            descriptionTextarea.addEventListener('blur', () => {
-            if (descriptionTextarea.value.trim() === '') {
-                descriptionActions.style.display = 'none';
-            }
-            });
-            
-            // const boardMembersDropdown = document.getElementById('board-members-dropdown');
+            // const modal = document.getElementById('task-modal');
+            // const modalTitle = document.getElementById('task-title');
+            // const modalDesc = document.getElementById('task-desc');
+            // const saveBtn = document.getElementById('save-btn');
+            // const commentList = document.getElementById('comment-list');
+            // const newComment = document.getElementById('new-comment');
             // const membersList = document.getElementById('members-list');
+            // const boardMembersDropdown = document.getElementById('board-members');
+            // let currentCardId = null;
+            // const addMemberBtn = document.getElementById('add-member-btn');
+            // const descriptionTextarea = document.getElementById('description-textarea');
+            // const descriptionActions = document.getElementById('description-actions');
 
-            
-            // addMemberBtn.addEventListener('click', (event) => {
-            //     alert('click');
-            //     event.stopPropagation(); // Prevent hiding dropdown
-            //     boardMembersDropdown.style.display = 'block';
+            // descriptionTextarea.addEventListener('focus', () => {
+            // descriptionActions.style.display = 'block';
+            // });
+
+            // descriptionTextarea.addEventListener('blur', () => {
+            // if (descriptionTextarea.value.trim() === '') {
+            //     descriptionActions.style.display = 'none';
+            // }
             // });
             
+            // // const boardMembersDropdown = document.getElementById('board-members-dropdown');
+            // // const membersList = document.getElementById('members-list');
 
-            // Add selected member to the list
-           
-
-            // Hide dropdown when clicking outside
+            
+            // // addMemberBtn.addEventListener('click', (event) => {
+            // //     alert('click');
+            // //     event.stopPropagation(); // Prevent hiding dropdown
+            // //     boardMembersDropdown.style.display = 'block';
+            // // });
             
 
-            // Open modal on card click
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('click', () => {
-                    currentCardId = card.getAttribute('data-card-id');
-                    // modalTitle.value = card.getAttribute('data-card-title');
-                    // modalDesc.value = card.getAttribute('data-card-desc');
-                    modal.style.display = 'flex';
-                    $.ajax({
-                            type: 'GET',
-                            url: 'index.php?action=getCardById&controller=card',
-                            data: { cardid : currentCardId, boardId: $('.dashboard').attr('data-board-id') },
-                            success: (response) => {
-                                const data = JSON.parse(response);
-                                const membersHTML = data.assignees.map(assignee => `<div class="member" title="${assignee.username}"><div class="inside">${assignee.username[0]}</div></div>`).join('');
-                                membersList.innerHTML = membersHTML;
-                                const addMemberBtn = document.createElement('div');
-                                addMemberBtn.className = 'add-member';
-                                addMemberBtn.id = 'add-member-btn';
-                                addMemberBtn.title = 'Add Member';
-                                addMemberBtn.onclick = function() {
-                                    openCustomMembersModal();
-                                };
-                                addMemberBtn.textContent = '+';
-                                membersList.appendChild(addMemberBtn);
-                                // const boardMembersHTML = data.boardMembers.map(member => `<div class="board-member-item" data-initials="${member.username.split(' ').map(name => name[0]).join('')}" title="${member.username}">${member.username.split(' ').map(name => name[0]).join('')}</div>`).join('');
-                                // boardMembersDropdown.innerHTML = boardMembersHTML;
-                                document.querySelector('.task-title').textContent = data.title;
-                                document.querySelector('.list-status').textContent = data.listDetails.title;
-                                document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);  
+            // // Add selected member to the list
+           
+
+            // // Hide dropdown when clicking outside
+            
+
+            // // Open modal on card click
+            // document.querySelectorAll('.card').forEach(card => {
+            //     card.addEventListener('click', () => {
+            //         currentCardId = card.getAttribute('data-card-id');
+            //         modal.style.display = 'flex';
+            //         $.ajax({
+            //                 type: 'GET',
+            //                 url: 'index.php?action=getCardById&controller=card',
+            //                 data: { cardid : currentCardId, boardId: $('.dashboard').attr('data-board-id') },
+            //                 success: (response) => {
+            //                     const data = JSON.parse(response);
+            //                     const membersHTML = data.assignees.map(assignee => `<div class="member" title="${assignee.username}"><div class="inside">${assignee.username[0]}</div></div>`).join('');
+            //                     membersList.innerHTML = membersHTML;
+            //                     const addMemberBtn = document.createElement('div');
+            //                     addMemberBtn.className = 'add-member';
+            //                     addMemberBtn.id = 'add-member-btn';
+            //                     addMemberBtn.title = 'Add Member';
+            //                     addMemberBtn.onclick = function() {
+            //                         openCustomMembersModal();
+            //                     };
+            //                     addMemberBtn.textContent = '+';
+            //                     membersList.appendChild(addMemberBtn);
+            //                     const boardMembersHTML = data.boardMembers.map(member => {
+            //                         const memberHTML = document.createElement('div');
+            //                         memberHTML.className = 'popover-member';
+            //                         memberHTML.dataset.name = member.username;
+
+            //                         const memberName = document.createElement('span');
+            //                         memberName.textContent = member.username;
+
+            //                         const addMemberBtn = document.createElement('span');
+            //                         addMemberBtn.className = 'popover-add-member';
+            //                         addMemberBtn.textContent = 'Add';
+            //                         // Use arrow function to preserve the value of `this`
+            //                         addMemberBtn.onclick = () => {
+            //                             moveToCardMembers(addMemberBtn);
+            //                         };
+
+            //                         memberHTML.appendChild(memberName);
+            //                         memberHTML.appendChild(addMemberBtn);
+            //                         return memberHTML.outerHTML;
+            //                     }).join('');
                                 
-                            },
-                            error: (xhr, status, error) => {
-                                console.error('Error fetching comments:', error);
-                            }
-                    });
-                });
-            });
+            //                     boardMembersDropdown.innerHTML = boardMembersHTML;
+            //                     document.querySelector('.task-title').textContent = data.title;
+            //                     document.querySelector('.list-status').textContent = data.listDetails.title;
+            //                     document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);  
+                                
+            //                 },
+            //                 error: (xhr, status, error) => {
+            //                     console.error('Error fetching comments:', error);
+            //                 }
+            //         });
+            //     });
+            // });
 
+            // Declare required DOM elements
+const modal = document.getElementById('task-modal');
+const modalTitle = document.getElementById('task-title');
+const modalDesc = document.getElementById('task-desc');
+const saveBtn = document.getElementById('save-btn');
+const commentList = document.getElementById('comment-list');
+const newComment = document.getElementById('new-comment');
+const membersList = document.getElementById('members-list');
+const boardMembersDropdown = document.getElementById('board-members');
+let currentCardId = null;
 
+// Description textarea actions
+const descriptionTextarea = document.getElementById('description-textarea');
+const descriptionActions = document.getElementById('description-actions');
+
+descriptionTextarea.addEventListener('focus', () => {
+    descriptionActions.style.display = 'block';
+});
+
+descriptionTextarea.addEventListener('blur', () => {
+    if (descriptionTextarea.value.trim() === '') {
+        descriptionActions.style.display = 'none';
+    }
+});
+
+// Open modal on card click
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+        currentCardId = card.getAttribute('data-card-id');
+        modal.style.display = 'flex';
+
+        // Fetch card data via AJAX
+        $.ajax({
+            type: 'GET',
+            url: 'index.php?action=getCardById&controller=card',
+            data: { cardid: currentCardId, boardId: $('.dashboard').attr('data-board-id') },
+            success: (response) => {
+                const data = JSON.parse(response);
+
+                // Populate members list
+                const membersHTML = data.assignees
+                    .map(assignee => `
+                        <div class="member" title="${assignee.username}">
+                            <div class="inside">${assignee.username[0]}</div>
+                        </div>
+                    `)
+                    .join('');
+                membersList.innerHTML = membersHTML;
+
+                // Add "Add Member" button
+                const addMemberBtn = document.createElement('div');
+                addMemberBtn.className = 'add-member';
+                addMemberBtn.id = 'add-member-btn';
+                addMemberBtn.title = 'Add Member';
+                addMemberBtn.textContent = '+';
+                addMemberBtn.onclick = openCustomMembersModal; // Assign event handler for opening the dropdown
+
+                membersList.appendChild(addMemberBtn);
+
+                // Populate board members dropdown
+                const boardMembersHTML = data.boardMembers
+                    .map(member => `
+                        <div class="popover-member" data-name="${member.username}" data-member-id="${member.id}">
+                            <span>${member.username}</span>
+                            <span class="popover-add-member">Add</span>
+                        </div>
+                    `)
+                    .join('');
+                boardMembersDropdown.innerHTML = boardMembersHTML;
+
+                // Populate modal details
+                document.querySelector('.task-title').textContent = data.title;
+                document.querySelector('.list-status').textContent = data.listDetails.title;
+                document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);
+            },
+            error: (xhr, status, error) => {
+                console.error('Error fetching card data:', error);
+            }
+        });
+    });
+});
+
+// Handle click on dynamically added "Add" buttons inside the board members dropdown
+boardMembersDropdown.addEventListener('click', (event) => {
+    if (event.target.classList.contains('popover-add-member')) {
+        const memberElement = event.target.parentElement; // Get the parent div of the clicked button
+        const memberName = memberElement.dataset.name; // Get the member's name
+        const memberId = memberElement.dataset.memberId;
+        
+        // Add the member to the card members list
+        const newMember = document.createElement('div');
+        newMember.className = 'member';
+        newMember.title = memberName;
+
+        const insideDiv = document.createElement('div');
+        insideDiv.className = 'inside';
+        insideDiv.textContent = memberName[0]; // Use the first letter of the member's name
+
+        newMember.appendChild(insideDiv);
+        membersList.appendChild(newMember);
+
+        // Remove the member from the board members dropdown
+        memberElement.remove();
+    }
+});
+
+// Open the custom members modal (placeholder function)
+function openCustomMembersModal() {
+    boardMembersDropdown.style.display = 'block'; // Make the dropdown visible
+}
+
+// Hide dropdown when clicking outside
+// document.addEventListener('click', (event) => {
+//     const isClickInsideDropdown = boardMembersDropdown.contains(event.target);
+//     const isClickOnButton = event.target.id === 'add-member-btn';
+
+//     if (!isClickInsideDropdown && !isClickOnButton) {
+//         boardMembersDropdown.style.display = 'none'; // Hide the dropdown
+//     }
+// });
             // Use event delegation on the parent element (membersList)
             // membersList.addEventListener('click', (event) => {
             //     if (event.target && event.target.id === 'add-member-btn') {
@@ -2065,27 +2199,27 @@
             }
 
             // Close Custom Modal
-            function closeCustomModal() {
+            function closeCustomPopover() {
                 document.getElementById('custom-members-modal').classList.remove('active');
             }
 
             // Filter Members
-            function filterCustomMembers() {
-                const searchTerm = document.getElementById('custom-search').value.toLowerCase();
-                const allMembers = document.querySelectorAll('.custom-member');
+            // function filterCustomMembers() {
+            //     const searchTerm = document.getElementById('custom-search').value.toLowerCase();
+            //     const allMembers = document.querySelectorAll('.custom-member');
 
-                allMembers.forEach(member => {
-                    const name = member.getAttribute('data-name').toLowerCase();
-                    if (name.includes(searchTerm)) {
-                        member.style.display = 'flex';
-                    } else {
-                        member.style.display = 'none';
-                    }
-                });
-            }
+            //     allMembers.forEach(member => {
+            //         const name = member.getAttribute('data-name').toLowerCase();
+            //         if (name.includes(searchTerm)) {
+            //             member.style.display = 'flex';
+            //         } else {
+            //             member.style.display = 'none';
+            //         }
+            //     });
+            // }
 
             // Move Board Member to Card Members
-            function moveToCustomCardMembers(element) {
+            function moveToCardMembers(element) {
                 const member = element.parentElement;
                 const cardMembersList = document.getElementById('custom-card-members');
                 member.querySelector('.custom-add-member').textContent = 'Remove';

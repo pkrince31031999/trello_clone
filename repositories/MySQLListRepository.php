@@ -18,8 +18,9 @@ class MySQLListRepository implements ListRepositoryInterface
     public function createList($list)
     {
         $listData = $list->toArray();
-        $stmt = $this->conn->prepare("INSERT INTO lists (title, board_id) VALUES (?, ?)");
-        return $stmt->execute([$listData['title'], $listData['board_id']]);
+        $stmt = $this->conn->prepare("INSERT INTO lists (title, board_id, position) VALUES (?, ?, ?)");
+        $stmt->execute([$listData['title'], $listData['board_id'], $listData['position']]);
+        return $this->conn->lastInsertId();
     }
 
     public function getListsByBoardId($boardId)
@@ -59,6 +60,13 @@ class MySQLListRepository implements ListRepositoryInterface
         $stmt = $this->conn->prepare("SELECT * FROM lists");
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getRowCountListsByBoardId($boardId)
+    {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM lists WHERE board_id = ?");
+        $stmt->execute([$boardId]);
+        return $stmt->rowCount();
     }
 
 

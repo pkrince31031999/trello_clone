@@ -28,8 +28,9 @@ class MySQLUserRepository implements UserRepositoryInterface {
     }
 
     public function create(User $user) {
+        $userData = $user->toArray();
         $stmt = $this->conn->prepare("INSERT INTO users (username, email, password, full_name) VALUES (?, ?, ?, ?)");
-        return $stmt->execute([$user->name, $user->email, $user->password, $user->fullName]);
+        return $stmt->execute([$userData['username'], $userData['email'], $userData['password'], $userData['fullName']]); 
     }
 
     public function update(User $user) {

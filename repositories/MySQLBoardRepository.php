@@ -16,8 +16,10 @@ class MySQLBoardRepository implements BoardRepositoryInterface
 
     public function createBoard(Boards $board)
     {
+        $boardData = $board->toArray();
         $stmt = $this->conn->prepare("INSERT INTO boards (name, description, created_by) VALUES (?, ?, ?)");
-        return $stmt->execute([$board->name, $board->description, $board->createdBy]);
+        $stmt->execute([$boardData['name'], $boardData['description'], $boardData['created_by']]);
+        return $this->conn->lastInsertId();
     }
 
     public function updateBoard(Boards $board)
@@ -82,8 +84,8 @@ class MySQLBoardRepository implements BoardRepositoryInterface
     public function getBoardMembers($boardId){
         $stmt = $this->conn->prepare("Select U.id as user_id, U.username,BM.id as board_member_id,BM.board_id from board_members as BM inner join users as U on BM.user_id = U.id where board_id = ?");
         $stmt->execute([$boardId]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
     }
 
     // public function getBoardByNameAndDescription($name, $description)

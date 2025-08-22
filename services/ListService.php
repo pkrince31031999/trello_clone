@@ -32,5 +32,9 @@ class ListService {
     public function getListsByBoardId($boardId) {
         return $this->listRepo->getListsByBoardId($boardId);
     }
+
+    public function getRowCountListsByBoardId($boardId) {
+        return $this->listRepo->getRowCountListsByBoardId($boardId);
+    }
         
 }

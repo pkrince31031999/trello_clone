@@ -10,6 +10,8 @@ require_once __DIR__ . '/../services/BoardService.php';
 require_once __DIR__ . '/../services/UserService.php';
 require_once __DIR__ . '/../services/ListService.php';
 require_once __DIR__ . '/../services/CardService.php';
+require_once __DIR__ . '/../models/Boards.php';
+require_once __DIR__ . '/../models/Lists.php';
 
 class BoardController {
     private $boardService;
@@ -31,8 +33,7 @@ class BoardController {
         $userId = $_SESSION['user_id'];
         $boards = $this->boardService->getBoardsByUserId($userId);
         $userdata = $this->userService->findById($userId);
-    
-        if(!empty($boards && !empty($userdata))){
+        if(!empty($boards) || !empty($userdata)){
             $response = array('boardData' => $boards, 'userdata' => $userdata->toArray());
             // Pass data to view
             require_once __DIR__ . '/../views/dashboard.php';
@@ -58,19 +59,30 @@ class BoardController {
             }
 
             $response = array('boardId' => $boardId, 'listData' => $listData,'userdata' => $userData->toArray());  
+          
         }
         include __DIR__ . '/../views/board.php'; // Loads board UI
     }
 
     public function createBoard() {
        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $boardName = $_POST['boardName'];
-            $boardDescription = $_POST['boardDescription'];
-            $userId = $_SESSION['user_id'];
-            $data = array('name' => $boardName, 'description' => $boardDescription, 'created_by' => $userId);
-            $isBoardCreated = $this->boardService->createBoard($data);
-            if($isBoardCreated) {
-                $response = json_encode(array('success' => true, 'message' => "Board " .$boardName." created successfully."));   
+            $boards = new Boards();
+            $boards->setName($_POST['boardName']);
+            $boards->setDescription($_POST['boardDescription']);
+            $boards->setCreatedBy($_SESSION['user_id']);
+            $boards->setIsArchived(0);
+            $isBoardCreated = $this->boardService->createBoard($boards);
+            if(!empty($isBoardCreated)) {
+                $list = new Lists();
+                $list->setTitle('Assigned');
+                $list->setBoardId($isBoardCreated);
+                $list->setDescription('');
+                $list->setPosition(1);
+                $isListCreated = $this->listService->createList($list);
+                if($isListCreated)
+                {
+                    $response = json_encode(array('success' => true, 'message' => "Board " .$_POST['boardName']." created successfully."));  
+                }
             }else{
                 $response = json_encode(array('success' => false, 'message' => 'Failed to create board.'));
             }

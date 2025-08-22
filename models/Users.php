@@ -44,10 +44,11 @@ class User {
 
     public function toArray() {
         return [
-            'id'       => $this->id,
+            'id'       => '',
             'username' => $this->username,
             'email'    => $this->email,
-            'fullName' => $this->fullName,
+            'fullName' => $this->username,
+            'password' => $this->password
         ];
     }
 

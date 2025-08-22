@@ -1,6 +1,6 @@
 <?php
 
-class Board
+class Boards
 {
     private $id;
     private $name;

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Signup Page</title>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -226,5 +227,35 @@
 
         <p>Already have an account? <a href="index.php">Login</a></p>
     </div>
+<script>
+    document.querySelector("form").addEventListener("submit", function(e) {
+        
+        e.preventDefault();
+        const name = document.querySelector("#name").value;
+        const email = document.querySelector("#email").value;
+        const password = document.querySelector("#password").value;
+
+        $.ajax({
+            type: 'POST',
+            url: 'index.php?action=register&controller=user',
+            data: {
+                name: name,
+                email: email,
+                password: password
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);
+                    window.location.href = 'index.php?action=showLogin&controller=user';
+                } else {
+                    alert(response.error);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert(error);
+            }
+    });
+});
+</script>   
 </body>
 </html>

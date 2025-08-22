@@ -31,7 +31,8 @@ class ListController {
             $list = new Lists();
             $list->setTitle($_POST['listName']);
             $list->setBoardId($_POST['boardId']);
-            $list->setDescription($_POST['listDescription']);
+            $listCount = $this->listService->getRowCountListsByBoardId($_POST['boardId']);
+            $list->setPosition($listCount + 1);
             $isListCreated = $this->listService->createList($list);
             if($isListCreated) {
                  $response = json_encode(array('success' => true, 'message' => "List created successfully."));   

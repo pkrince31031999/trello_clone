@@ -2,6 +2,8 @@
 session_start();
 require_once __DIR__ . '/../repositories/MySQLUserRepository.php';
 require_once __DIR__ . '/../services/UserService.php';
+require_once __DIR__ . '/../models/Users.php';
+require_once __DIR__ . '/../services/ListService.php';
 
 
 

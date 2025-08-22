@@ -84,8 +84,16 @@ class CardController {
             $card->setListId($_POST['listId'] ?? 0);
             $card->setCreatedBy($_SESSION['user_id'] ?? 0);
             $isCardCreated = $this->cardService->createCard($card);
+            print_r($isCardCreated);
             if($isCardCreated) {
-                    $response = array('success' => true, 'message' => 'Card created successfully.');
+                    $cardId = $isCardCreated;
+                    $activityDescription = $_SESSION['user_name'] ." created a card ";
+                    $isActivityCreated   = $this->activityService->createActivity($cardId, $_SESSION['user_id'], 'card', 'created');
+                    print_r($isActivityCreated);die;
+                    if($isActivityCreated) {
+                        $response = array('success' => true, 'message' => 'Card created successfully.');
+                    }
+                    
             }else{
                     $response = array('success' => false, 'message' => 'Failed to create card.');
             }
@@ -104,12 +112,18 @@ class CardController {
 
     public function updateCardPositions() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $soureListId   = isset($_POST['sourceListId']) && !empty($_POST['sourceListId']) ? $_POST['sourceListId'] : 0;
-            $targetListId  = isset($_POST['targetListId']) && !empty($_POST['targetListId']) ? $_POST['targetListId'] : 0;
+            $soureListId   = isset($_POST['sourceListId'])  && !empty($_POST['sourceListId'])  ? $_POST['sourceListId']  : 0;
+            $targetListId  = isset($_POST['targetListId'])  && !empty($_POST['targetListId'])  ? $_POST['targetListId']  : 0;
             $sourceCardIds = isset($_POST['sourceCardIds']) && !empty($_POST['sourceCardIds']) ? $_POST['sourceCardIds'] : [];
             $targetCardIds = isset($_POST['targetCardIds']) && !empty($_POST['targetCardIds']) ? $_POST['targetCardIds'] : [];
+            $movedCardIds  = isset($_POST['movedCardIds'])  && !empty($_POST['movedCardIds'])  ? $_POST['movedCardIds']  : [];
             $responseUpdateCardPositions = $this->cardService->updateCardPositions($soureListId, $targetListId, $sourceCardIds, $targetCardIds);
             if($responseUpdateCardPositions) {
+                $source = $this->listService->getListById($soureListId);
+                $target = $this->listService->getListById($targetListId);
+                $listName = $source[0]['name'] . ' to ' . $target[0]['name'];
+                $activityDescription = $_SESSION['user_name'] ." moved a card from" . $listName;
+                $this->activityService->createActivity($_SESSION['user_id'],$movedCardIds,$activityDescription,'');
                 $response = json_encode(array('success' => true, 'message' => "Card positions updated successfully."));   
             }else{
                 $response = json_encode(array('success' => false, 'message' => 'Failed to update card positions.'));

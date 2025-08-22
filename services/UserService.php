@@ -12,8 +12,9 @@ class UserService {
         return $this->userRepo->getAll();
     }
 
-    public function addUser($name, $email) {
-        $user = new User($name, $email, $password);
+    public function addUser($name, $email, $password) {
+    
+        $user = new User($id=null,$name, $email, $password);
         return $this->userRepo->create($user);
     }
 
