@@ -12,7 +12,9 @@ require_once __DIR__ . '/../services/UserService.php';
 require_once __DIR__ . '/../services/ListService.php';
 require_once __DIR__ . '/../services/CardService.php';
 require_once __DIR__ . '/../services/ActivityService.php';
-
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 class CardController {
     private $cardService;
     private $listService;
@@ -43,7 +45,7 @@ class CardController {
             $cardDetail = $this->cardService->getCardById($cardId);
             if($cardDetail && isset($cardDetail['list_id']) && !empty($cardDetail['list_id'])) {
                 $responseData = $cardDetail;
-                $user_ids_str = $cardDetail['assigned_users']; 
+                $user_ids_str = isset($cardDetail['assigned_users']) && !empty($cardDetail['assigned_users']) ? $cardDetail['assigned_users'] : ''; 
                 $user_ids_raw = explode(',', $user_ids_str);
                 $user_ids = array_map(function($id) {
                     return trim($id, " \t\n\r\0\x0B'\""); // removes spaces, quotes, newlines
@@ -84,15 +86,17 @@ class CardController {
             $card->setListId($_POST['listId'] ?? 0);
             $card->setCreatedBy($_SESSION['user_id'] ?? 0);
             $isCardCreated = $this->cardService->createCard($card);
-            print_r($isCardCreated);
             if($isCardCreated) {
-                    $cardId = $isCardCreated;
-                    $activityDescription = $_SESSION['user_name'] ." created a card ";
-                    $isActivityCreated   = $this->activityService->createActivity($cardId, $_SESSION['user_id'], 'card', 'created');
-                    print_r($isActivityCreated);die;
-                    if($isActivityCreated) {
-                        $response = array('success' => true, 'message' => 'Card created successfully.');
-                    }
+                $activityData['card_id']   = $isCardCreated;
+                $activityData['message']   = $_SESSION['user_name'] ." created a card ";
+                $activityData['user_name'] = $_SESSION['user_name'];
+                $activityData['user_id']   = $_SESSION['user_id'];
+                $activityData['board_id']  = $_POST['boardId'];
+                $activityData['action']    = "Card Created";
+                $isActivityCreated   = $this->activityService->createActivity($activityData);
+                if($isActivityCreated) {
+                    $response = array('success' => true, 'message' => 'Card created successfully.');
+                }
                     
             }else{
                     $response = array('success' => false, 'message' => 'Failed to create card.');
@@ -112,6 +116,7 @@ class CardController {
 
     public function updateCardPositions() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $soureListId   = isset($_POST['sourceListId'])  && !empty($_POST['sourceListId'])  ? $_POST['sourceListId']  : 0;
             $targetListId  = isset($_POST['targetListId'])  && !empty($_POST['targetListId'])  ? $_POST['targetListId']  : 0;
             $sourceCardIds = isset($_POST['sourceCardIds']) && !empty($_POST['sourceCardIds']) ? $_POST['sourceCardIds'] : [];
@@ -121,10 +126,20 @@ class CardController {
             if($responseUpdateCardPositions) {
                 $source = $this->listService->getListById($soureListId);
                 $target = $this->listService->getListById($targetListId);
-                $listName = $source[0]['name'] . ' to ' . $target[0]['name'];
-                $activityDescription = $_SESSION['user_name'] ." moved a card from" . $listName;
-                $this->activityService->createActivity($_SESSION['user_id'],$movedCardIds,$activityDescription,'');
-                $response = json_encode(array('success' => true, 'message' => "Card positions updated successfully."));   
+                $activityData['card_id']   = $_POST['movedCardId'];
+                $listName = $source[0]['title'] . ' to ' . $target[0]['title'];
+                $activityDescription = $_SESSION['user_name'] ." moved a card from " . $listName;
+                $activityData['message']   = $activityDescription;
+                $activityData['user_name'] = $_SESSION['user_name'];
+                $activityData['user_id']   = $_SESSION['user_id'];
+                $activityData['board_id']  = $_POST['boardId'];
+                $activityData['action']    = "Card Moved";
+                $isActivityCreated   = $this->activityService->createActivity($activityData);
+                if($isActivityCreated)
+                {
+                    $response = json_encode(array('success' => true, 'message' => "Card positions updated successfully."));   
+                }
+                
             }else{
                 $response = json_encode(array('success' => false, 'message' => 'Failed to update card positions.'));
             }

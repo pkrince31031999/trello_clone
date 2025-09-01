@@ -831,19 +831,40 @@
             color: #555;
         }
 
-        .activity-log {
+        .activity-log-item {
             flex: 1;
-            overflow-y: auto;
+            overflow-y: auto; */
             padding: 10px;
             background: white;
             border-radius: 6px;
-            border: 1px solid #ddd;
+            /* border: 1px solid #ddd; */
+            word-wrap: break-word; /* Wrap long words to the next line */
+            word-break: break-word;
+            text-align: right;
+            /* overflow-y: auto; */
+        }
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #6a11cb; /* Default user icon color */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 10px 0;
         }
 
         .activity-item {
             margin-bottom: 10px;
             font-size: 14px;
             color: #444;
+            word-wrap: break-word; /* Wrap long words to the next line */
+            word-break: break-word;
+            overflow-y: auto;
         }
 
         .add-comment {
@@ -943,7 +964,7 @@
         
         .modal-body {
             display: grid;
-            gap: 20px;
+            gap: 25px;
             justify-content: space-between;
             align-items: flex-start;
             flex-wrap: wrap;
@@ -954,17 +975,23 @@
             flex: 2; /* Take up more space for the left section */
             min-width: 60%; /* Ensure the left section always has enough width */
         }
+       
+
         .modal-right {
-            flex: 1; /* Take up less space for the right section */
-            min-width: 35%; /* Ensure the right section always has enough width */
+            flex: 1;
+            min-width: 35%;
             background: #f9f9f9;
-            padding: 15px;
             border-radius: 8px;
             box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             gap: 15px;
+
+            /* Enable horizontal scroll */
+            overflow-y: auto;
+            overflow-x: hidden;/* Optional: only scroll horizontally */ /* Prevent wrapping if you want content to scroll horizontally */
         }
+
 
         .task-title {
             font-size: 20px;
@@ -1067,6 +1094,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            height: 400px
         }
 
         .activity-log {
@@ -1091,7 +1119,7 @@
             border-radius: 6px;
         }
 
-        .add-comment button {
+        .add-comment-btn button {
             padding: 8px 15px;
             background: #6a11cb;
             color: white;
@@ -1418,6 +1446,16 @@
             }
         }
         
+        .activity-top-row {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            }
+
+        .date {
+            font-size: 10px;
+            color: #333;
+            }
     </style>
 </head>
 <body>
@@ -1500,13 +1538,6 @@
                 <div class="modal-left">
                     <div class="task-title" id="task-title">TASK TITLE</div>
                     <div class="button-layer">
-                        <!-- <button><img src="https://cdn-icons-png.flaticon.com/128/17120/17120297.png" alt="labels" width="20px" height="20px">Labels</button>
-                        <button><img src="https://cdn-icons-png.flaticon.com/128/4626/4626416.png" alt="labels" width="20px" height="20px">Dates</button>
-                        <label class="attachment-btn">
-                            <input type="file" style="display: none;">
-                            <img src="https://cdn-icons-png.flaticon.com/128/1979/1979226.png" alt="attachment" width="20px" height="20px">
-                            Attachment
-                        </label> -->
                         <button>
                             <img src="https://cdn-icons-png.flaticon.com/128/17120/17120297.png" alt="labels" width="20px" height="20px">
                             Labels
@@ -1544,31 +1575,32 @@
                     <div class="members-section">
                         <h4>Members</h4>
                         <div class="members" id="members-list">
-                            <div class="member" title="Chetan Gupta">CG</div>
+                            <!-- <div class="member" title="Chetan Gupta">CG</div>
                             <div class="member" title="John Doe">JD</div>
                             <div class="member" title="Alice Smith">AS</div>
-                            <div class="add-member" title="Add Member" onclick="openCustomMembersModal()">+</div>
+                            <div class="add-member" title="Add Member" onclick="openCustomMembersModal()">+</div> -->
                         </div>
                     </div>
                     <div class="description">
                         <textarea id="description-textarea" placeholder="Add a description..."></textarea>
                         <div class="description-actions" id="description-actions" style="display: none;">
-                        <button class="save-btn" id ="save-btn">Save</button>
-                        <button class="cancel-btn">Cancel</button>
-                    </div>
+                            <button class="save-btn" id ="save-btn">Save</button>
+                            <button class="cancel-btn">Cancel</button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Right Section -->
                 <div class="modal-right">
                     <div class="activity-section">
-                       <div class="activity-log" id="activity-log">
-                        <div class="activity-log">John updated the task.</div>
-                        <div class="activity-log">Alice added a checklist.</div>
+                        <!-- <p> Comment & Activity </p> -->
                         <div class="add-comment">
                             <input type="text" placeholder="Write a comment...">
-                            <button>Add</button>
                         </div>
+                        
+                            <button>Add</button>
+                        
+                       <div class="activity-log" id="activity-log"></div>
                     </div>
                 </div>
             </div>
@@ -1589,10 +1621,10 @@
             <div class="member-list-section">
                 <h4>Card Members</h4>
                 <div class="popover-members-list" id="card-members">
-                    <div class="popover-member" data-name="John Doe">
+                    <!-- <div class="popover-member" data-name="John Doe">
                         <span>John Doe</span>
                         <span class="popover-add-member" onclick="removeFromCardMembers(this)">Remove</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -1601,14 +1633,14 @@
                 <h4>Board Members</h4>
                 <div class="popover-members-list" id="board-members">
                     
-                    <div class="popover-member" data-name="David Lee">
+                    <!-- <div class="popover-member" data-name="David Lee">
                         <span>David Lee</span>
                         <span class="popover-add-member" onclick="moveToCardMembers(this)">Add</span>
                     </div>
                     <div class="popover-member" data-name="Emma Watson">
                         <span>Emma Watson</span>
                         <span class="popover-add-member" onclick="moveToCardMembers(this)">Add</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -1757,7 +1789,8 @@
                                 sourceCardIds,
                                 targetListId,
                                 targetCardIds,
-                                movedCardId: draggedCard.getAttribute('data-card-id')
+                                movedCardId: draggedCard.getAttribute('data-card-id'),
+                                boardId: $('.dashboard').attr('data-board-id')
                             },
                             success: function (response) {
                                 if (response.success) {
@@ -1932,110 +1965,156 @@
             // });
 
             // Declare required DOM elements
-const modal = document.getElementById('task-modal');
-const modalTitle = document.getElementById('task-title');
-const modalDesc = document.getElementById('task-desc');
-const saveBtn = document.getElementById('save-btn');
-const commentList = document.getElementById('comment-list');
-const newComment = document.getElementById('new-comment');
-const membersList = document.getElementById('members-list');
-const boardMembersDropdown = document.getElementById('board-members');
-let currentCardId = null;
+                const modal = document.getElementById('task-modal');
+                const modalTitle = document.getElementById('task-title');
+                const modalDesc = document.getElementById('task-desc');
+                const saveBtn = document.getElementById('save-btn');
+                const commentList = document.getElementById('comment-list');
+                const newComment = document.getElementById('new-comment');
+                const membersList = document.getElementById('members-list');
+                const boardMembersDropdown = document.getElementById('board-members');
+                const addActivityLog = document.getElementById('activity-log');
+                let currentCardId = null;
 
-// Description textarea actions
-const descriptionTextarea = document.getElementById('description-textarea');
-const descriptionActions = document.getElementById('description-actions');
+                // Description textarea actions
+                const descriptionTextarea = document.getElementById('description-textarea');
+                const descriptionActions = document.getElementById('description-actions');
 
-descriptionTextarea.addEventListener('focus', () => {
-    descriptionActions.style.display = 'block';
-});
+                descriptionTextarea.addEventListener('focus', () => {
+                    descriptionActions.style.display = 'block';
+                });
 
-descriptionTextarea.addEventListener('blur', () => {
-    if (descriptionTextarea.value.trim() === '') {
-        descriptionActions.style.display = 'none';
-    }
-});
+                descriptionTextarea.addEventListener('blur', () => {
+                    if (descriptionTextarea.value.trim() === '') {
+                        descriptionActions.style.display = 'none';
+                    }
+                });
 
-// Open modal on card click
-document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-        currentCardId = card.getAttribute('data-card-id');
-        modal.style.display = 'flex';
+                // Open modal on card click
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        currentCardId = card.getAttribute('data-card-id');
+                        modal.style.display = 'flex';
 
-        // Fetch card data via AJAX
-        $.ajax({
-            type: 'GET',
-            url: 'index.php?action=getCardById&controller=card',
-            data: { cardid: currentCardId, boardId: $('.dashboard').attr('data-board-id') },
-            success: (response) => {
-                const data = JSON.parse(response);
+                        // Fetch card data via AJAX
+                        $.ajax({
+                            type: 'GET',
+                            url: 'index.php?action=getCardById&controller=card',
+                            data: { cardid: currentCardId, boardId: $('.dashboard').attr('data-board-id') },
+                            success: (response) => {
+                                const data = JSON.parse(response);
+                                alert(data.comments[0]);
+                                // Populate members list
+                                if(data.assignees){
+                                    const membersHTML = data.assignees
+                                        .map(assignee => `
+                                            <div class="member" title="${assignee.username}">
+                                                <div class="inside">${assignee.username[0]}</div>
+                                            </div>
+                                        `)
+                                        .join('');
+                                    membersList.innerHTML = membersHTML;
+                                }
 
-                // Populate members list
-                const membersHTML = data.assignees
-                    .map(assignee => `
-                        <div class="member" title="${assignee.username}">
-                            <div class="inside">${assignee.username[0]}</div>
-                        </div>
-                    `)
-                    .join('');
-                membersList.innerHTML = membersHTML;
+                                // Add "Add Member" button
+                                const addMemberBtn = document.createElement('div');
+                                addMemberBtn.className = 'add-member';
+                                addMemberBtn.id = 'add-member-btn';
+                                addMemberBtn.title = 'Add Member';
+                                addMemberBtn.textContent = '+';
+                                addMemberBtn.onclick = openCustomMembersModal; // Assign event handler for opening the dropdown
 
-                // Add "Add Member" button
-                const addMemberBtn = document.createElement('div');
-                addMemberBtn.className = 'add-member';
-                addMemberBtn.id = 'add-member-btn';
-                addMemberBtn.title = 'Add Member';
-                addMemberBtn.textContent = '+';
-                addMemberBtn.onclick = openCustomMembersModal; // Assign event handler for opening the dropdown
+                                membersList.appendChild(addMemberBtn);
 
-                membersList.appendChild(addMemberBtn);
+                                // Populate board members dropdown
+                                if(data.boardMembers)
+                                {
+                                     const boardMembersHTML = data.boardMembers
+                                        .map(member => `
+                                            <div class="popover-member" data-name="${member.username}" data-member-id="${member.id}">
+                                                <span>${member.username}</span>
+                                                <span class="popover-add-member">Add</span>
+                                            </div>
+                                        `)
+                                        .join('');
+                                    boardMembersDropdown.innerHTML = boardMembersHTML;
+                                }
+                            
+                                if(data.comments)
+                                {
+                                    
+                                    // const addActivityLogs = data.comments
+                                    //     .map(comment => `
+                                    //         <div class="user-icon">PP</div><span class="date">${comment.created_at}</span>
+                                    //         <div class="activity-log-item">${comment.message}
+                                    //         </div>
+                                    //     `)
+                                    //     .join('');
+                                    //     addActivityLog.innerHTML = addActivityLogs;
 
-                // Populate board members dropdown
-                const boardMembersHTML = data.boardMembers
-                    .map(member => `
-                        <div class="popover-member" data-name="${member.username}" data-member-id="${member.id}">
-                            <span>${member.username}</span>
-                            <span class="popover-add-member">Add</span>
-                        </div>
-                    `)
-                    .join('');
-                boardMembersDropdown.innerHTML = boardMembersHTML;
+                                    const addActivityLogs = data.comments
+                                    .map(comment => {
+                                        const date = new Date(comment.created_at);
 
-                // Populate modal details
-                document.querySelector('.task-title').textContent = data.title;
-                document.querySelector('.list-status').textContent = data.listDetails.title;
-                document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);
-            },
-            error: (xhr, status, error) => {
-                console.error('Error fetching card data:', error);
-            }
-        });
-    });
-});
+                                        const formattedDate = date.toLocaleString('en-US', {
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: 'numeric',
+                                        hour: 'numeric',
+                                        minute: '2-digit',
+                                        hour12: true
+                                        });
 
-// Handle click on dynamically added "Add" buttons inside the board members dropdown
-boardMembersDropdown.addEventListener('click', (event) => {
-    if (event.target.classList.contains('popover-add-member')) {
-        const memberElement = event.target.parentElement; // Get the parent div of the clicked button
-        const memberName = memberElement.dataset.name; // Get the member's name
-        const memberId = memberElement.dataset.memberId;
-        
-        // Add the member to the card members list
-        const newMember = document.createElement('div');
-        newMember.className = 'member';
-        newMember.title = memberName;
+                                        return `
+                                        <div class="activity-log-item">
+                                            <div class="activity-top-row">
+                                            <div class="user-icon">PP</div>
+                                            <div class="date">${formattedDate}</div>
+                                            </div>
+                                            <div class="message">${comment.message}</div>
+                                        </div>
+                                        `;
+                                    })
+                                    .join('');
 
-        const insideDiv = document.createElement('div');
-        insideDiv.className = 'inside';
-        insideDiv.textContent = memberName[0]; // Use the first letter of the member's name
+                                    addActivityLog.innerHTML = addActivityLogs;
+                                }
+                                
+                                // Populate modal details
+                                document.querySelector('.task-title').textContent = data.title;
+                                document.querySelector('.list-status').textContent = data.listDetails.title;
+                                document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);
+                            },
+                            error: (xhr, status, error) => {
+                                console.error('Error fetching card data:', error);
+                            }
+                        });
+                    });
+                });
 
-        newMember.appendChild(insideDiv);
-        membersList.appendChild(newMember);
+                // Handle click on dynamically added "Add" buttons inside the board members dropdown
+                boardMembersDropdown.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('popover-add-member')) {
+                        const memberElement = event.target.parentElement; // Get the parent div of the clicked button
+                        const memberName = memberElement.dataset.name; // Get the member's name
+                        const memberId = memberElement.dataset.memberId;
+                        
+                        // Add the member to the card members list
+                        const newMember = document.createElement('div');
+                        newMember.className = 'member';
+                        newMember.title = memberName;
 
-        // Remove the member from the board members dropdown
-        memberElement.remove();
-    }
-});
+                        const insideDiv = document.createElement('div');
+                        insideDiv.className = 'inside';
+                        insideDiv.textContent = memberName[0]; // Use the first letter of the member's name
+
+                        newMember.appendChild(insideDiv);
+                        membersList.appendChild(newMember);
+
+                        // Remove the member from the board members dropdown
+                        memberElement.remove();
+                    }
+                });
 
 // Open the custom members modal (placeholder function)
 function openCustomMembersModal() {
