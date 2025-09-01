@@ -158,10 +158,12 @@ class MySQLCardRepository implements CardRepositoryInterface
 
     public function updateCardPositions($soureListId, $targetListId, $sourceCardIds, $targetCardIds)
     {
-        $stmt = $this->conn->prepare("UPDATE cards SET list_id = ? , position = ? WHERE id = ?");
+        $stmt = $this->conn->prepare("UPDATE cards SET list_id = ?, position = ? WHERE id = ?");
+        $affectedRows = 0;
         if(isset($sourceCardIds) && !empty($sourceCardIds)){
-                foreach ($sourceCardIds as $sourceCard) {
+            foreach ($sourceCardIds as $sourceCard) {
                 $stmt->execute([$soureListId, $sourceCard['position'], $sourceCard['cardId']]);
+                $affectedRows += $stmt->rowCount();
             }
         }
         
@@ -169,8 +171,9 @@ class MySQLCardRepository implements CardRepositoryInterface
         {
             foreach ($targetCardIds as $targetCard) {
                 $stmt->execute([$targetListId, $targetCard['position'], $targetCard['cardId']]);
+                $affectedRows += $stmt->rowCount();
             }
         }
-        return $stmt->rowCount();
+        return $affectedRows;
     }
 }

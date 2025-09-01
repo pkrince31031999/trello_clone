@@ -65,6 +65,7 @@ class BoardController {
     }
 
     public function createBoard() {
+        
        if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $boards = new Boards();
             $boards->setName($_POST['boardName']);
