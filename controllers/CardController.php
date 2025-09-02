@@ -162,4 +162,8 @@ class CardController {
         }
        
     }
+
+    public function addCardComment(){
+
+    }
 }
