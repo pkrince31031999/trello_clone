@@ -432,6 +432,20 @@
             transform: scale(1.05);
         }
 
+        .create-activity-btn{
+            width: 33%;
+            padding: 6px 6px;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s, transform 0.2s;
+            margin: 0 0 10px 0;
+        }
         /* Modal Styles */
         .modal-list {
             display: none;
@@ -1595,11 +1609,9 @@
                     <div class="activity-section">
                         <!-- <p> Comment & Activity </p> -->
                         <div class="add-comment">
-                            <input type="text" placeholder="Write a comment...">
+                            <input type="text" id="text-activity" placeholder="Write a comment...">
                         </div>
-                        
-                            <button>Add</button>
-                        
+                        <button class="create-activity-btn" id="toggleActivityInput" style="display: none;">Add</button>
                        <div class="activity-log" id="activity-log"></div>
                     </div>
                 </div>
@@ -1608,7 +1620,7 @@
     </div>
 
      <!-- Custom Modal -->
-   <div class="custom-popover" id="custom-members-modal">
+    <div class="custom-popover" id="custom-members-modal">
         <!-- Popover Header -->
         <div class="popover-header">
             <h3>Manage Members</h3>
@@ -1653,6 +1665,11 @@
                 $('#taskInputContainer').slideToggle(); // Toggle the input field with animation
                 $('#taskTitleInput').focus(); // Focus on the input field if visible
                 });
+            });
+
+             document.getElementById('text-activity').addEventListener('click', function () {
+                const activityButton = document.getElementById('toggleActivityInput');
+                activityButton.style.display = 'block';
             });
 
             function OpenTaskModal() {
@@ -1866,302 +1883,156 @@
                 closeModal();
 
             // Here, you can implement actual functionality to add the list to the UI or backend.
-            }
-
-            // const modal = document.getElementById('task-modal');
-            // const modalTitle = document.getElementById('task-title');
-            // const modalDesc = document.getElementById('task-desc');
-            // const saveBtn = document.getElementById('save-btn');
-            // const commentList = document.getElementById('comment-list');
-            // const newComment = document.getElementById('new-comment');
-            // const membersList = document.getElementById('members-list');
-            // const boardMembersDropdown = document.getElementById('board-members');
-            // let currentCardId = null;
-            // const addMemberBtn = document.getElementById('add-member-btn');
-            // const descriptionTextarea = document.getElementById('description-textarea');
-            // const descriptionActions = document.getElementById('description-actions');
-
-            // descriptionTextarea.addEventListener('focus', () => {
-            // descriptionActions.style.display = 'block';
-            // });
-
-            // descriptionTextarea.addEventListener('blur', () => {
-            // if (descriptionTextarea.value.trim() === '') {
-            //     descriptionActions.style.display = 'none';
-            // }
-            // });
-            
-            // // const boardMembersDropdown = document.getElementById('board-members-dropdown');
-            // // const membersList = document.getElementById('members-list');
-
-            
-            // // addMemberBtn.addEventListener('click', (event) => {
-            // //     alert('click');
-            // //     event.stopPropagation(); // Prevent hiding dropdown
-            // //     boardMembersDropdown.style.display = 'block';
-            // // });
-            
-
-            // // Add selected member to the list
-           
-
-            // // Hide dropdown when clicking outside
-            
-
-            // // Open modal on card click
-            // document.querySelectorAll('.card').forEach(card => {
-            //     card.addEventListener('click', () => {
-            //         currentCardId = card.getAttribute('data-card-id');
-            //         modal.style.display = 'flex';
-            //         $.ajax({
-            //                 type: 'GET',
-            //                 url: 'index.php?action=getCardById&controller=card',
-            //                 data: { cardid : currentCardId, boardId: $('.dashboard').attr('data-board-id') },
-            //                 success: (response) => {
-            //                     const data = JSON.parse(response);
-            //                     const membersHTML = data.assignees.map(assignee => `<div class="member" title="${assignee.username}"><div class="inside">${assignee.username[0]}</div></div>`).join('');
-            //                     membersList.innerHTML = membersHTML;
-            //                     const addMemberBtn = document.createElement('div');
-            //                     addMemberBtn.className = 'add-member';
-            //                     addMemberBtn.id = 'add-member-btn';
-            //                     addMemberBtn.title = 'Add Member';
-            //                     addMemberBtn.onclick = function() {
-            //                         openCustomMembersModal();
-            //                     };
-            //                     addMemberBtn.textContent = '+';
-            //                     membersList.appendChild(addMemberBtn);
-            //                     const boardMembersHTML = data.boardMembers.map(member => {
-            //                         const memberHTML = document.createElement('div');
-            //                         memberHTML.className = 'popover-member';
-            //                         memberHTML.dataset.name = member.username;
-
-            //                         const memberName = document.createElement('span');
-            //                         memberName.textContent = member.username;
-
-            //                         const addMemberBtn = document.createElement('span');
-            //                         addMemberBtn.className = 'popover-add-member';
-            //                         addMemberBtn.textContent = 'Add';
-            //                         // Use arrow function to preserve the value of `this`
-            //                         addMemberBtn.onclick = () => {
-            //                             moveToCardMembers(addMemberBtn);
-            //                         };
-
-            //                         memberHTML.appendChild(memberName);
-            //                         memberHTML.appendChild(addMemberBtn);
-            //                         return memberHTML.outerHTML;
-            //                     }).join('');
-                                
-            //                     boardMembersDropdown.innerHTML = boardMembersHTML;
-            //                     document.querySelector('.task-title').textContent = data.title;
-            //                     document.querySelector('.list-status').textContent = data.listDetails.title;
-            //                     document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);  
-                                
-            //                 },
-            //                 error: (xhr, status, error) => {
-            //                     console.error('Error fetching comments:', error);
-            //                 }
-            //         });
-            //     });
-            // });
+            } 
 
             // Declare required DOM elements
-                const modal = document.getElementById('task-modal');
-                const modalTitle = document.getElementById('task-title');
-                const modalDesc = document.getElementById('task-desc');
-                const saveBtn = document.getElementById('save-btn');
-                const commentList = document.getElementById('comment-list');
-                const newComment = document.getElementById('new-comment');
-                const membersList = document.getElementById('members-list');
-                const boardMembersDropdown = document.getElementById('board-members');
-                const addActivityLog = document.getElementById('activity-log');
-                let currentCardId = null;
+            const modal = document.getElementById('task-modal');
+            const modalTitle = document.getElementById('task-title');
+            const modalDesc = document.getElementById('task-desc');
+            const saveBtn = document.getElementById('save-btn');
+            const commentList = document.getElementById('comment-list');
+            const newComment = document.getElementById('new-comment');
+            const membersList = document.getElementById('members-list');
+            const boardMembersDropdown = document.getElementById('board-members');
+            const addActivityLog = document.getElementById('activity-log');
+            const activitySubmitButton = document.getElementById('toggleActivityInput');
+            let currentCardId = null;
 
-                // Description textarea actions
-                const descriptionTextarea = document.getElementById('description-textarea');
-                const descriptionActions = document.getElementById('description-actions');
+            // Description textarea actions
+            const descriptionTextarea = document.getElementById('description-textarea');
+            const descriptionActions = document.getElementById('description-actions');
 
-                descriptionTextarea.addEventListener('focus', () => {
-                    descriptionActions.style.display = 'block';
-                });
+            descriptionTextarea.addEventListener('focus', () => {
+                descriptionActions.style.display = 'block';
+            });
 
-                descriptionTextarea.addEventListener('blur', () => {
-                    if (descriptionTextarea.value.trim() === '') {
-                        descriptionActions.style.display = 'none';
-                    }
-                });
+            descriptionTextarea.addEventListener('blur', () => {
+                if (descriptionTextarea.value.trim() === '') {
+                    descriptionActions.style.display = 'none';
+                }
+            });
 
-                // Open modal on card click
-                document.querySelectorAll('.card').forEach(card => {
-                    card.addEventListener('click', () => {
-                        currentCardId = card.getAttribute('data-card-id');
-                        modal.style.display = 'flex';
+            // Open modal on card click
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', () => {
+                    currentCardId = card.getAttribute('data-card-id');
+                    modal.style.display = 'flex';
 
-                        // Fetch card data via AJAX
-                        $.ajax({
-                            type: 'GET',
-                            url: 'index.php?action=getCardById&controller=card',
-                            data: { cardid: currentCardId, boardId: $('.dashboard').attr('data-board-id') },
-                            success: (response) => {
-                                const data = JSON.parse(response);
-                                alert(data.comments[0]);
-                                // Populate members list
-                                if(data.assignees){
-                                    const membersHTML = data.assignees
-                                        .map(assignee => `
-                                            <div class="member" title="${assignee.username}">
-                                                <div class="inside">${assignee.username[0]}</div>
-                                            </div>
-                                        `)
-                                        .join('');
-                                    membersList.innerHTML = membersHTML;
-                                }
-
-                                // Add "Add Member" button
-                                const addMemberBtn = document.createElement('div');
-                                addMemberBtn.className = 'add-member';
-                                addMemberBtn.id = 'add-member-btn';
-                                addMemberBtn.title = 'Add Member';
-                                addMemberBtn.textContent = '+';
-                                addMemberBtn.onclick = openCustomMembersModal; // Assign event handler for opening the dropdown
-
-                                membersList.appendChild(addMemberBtn);
-
-                                // Populate board members dropdown
-                                if(data.boardMembers)
-                                {
-                                     const boardMembersHTML = data.boardMembers
-                                        .map(member => `
-                                            <div class="popover-member" data-name="${member.username}" data-member-id="${member.id}">
-                                                <span>${member.username}</span>
-                                                <span class="popover-add-member">Add</span>
-                                            </div>
-                                        `)
-                                        .join('');
-                                    boardMembersDropdown.innerHTML = boardMembersHTML;
-                                }
-                            
-                                if(data.comments)
-                                {
-                                    
-                                    // const addActivityLogs = data.comments
-                                    //     .map(comment => `
-                                    //         <div class="user-icon">PP</div><span class="date">${comment.created_at}</span>
-                                    //         <div class="activity-log-item">${comment.message}
-                                    //         </div>
-                                    //     `)
-                                    //     .join('');
-                                    //     addActivityLog.innerHTML = addActivityLogs;
-
-                                    const addActivityLogs = data.comments
-                                    .map(comment => {
-                                        const date = new Date(comment.created_at);
-
-                                        const formattedDate = date.toLocaleString('en-US', {
-                                        year: 'numeric',
-                                        month: 'short',
-                                        day: 'numeric',
-                                        hour: 'numeric',
-                                        minute: '2-digit',
-                                        hour12: true
-                                        });
-
-                                        return `
-                                        <div class="activity-log-item">
-                                            <div class="activity-top-row">
-                                            <div class="user-icon">PP</div>
-                                            <div class="date">${formattedDate}</div>
-                                            </div>
-                                            <div class="message">${comment.message}</div>
+                    // Fetch card data via AJAX
+                    $.ajax({
+                        type: 'GET',
+                        url: 'index.php?action=getCardById&controller=card',
+                        data: { cardid: currentCardId, boardId: $('.dashboard').attr('data-board-id') },
+                        success: (response) => {
+                            const data = JSON.parse(response);
+                            // Populate members list
+                            if(data.assignees){
+                                const membersHTML = data.assignees
+                                    .map(assignee => `
+                                        <div class="member" title="${assignee.username}">
+                                            <div class="inside">${assignee.username[0]}</div>
                                         </div>
-                                        `;
-                                    })
+                                    `)
                                     .join('');
-
-                                    addActivityLog.innerHTML = addActivityLogs;
-                                }
-                                
-                                // Populate modal details
-                                document.querySelector('.task-title').textContent = data.title;
-                                document.querySelector('.list-status').textContent = data.listDetails.title;
-                                document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);
-                            },
-                            error: (xhr, status, error) => {
-                                console.error('Error fetching card data:', error);
+                                membersList.innerHTML = membersHTML;
                             }
-                        });
+
+                            // Add "Add Member" button
+                            const addMemberBtn = document.createElement('div');
+                            addMemberBtn.className = 'add-member';
+                            addMemberBtn.id = 'add-member-btn';
+                            addMemberBtn.title = 'Add Member';
+                            addMemberBtn.textContent = '+';
+                            addMemberBtn.onclick = openCustomMembersModal; // Assign event handler for opening the dropdown
+
+                            membersList.appendChild(addMemberBtn);
+
+                            // Populate board members dropdown
+                            if(data.boardMembers)
+                            {
+                                    const boardMembersHTML = data.boardMembers
+                                    .map(member => `
+                                        <div class="popover-member" data-name="${member.username}" data-member-id="${member.id}">
+                                            <span>${member.username}</span>
+                                            <span class="popover-add-member">Add</span>
+                                        </div>
+                                    `)
+                                    .join('');
+                                boardMembersDropdown.innerHTML = boardMembersHTML;
+                            }
+                        
+                            if(data.comments)
+                            {
+
+                                const addActivityLogs = data.comments
+                                .map(comment => {
+                                    const date = new Date(comment.created_at);
+
+                                    const formattedDate = date.toLocaleString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric',
+                                    hour: 'numeric',
+                                    minute: '2-digit',
+                                    hour12: true
+                                    });
+
+                                    return `
+                                    <div class="activity-log-item">
+                                        <div class="activity-top-row">
+                                        <div class="user-icon">PP</div>
+                                        <div class="date">${formattedDate}</div>
+                                        </div>
+                                        <div class="message">${comment.message}</div>
+                                    </div>
+                                    `;
+                                })
+                                .join('');
+
+                                addActivityLog.innerHTML = addActivityLogs;
+                            }
+                            
+                            // Populate modal details
+                            document.querySelector('.task-title').textContent = data.title;
+                            document.querySelector('.list-status').textContent = data.listDetails.title;
+                            document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);
+                        },
+                        error: (xhr, status, error) => {
+                            console.error('Error fetching card data:', error);
+                        }
                     });
                 });
+            });
 
-                // Handle click on dynamically added "Add" buttons inside the board members dropdown
-                boardMembersDropdown.addEventListener('click', (event) => {
-                    if (event.target.classList.contains('popover-add-member')) {
-                        const memberElement = event.target.parentElement; // Get the parent div of the clicked button
-                        const memberName = memberElement.dataset.name; // Get the member's name
-                        const memberId = memberElement.dataset.memberId;
-                        
-                        // Add the member to the card members list
-                        const newMember = document.createElement('div');
-                        newMember.className = 'member';
-                        newMember.title = memberName;
+            // Handle click on dynamically added "Add" buttons inside the board members dropdown
+            boardMembersDropdown.addEventListener('click', (event) => {
+                if (event.target.classList.contains('popover-add-member')) {
+                    const memberElement = event.target.parentElement; // Get the parent div of the clicked button
+                    const memberName = memberElement.dataset.name; // Get the member's name
+                    const memberId = memberElement.dataset.memberId;
+                    
+                    // Add the member to the card members list
+                    const newMember = document.createElement('div');
+                    newMember.className = 'member';
+                    newMember.title = memberName;
 
-                        const insideDiv = document.createElement('div');
-                        insideDiv.className = 'inside';
-                        insideDiv.textContent = memberName[0]; // Use the first letter of the member's name
+                    const insideDiv = document.createElement('div');
+                    insideDiv.className = 'inside';
+                    insideDiv.textContent = memberName[0]; // Use the first letter of the member's name
 
-                        newMember.appendChild(insideDiv);
-                        membersList.appendChild(newMember);
+                    newMember.appendChild(insideDiv);
+                    membersList.appendChild(newMember);
 
-                        // Remove the member from the board members dropdown
-                        memberElement.remove();
-                    }
-                });
+                    // Remove the member from the board members dropdown
+                    memberElement.remove();
+                }
+            });
 
-// Open the custom members modal (placeholder function)
-function openCustomMembersModal() {
-    boardMembersDropdown.style.display = 'block'; // Make the dropdown visible
-}
+            // Open the custom members modal (placeholder function)
+            function openCustomMembersModal() {
+            boardMembersDropdown.style.display = 'block'; // Make the dropdown visible
+            }
 
-// Hide dropdown when clicking outside
-// document.addEventListener('click', (event) => {
-//     const isClickInsideDropdown = boardMembersDropdown.contains(event.target);
-//     const isClickOnButton = event.target.id === 'add-member-btn';
-
-//     if (!isClickInsideDropdown && !isClickOnButton) {
-//         boardMembersDropdown.style.display = 'none'; // Hide the dropdown
-//     }
-// });
-            // Use event delegation on the parent element (membersList)
-            // membersList.addEventListener('click', (event) => {
-            //     if (event.target && event.target.id === 'add-member-btn') {
-            //         event.stopPropagation(); // Prevent hiding dropdown
-            //         boardMembersDropdown.style.display = 'block';
-            //     }
-            // });
-            
-            // membersList.addEventListener('click', () => {
-            //     boardMembersDropdown.style.display = 'none';
-            // });
-
-            //  boardMembersDropdown.addEventListener('click', (event) => {
-            //     alert('click');
-            //     const target = event.target;
-            //     if (target.classList.contains('board-member-item')) {
-            //         const initials = target.getAttribute('data-initials');
-            //         const title = target.title;
-
-            //         // Create new member element
-            //         const newMember = document.createElement('div');
-            //         newMember.className = 'member';
-            //         newMember.title = title;
-            //         newMember.textContent = initials;
-
-            //         // Insert before the Add Member button
-            //         membersList.insertBefore(newMember, addMemberBtn);
-
-            //         // Hide dropdown after selection
-            //         boardMembersDropdown.style.display = 'none';
-            //     }
-            // });
             // Close modal
             document.getElementById('closeModalButton').addEventListener('click', () => {
                 modal.style.display = 'none';
@@ -2196,26 +2067,26 @@ function openCustomMembersModal() {
             });
 
             // Add a comment
-            // document.getElementById('add-comment-btn').addEventListener('click', () => {
-            //     const comment = newComment.value.trim();
-            //     if (comment) {
-            //         $.ajax({
-            //             type: 'POST',
-            //             url: 'add_comment.php',
-            //             data: {
-            //                 cardId: currentCardId,
-            //                 comment: comment
-            //             },
-            //             success: (response) => {
-            //                 newComment.value = '';
-            //                 fetchComments(currentCardId); // Reload comments
-            //             },
-            //             error: (xhr, status, error) => {
-            //                 console.error('Error adding comment:', error);
-            //             }
-            //         });
-            //     }
-            // });
+            toggleActivityInput.addEventListener('click', () => {
+                const comment = document.getElementById('text-activity').trim();
+                if (comment) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'index.php?action=updateCardDate&controller=card',
+                        data: {
+                            cardId: ,
+                            comment: comment
+                        },
+                        success: (response) => {
+                            newComment.value = '';
+                            fetchComments(currentCardId); // Reload comments
+                        },
+                        error: (xhr, status, error) => {
+                            console.error('Error adding comment:', error);
+                        }
+                    });
+                }
+            });
 
               // Get references to elements
             const openDatepickerButton = document.querySelector("#btn-open-datepicker");

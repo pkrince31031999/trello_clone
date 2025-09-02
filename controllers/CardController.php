@@ -12,9 +12,7 @@ require_once __DIR__ . '/../services/UserService.php';
 require_once __DIR__ . '/../services/ListService.php';
 require_once __DIR__ . '/../services/CardService.php';
 require_once __DIR__ . '/../services/ActivityService.php';
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+
 class CardController {
     private $cardService;
     private $listService;
