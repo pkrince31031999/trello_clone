@@ -1996,6 +1996,8 @@
                             document.querySelector('.task-title').textContent = data.title;
                             document.querySelector('.list-status').textContent = data.listDetails.title;
                             document.querySelector('.modal-datepicker-body').setAttribute('data-date-range-for-card', data.id);
+                            document.querySelector('#text-activity').setAttribute('text-activity-card-id',data.id);
+                            document.querySelector('#text-activity').setAttribute('text-activity-board-id',data.listDetails.board_id);
                         },
                         error: (xhr, status, error) => {
                             console.error('Error fetching card data:', error);
@@ -2068,14 +2070,21 @@
 
             // Add a comment
             toggleActivityInput.addEventListener('click', () => {
-                const comment = document.getElementById('text-activity').trim();
+                const message = document.getElementById('text-activity').trim();
+                const boardId = document.getElementById('text-activity').getAttribute('text-activity-board-id');
+                const cardId  = document.getElementById('text-activity').getAttribute('text-activity-card-id');
+                const action  = "add comment";
+               
                 if (comment) {
                     $.ajax({
                         type: 'POST',
-                        url: 'index.php?action=updateCardDate&controller=card',
+                        url: 'index.php?action=addCardComment&controller=card',
                         data: {
-                            cardId: ,
-                            comment: comment
+                            comment: message,
+                            boardId: boardId,
+                            cardId : cardId,
+                            action : action
+                            
                         },
                         success: (response) => {
                             newComment.value = '';

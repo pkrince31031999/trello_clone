@@ -35,11 +35,8 @@ class BoardController {
         $userdata = $this->userService->findById($userId);
         if(!empty($boards) || !empty($userdata)){
             $response = array('boardData' => $boards, 'userdata' => $userdata->toArray());
-            // Pass data to view
             require_once __DIR__ . '/../views/dashboard.php';
         }
-
-        // Pass data to view
         
     }
 
