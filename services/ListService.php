@@ -16,7 +16,6 @@ class ListService {
         return $this->listRepo->getListById($id);
     }
 
-
     public function createList(Lists $data) {
         return $this->listRepo->createList($data);
     }

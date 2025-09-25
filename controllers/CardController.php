@@ -164,6 +164,32 @@ class CardController {
     }
 
     public function addCardComment(){
-
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $comment = isset($_POST['comment']) && !empty($_POST['comment']) ? $_POST['comment'] : '';
+            $boardId = $_POST['boardId'];
+            $cardId  = $_POST['cardId'];
+            $action  = $_POST['action'];
+            $userId  = $_SESSION['user_id'];
+              
+            if(!empty($comment))
+            {
+                $activityData['message']   = $comment;
+                $activityData['user_name'] = $_SESSION['user_name'];
+                $activityData['user_id']   = $userId;
+                $activityData['board_id']  = $boardId;
+                $activityData['action']    = $action;
+                $activityData['card_id']   = $cardId;
+                $isActivityCreated   = $this->activityService->createActivity($activityData);
+                if($isActivityCreated)
+                {
+                     $response = json_encode(array('success' => true, 'message' => "add Comment successfully."));   
+                }else{
+                    $response = json_encode(array('success' => false, 'message' => "failed to add Comment."));
+                }
+            }else{
+                $response = json_encode(array('success' => false, 'message' => "Comment is required.")); 
+            }
+            echo $response;
+        }
     }
 }
