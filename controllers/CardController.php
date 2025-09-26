@@ -63,14 +63,17 @@ class CardController {
             
             $activityDetail = $this->activityService->getActivityByCardId($cardId);
             if($activityDetail) {
+                $responseData['comments']['author_details'] = $this->userService->findById($_SESSION['user_id']);
+                print_r($responseData['comments']['author_details']);die;
                 $responseData['comments'] = $activityDetail;   
+                print_r($responseData);die;
             }
 
             $boardMembers = $this->boardService->getBoardMembers($_GET['boardId']);
             if($boardMembers) {
                 $responseData['boardMembers'] = $boardMembers;
             }
-            echo json_encode($responseData);
+            echo json_encode( array('status' => true, 'card' => $responseData));
         }
        
     }

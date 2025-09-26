@@ -572,6 +572,1071 @@
             }
         }
 
+        /* Enhanced Label Picker Styles */
+        .trello-label-picker {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e2e4e6;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            margin-top: 8px;
+        }
+
+        .trello-label-picker-content {
+            padding: 16px;
+        }
+
+        .trello-label-picker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e4e6;
+        }
+
+        .trello-label-picker-header h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #172b4d;
+        }
+
+        .trello-close-label-picker {
+            background: none;
+            border: none;
+            color: #5e6c84;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .trello-close-label-picker:hover {
+            background: #e2e4e6;
+        }
+
+        .trello-label-search-group {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .trello-label-search-input {
+            width: 100%;
+            padding: 8px 12px 8px 36px;
+            border: 1px solid #e2e4e6;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .trello-label-search-input:focus {
+            outline: none;
+            border-color: #0079bf;
+            box-shadow: 0 0 0 2px rgba(0, 121, 191, 0.1);
+        }
+
+        .trello-available-labels {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+        }
+
+        .trello-available-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .trello-available-label:hover {
+            background: #f4f5f7;
+        }
+
+        .trello-label-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .trello-label-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .trello-label-color.red { background: #eb5a46; }
+        .trello-label-color.orange { background: #ff9f1a; }
+        .trello-label-color.yellow { background: #f2d600; }
+        .trello-label-color.green { background: #61bd4f; }
+        .trello-label-color.blue { background: #0079bf; }
+        .trello-label-color.purple { background: #c377e0; }
+        .trello-label-color.pink { background: #ff78cb; }
+        .trello-label-color.sky { background: #00c2e0; }
+        .trello-label-color.lime { background: #51e898; }
+        .trello-label-color.grey { background: #838c91; }
+
+        .trello-label-details {
+            flex: 1;
+        }
+
+        .trello-label-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #172b4d;
+            margin-bottom: 2px;
+        }
+
+        .trello-label-description {
+            font-size: 12px;
+            color: #5e6c84;
+        }
+
+        .trello-label-actions {
+            margin-top: 16px;
+        }
+
+        .trello-create-label-btn {
+            width: 100%;
+            padding: 8px 16px;
+            background: #e2e4e6;
+            border: none;
+            border-radius: 4px;
+            color: #172b4d;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .trello-create-label-btn:hover {
+            background: #d6d8da;
+        }
+
+        .trello-manage-labels-btn,
+        .trello-import-labels-btn,
+        .trello-export-labels-btn {
+            width: 100%;
+            padding: 8px 16px;
+            background: #e2e4e6;
+            border: none;
+            border-radius: 4px;
+            color: #172b4d;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .trello-manage-labels-btn:hover {
+            background: #0079bf;
+            color: white;
+        }
+
+        .trello-import-labels-btn:hover {
+            background: #61bd4f;
+            color: white;
+        }
+
+        .trello-export-labels-btn:hover {
+            background: #ff9f1a;
+            color: white;
+        }
+
+        .trello-label-actions {
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .trello-available-label:hover .trello-label-actions {
+            opacity: 1;
+        }
+
+        .trello-edit-label-btn,
+        .trello-delete-label-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: #e2e4e6;
+            color: #5e6c84;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .trello-edit-label-btn:hover {
+            background: #0079bf;
+            color: white;
+        }
+
+        .trello-delete-label-btn:hover {
+            background: #eb5a46;
+            color: white;
+        }
+
+        .trello-label-name,
+        .trello-label-description {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .trello-label-name:hover,
+        .trello-label-description:hover {
+            background: #f4f5f7;
+        }
+
+        .trello-label-color {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .trello-label-color:hover {
+            border-color: #0079bf;
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Label Styles */
+        .trello-label {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-right: 8px;
+            margin-bottom: 4px;
+        }
+
+        .trello-label-text {
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .trello-remove-label-btn {
+            width: 16px;
+            height: 16px;
+            border: none;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .trello-label:hover .trello-remove-label-btn {
+            opacity: 1;
+        }
+
+        .trello-remove-label-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Enhanced Checklist Styles */
+        .trello-checklist-picker {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e2e4e6;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            margin-top: 8px;
+        }
+
+        .trello-checklist-picker-content {
+            padding: 16px;
+        }
+
+        .trello-checklist-picker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e4e6;
+        }
+
+        .trello-checklist-picker-header h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #172b4d;
+        }
+
+        .trello-close-checklist-picker {
+            background: none;
+            border: none;
+            color: #5e6c84;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .trello-close-checklist-picker:hover {
+            background: #e2e4e6;
+        }
+
+        .trello-checklist-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .trello-add-checklist-btn,
+        .trello-clear-checklist-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .trello-add-checklist-btn {
+            background: #0079bf;
+            color: white;
+        }
+
+        .trello-add-checklist-btn:hover {
+            background: #005a8b;
+        }
+
+        .trello-clear-checklist-btn {
+            background: #eb5a46;
+            color: white;
+        }
+
+        .trello-clear-checklist-btn:hover {
+            background: #d63031;
+        }
+
+        .trello-checklist-templates h5 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #172b4d;
+        }
+
+        .trello-template-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .trello-template-btn {
+            padding: 8px 12px;
+            background: #e2e4e6;
+            border: none;
+            border-radius: 4px;
+            color: #172b4d;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .trello-template-btn:hover {
+            background: #d6d8da;
+        }
+
+        /* Enhanced Checklist Item Styles */
+        .trello-checklist-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e4e6;
+        }
+
+        .trello-checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .trello-checklist-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .trello-checklist-item label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 14px;
+            color: #172b4d;
+            transition: all 0.2s ease;
+        }
+
+        .trello-checklist-item.completed label {
+            text-decoration: line-through;
+            color: #5e6c84;
+        }
+
+        .trello-remove-checklist-item {
+            width: 20px;
+            height: 20px;
+            border: none;
+            background: #e2e4e6;
+            color: #5e6c84;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .trello-checklist-item:hover .trello-remove-checklist-item {
+            opacity: 1;
+        }
+
+        .trello-remove-checklist-item:hover {
+            background: #eb5a46;
+            color: white;
+        }
+
+        /* Enhanced Description Styles */
+        .trello-description-editor {
+            width: 100%;
+        }
+
+        .trello-description-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e4e6;
+            border-radius: 4px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .trello-description-textarea:focus {
+            outline: none;
+            border-color: #0079bf;
+            box-shadow: 0 0 0 2px rgba(0, 121, 191, 0.1);
+        }
+
+        .trello-description-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .trello-save-description-btn,
+        .trello-cancel-description-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .trello-save-description-btn {
+            background: #0079bf;
+            color: white;
+        }
+
+        .trello-save-description-btn:hover {
+            background: #005a8b;
+        }
+
+        .trello-cancel-description-btn {
+            background: #e2e4e6;
+            color: #5e6c84;
+        }
+
+        .trello-cancel-description-btn:hover {
+            background: #d6d8da;
+        }
+
+        .trello-description-content {
+            line-height: 1.5;
+            color: #172b4d;
+        }
+
+        .trello-description-empty {
+            color: #5e6c84;
+            font-style: italic;
+        }
+
+        /* Enhanced Trello-like Checklist Styles */
+        .trello-checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e4e6;
+            position: relative;
+        }
+
+        .trello-checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .trello-checklist-item-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .trello-checklist-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #0079bf;
+        }
+
+        .trello-checklist-label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 14px;
+            color: #172b4d;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+        }
+
+        .trello-checklist-item.completed .trello-checklist-label {
+            text-decoration: line-through;
+            color: #5e6c84;
+        }
+
+        .trello-checklist-item-actions {
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .trello-checklist-item:hover .trello-checklist-item-actions {
+            opacity: 1;
+        }
+
+        .trello-edit-checklist-item,
+        .trello-remove-checklist-item {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: #e2e4e6;
+            color: #5e6c84;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .trello-edit-checklist-item:hover {
+            background: #0079bf;
+            color: white;
+        }
+
+        .trello-remove-checklist-item:hover {
+            background: #eb5a46;
+            color: white;
+        }
+
+        /* Enhanced Trello-like Member Styles */
+        .trello-member {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            background: #f4f5f7;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .trello-member:hover {
+            background: #e2e4e6;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .trello-member-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #0079bf;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .trello-member-avatar.online::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 8px;
+            height: 8px;
+            background: #61bd4f;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
+        .trello-member-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .trello-member-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #172b4d;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .trello-member-email {
+            font-size: 12px;
+            color: #5e6c84;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .trello-member-actions {
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .trello-member:hover .trello-member-actions {
+            opacity: 1;
+        }
+
+        .trello-member-menu-btn,
+        .trello-remove-member-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: #e2e4e6;
+            color: #5e6c84;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .trello-member-menu-btn:hover {
+            background: #0079bf;
+            color: white;
+        }
+
+        .trello-remove-member-btn:hover {
+            background: #eb5a46;
+            color: white;
+        }
+
+        /* Member Menu Styles */
+        .trello-member-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #e2e4e6;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .trello-member-menu-content {
+            padding: 8px 0;
+        }
+
+        .trello-menu-item {
+            width: 100%;
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            color: #172b4d;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .trello-menu-item:hover {
+            background: #f4f5f7;
+        }
+
+        .trello-menu-item.danger {
+            color: #eb5a46;
+        }
+
+        .trello-menu-item.danger:hover {
+            background: #fdf2f2;
+        }
+
+        .trello-menu-divider {
+            margin: 4px 0;
+            border: none;
+            border-top: 1px solid #e2e4e6;
+        }
+
+        /* Enhanced Label Styles */
+        .trello-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            margin-right: 8px;
+            margin-bottom: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .trello-label:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .trello-label-text {
+            flex: 1;
+        }
+
+        .trello-remove-label-btn {
+            width: 16px;
+            height: 16px;
+            border: none;
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .trello-label:hover .trello-remove-label-btn {
+            opacity: 1;
+        }
+
+        .trello-remove-label-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Label Color Classes */
+        .trello-label.red { background: #eb5a46; }
+        .trello-label.orange { background: #ff9f1a; }
+        .trello-label.yellow { background: #f2d600; color: #172b4d; }
+        .trello-label.green { background: #61bd4f; }
+        .trello-label.blue { background: #0079bf; }
+        .trello-label.purple { background: #c377e0; }
+        .trello-label.pink { background: #ff78cb; }
+        .trello-label.sky { background: #00c2e0; }
+        .trello-label.lime { background: #51e898; color: #172b4d; }
+        .trello-label.grey { background: #838c91; }
+
+        /* Board Member Styles */
+        .trello-board-members-section {
+            margin: 16px 0;
+        }
+
+        .trello-section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #172b4d;
+        }
+
+        .trello-section-title i {
+            color: #0079bf;
+        }
+
+        .trello-board-members-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e2e4e6;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .trello-board-member {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #e2e4e6;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .trello-board-member:last-child {
+            border-bottom: none;
+        }
+
+        .trello-board-member:hover {
+            background: #f4f5f7;
+            transform: translateX(2px);
+        }
+
+        .trello-board-member-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .trello-board-member-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #0079bf;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .trello-board-member-avatar.online::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            background: #61bd4f;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
+        .trello-board-member-avatar.offline::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            background: #838c91;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
+        .trello-board-member-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .trello-board-member-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #172b4d;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .trello-board-member-email {
+            font-size: 12px;
+            color: #5e6c84;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .trello-board-member-role {
+            font-size: 11px;
+            color: #0079bf;
+            background: #e3f2fd;
+            padding: 2px 6px;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .trello-board-member-actions {
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .trello-board-member:hover .trello-board-member-actions {
+            opacity: 1;
+        }
+
+        .trello-add-to-card-btn,
+        .trello-member-options-btn {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: #e2e4e6;
+            color: #5e6c84;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .trello-add-to-card-btn:hover {
+            background: #0079bf;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .trello-member-options-btn:hover {
+            background: #5e6c84;
+            color: white;
+        }
+
+        /* Member Options Menu */
+        .trello-member-options-menu {
+            position: absolute;
+            background: white;
+            border: 1px solid #e2e4e6;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            min-width: 180px;
+        }
+
+        .trello-member-options-content {
+            padding: 8px 0;
+        }
+
+        .trello-option-item {
+            width: 100%;
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            color: #172b4d;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .trello-option-item:hover {
+            background: #f4f5f7;
+        }
+
+        .trello-option-item.danger {
+            color: #eb5a46;
+        }
+
+        .trello-option-item.danger:hover {
+            background: #fdf2f2;
+        }
+
+        .trello-option-divider {
+            margin: 4px 0;
+            border: none;
+            border-top: 1px solid #e2e4e6;
+        }
+
+        /* Enhanced Member Actions */
+        .trello-member-actions {
+            display: flex;
+            gap: 4px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .trello-member:hover .trello-member-actions {
+            opacity: 1;
+        }
+
+        .trello-manage-members-btn {
+            padding: 8px 12px;
+            background: #e2e4e6;
+            border: none;
+            border-radius: 4px;
+            color: #5e6c84;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trello-manage-members-btn:hover {
+            background: #0079bf;
+            color: white;
+        }
+
         .trello-comment-edit-actions {
             display: flex;
             gap: 8px;
@@ -604,7 +1669,9 @@
         /* Responsive Enhancements for Dynamic Features */
         @media (max-width: 768px) {
             .trello-date-picker,
-            .trello-member-picker {
+            .trello-member-picker,
+            .trello-label-picker,
+            .trello-checklist-picker {
                 position: fixed;
                 top: 50%;
                 left: 50%;
@@ -613,6 +1680,130 @@
                 max-width: 400px;
                 max-height: 80vh;
                 overflow-y: auto;
+            }
+
+            .trello-label-picker-content,
+            .trello-checklist-picker-content {
+                padding: 12px;
+            }
+
+            .trello-available-labels {
+                max-height: 150px;
+            }
+
+            .trello-label-info {
+                gap: 8px;
+            }
+
+            .trello-label-color {
+                width: 16px;
+                height: 16px;
+            }
+
+            .trello-label-name {
+                font-size: 13px;
+            }
+
+            .trello-label-description {
+                font-size: 11px;
+            }
+
+            .trello-checklist-actions {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .trello-add-checklist-btn,
+            .trello-clear-checklist-btn {
+                width: 100%;
+            }
+
+            .trello-template-buttons {
+                gap: 4px;
+            }
+
+            .trello-template-btn {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .trello-description-textarea {
+                min-height: 60px;
+                font-size: 13px;
+            }
+
+            .trello-description-actions {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .trello-save-description-btn,
+            .trello-cancel-description-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Enhanced Mobile Styles for Board Members */
+            .trello-board-members-list {
+                max-height: 150px;
+            }
+
+            .trello-board-member {
+                padding: 8px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .trello-board-member-info {
+                width: 100%;
+                gap: 8px;
+            }
+
+            .trello-board-member-avatar {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+
+            .trello-board-member-name {
+                font-size: 13px;
+            }
+
+            .trello-board-member-email {
+                font-size: 11px;
+            }
+
+            .trello-board-member-role {
+                font-size: 10px;
+                padding: 1px 4px;
+            }
+
+            .trello-board-member-actions {
+                width: 100%;
+                justify-content: flex-end;
+                opacity: 1;
+            }
+
+            .trello-add-to-card-btn,
+            .trello-member-options-btn {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+            }
+
+            .trello-member-options-menu {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .trello-option-item {
+                padding: 12px 16px;
+                font-size: 16px;
             }
 
             .trello-quick-dates {
@@ -4541,14 +5732,10 @@
                                 </button>
                             </div>
 
-                            <!-- Card Labels (Top) -->
-                            <?php if (!empty($task['labels'])): ?>
-                                <div class="card-labels">
-                                    <?php foreach (explode(',', $task['labels']) as $label): ?>
-                                        <span class="card-label <?php echo strtolower(trim($label)); ?>"></span>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
+                <!-- Card Labels (Top) -->
+                <div class="card-labels" id="card-labels-<?php echo $task['id']; ?>">
+                    <!-- Labels will be populated dynamically -->
+                </div>
 
                             <!-- Card Title -->
                             <div class="card-title"><?php echo htmlspecialchars($task['title']); ?></div>
@@ -5141,10 +6328,42 @@
         function openTrelloModal(cardId) {
             const modal = document.getElementById('trello-modal');
             modal.style.display = 'block';
+            modal.setAttribute('data-card-id', cardId);
             document.body.style.overflow = 'hidden';
-            
+            $.ajax({
+                        type: 'GET',
+                        url: 'index.php?action=getCardById&controller=card',
+                        data: { cardid: cardId, boardId: $('.dashboard').attr('data-board-id') },
+                        success: function(response) {
+                            const data = JSON.parse(response);
+                            if (data.status == true) {
+                                // console.log(data.card);
+                                loadTrelloCardData(data.card);
+                                    // createNewCardElement(response.card, listId);
+                                    // showMessage('Card created successfully!', 'success');
+                                    // closeCardInput();
+                            } else {
+                                    showMessage(response.message || 'Failed to create card', 'error');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error creating card:', error);
+                            showMessage('Error creating card. Please try again.', 'error');
+                        }
+                        // complete: function() {
+                        //     submitBtn.innerHTML = originalText;
+                        //     submitBtn.disabled = false;
+                        // }
+
+            });
+
+
+
             // Load card data
-            loadTrelloCardData(cardId);
+            //loadTrelloCardData(cardId);
+            
+            // Load card labels
+            //loadCardLabels(cardId);
             
             // Animate modal
             setTimeout(() => {
@@ -5164,56 +6383,54 @@
             }, 300);
         }
 
-        function loadTrelloCardData(cardId) {
+        function loadTrelloCardData(cardData) {
             // This would typically load data from the server
             // For now, we'll use sample data
-            const cardData = {
-                id: cardId,
-                title: 'Sample Card Title',
+            // console.log(cardData.card.id);
+            const cards = {
+                id: cardData.id,
+                title: cardData.title,
                 listName: 'To Do',
-                description: 'This is a sample card description that can be edited.',
-                labels: ['red', 'blue', 'green'],
-                members: ['john@example.com', 'jane@example.com'],
+                description: cardData.description,
+                //labels: ['red', 'blue', 'green'],
+                members: cardData.boardMembers,
                 dueDate: '2024-01-15',
-                attachments: [
-                    { name: 'document.pdf', size: '2.4 MB', type: 'pdf' },
-                    { name: 'image.jpg', size: '1.2 MB', type: 'image' }
-                ],
-                checklist: [
-                    { id: 1, text: 'Task 1', completed: true },
-                    { id: 2, text: 'Task 2', completed: false },
-                    { id: 3, text: 'Task 3', completed: false }
-                ],
-                comments: [
-                    { author: 'John Doe', time: '2 hours ago', text: 'This looks good!' },
-                    { author: 'Jane Smith', time: '1 hour ago', text: 'I agree with John.' }
-                ]
+                // attachments: [
+                //     { name: 'document.pdf', size: '2.4 MB', type: 'pdf' },
+                //     { name: 'image.jpg', size: '1.2 MB', type: 'image' }
+                // ],
+                // checklist: [
+                //     { id: 1, text: 'Task 1', completed: true },
+                //     { id: 2, text: 'Task 2', completed: false },
+                //     { id: 3, text: 'Task 3', completed: false }
+                // ],
+                comments: cardData.comments
             };
-
+                // console.log(cards);
             // Populate modal with data
-            document.getElementById('trello-card-title').textContent = cardData.title;
-            document.getElementById('trello-list-name').textContent = cardData.listName;
+            document.getElementById('trello-card-title').textContent = cards.title;
+            //document.getElementById('trello-list-name').textContent = card.listDetails.title;
             
             // Populate labels
-            populateTrelloLabels(cardData.labels);
+            // populateTrelloLabels(card.labels);
             
             // Populate members
-            populateTrelloMembers(cardData.members);
+            populateTrelloMembers(cards.members);
             
             // Populate checklist
-            populateTrelloChecklist(cardData.checklist);
+            //populateTrelloChecklist(card.checklist);
             
             // Populate due date
-            populateTrelloDueDate(cardData.dueDate);
+            //populateTrelloDueDate(card.dueDate);
             
             // Populate attachments
-            populateTrelloAttachments(cardData.attachments);
+           // populateTrelloAttachments(card.attachments);
             
             // Populate description
-            populateTrelloDescription(cardData.description);
+            populateTrelloDescription(cards.description);
             
             // Populate comments
-            populateTrelloComments(cardData.comments);
+            populateTrelloComments(cards.comments);
         }
 
         function populateTrelloLabels(labels) {
@@ -5235,8 +6452,8 @@
             members.forEach(member => {
                 const memberElement = document.createElement('div');
                 memberElement.className = 'trello-member';
-                memberElement.textContent = member.charAt(0).toUpperCase();
-                memberElement.title = member;
+                memberElement.textContent = member.username.charAt(0).toUpperCase();
+                memberElement.title = member.username;
                 container.appendChild(memberElement);
             });
         }
@@ -5328,14 +6545,14 @@
                 commentElement.className = 'trello-comment';
                 commentElement.innerHTML = `
                     <div class="trello-comment-avatar">
-                        <img src="https://via.placeholder.com/32x32/667eea/ffffff?text=${comment.author.charAt(0)}" alt="${comment.author}">
+                        
                     </div>
                     <div class="trello-comment-content">
                         <div class="trello-comment-header">
                             <span class="trello-comment-author">${comment.author}</span>
-                            <span class="trello-comment-time">${comment.time}</span>
+                            <span class="trello-comment-time">${comment.created_at}</span>
                         </div>
-                        <div class="trello-comment-text">${comment.text}</div>
+                        <div class="trello-comment-text">${comment.message}</div>
                     </div>
                 `;
                 container.appendChild(commentElement);
@@ -5344,7 +6561,543 @@
 
         // Trello Modal Action Functions
         function toggleLabelsPanel() {
-            showMessage('Labels panel functionality coming soon!', 'info');
+            const container = document.getElementById('trello-labels-list');
+            if (!container) return;
+
+            // Remove existing label picker if any
+            const existingPicker = document.querySelector('.trello-label-picker');
+            if (existingPicker) {
+                existingPicker.remove();
+                return;
+            }
+
+            // Create dynamic label picker
+            const labelPicker = document.createElement('div');
+            labelPicker.className = 'trello-label-picker';
+            labelPicker.innerHTML = `
+                <div class="trello-label-picker-content">
+                    <div class="trello-label-picker-header">
+                        <h4>Add Labels</h4>
+                        <button class="trello-close-label-picker" onclick="toggleLabelsPanel()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="trello-label-picker-body">
+                        <div class="trello-label-search-group">
+                            <input type="text" id="trello-label-search" class="trello-label-search-input" 
+                                   placeholder="Search labels...">
+                            <i class="fas fa-search trello-search-icon"></i>
+                        </div>
+                        <div class="trello-available-labels" id="trello-available-labels">
+                            <!-- Available labels will be populated here -->
+                        </div>
+                        <div class="trello-label-actions">
+                            <button class="trello-create-label-btn" onclick="createNewLabel()">
+                                <i class="fas fa-plus"></i> Create New Label
+                            </button>
+                            <button class="trello-manage-labels-btn" onclick="manageLabels()">
+                                <i class="fas fa-cog"></i> Manage Labels
+                            </button>
+                            <button class="trello-import-labels-btn" onclick="importLabels()">
+                                <i class="fas fa-download"></i> Import Labels
+                            </button>
+                            <button class="trello-export-labels-btn" onclick="exportLabels()">
+                                <i class="fas fa-upload"></i> Export Labels
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(labelPicker);
+
+            // Populate available labels
+            populateAvailableLabels();
+
+            // Focus on search input
+            setTimeout(() => {
+                const searchInput = document.getElementById('trello-label-search');
+                if (searchInput) searchInput.focus();
+            }, 100);
+
+            // Add search functionality
+            const searchInput = document.getElementById('trello-label-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    filterAvailableLabels(this.value);
+                });
+            }
+        }
+
+        function populateAvailableLabels() {
+            const container = document.getElementById('trello-available-labels');
+            if (!container) return;
+
+            // Get labels from localStorage or use default
+            let availableLabels = JSON.parse(localStorage.getItem('trello-labels')) || [
+                { id: 1, name: 'Bug', color: 'red', description: 'Something is broken', created: Date.now() },
+                { id: 2, name: 'Feature', color: 'blue', description: 'New functionality', created: Date.now() },
+                { id: 3, name: 'Urgent', color: 'orange', description: 'High priority', created: Date.now() },
+                { id: 4, name: 'Review', color: 'yellow', description: 'Needs review', created: Date.now() },
+                { id: 5, name: 'Done', color: 'green', description: 'Completed', created: Date.now() },
+                { id: 6, name: 'Research', color: 'purple', description: 'Investigation needed', created: Date.now() },
+                { id: 7, name: 'Design', color: 'pink', description: 'UI/UX work', created: Date.now() },
+                { id: 8, name: 'Backend', color: 'sky', description: 'Server-side work', created: Date.now() }
+            ];
+
+            // Save to localStorage
+            localStorage.setItem('trello-labels', JSON.stringify(availableLabels));
+
+            container.innerHTML = '';
+            availableLabels.forEach(label => {
+                const labelElement = document.createElement('div');
+                labelElement.className = 'trello-available-label';
+                labelElement.innerHTML = `
+                    <div class="trello-label-info">
+                        <div class="trello-label-color ${label.color}" onclick="changeLabelColor(${label.id})" title="Change color"></div>
+                        <div class="trello-label-details">
+                            <div class="trello-label-name" onclick="editLabelName(${label.id})" title="Click to edit">${label.name}</div>
+                            <div class="trello-label-description" onclick="editLabelDescription(${label.id})" title="Click to edit">${label.description}</div>
+                        </div>
+                    </div>
+                    <div class="trello-label-actions">
+                        <button class="trello-add-label-btn" onclick="addLabelToCard(${label.id}, '${label.name}', '${label.color}')" title="Add to card">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="trello-edit-label-btn" onclick="editLabel(${label.id})" title="Edit label">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="trello-delete-label-btn" onclick="deleteLabel(${label.id})" title="Delete label">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(labelElement);
+            });
+        }
+
+        function filterAvailableLabels(searchTerm) {
+            const labels = document.querySelectorAll('.trello-available-label');
+            const term = searchTerm.toLowerCase();
+
+            labels.forEach(label => {
+                const name = label.querySelector('.trello-label-name').textContent.toLowerCase();
+                const description = label.querySelector('.trello-label-description').textContent.toLowerCase();
+                
+                if (name.includes(term) || description.includes(term)) {
+                    label.style.display = 'flex';
+                } else {
+                    label.style.display = 'none';
+                }
+            });
+        }
+
+        function addLabelToCard(labelId, name, color) {
+            const labelsList = document.getElementById('trello-labels-list');
+            if (!labelsList) return;
+
+            // Check if label already exists
+            const existingLabel = labelsList.querySelector(`[data-label-id="${labelId}"]`);
+            if (existingLabel) {
+                showMessage('Label already added!', 'warning');
+                return;
+            }
+
+            // Create label element
+            const labelElement = document.createElement('span');
+            labelElement.className = `trello-label ${color}`;
+            labelElement.setAttribute('data-label-id', labelId);
+            labelElement.setAttribute('data-label-name', name);
+            labelElement.setAttribute('data-label-color', color);
+            labelElement.innerHTML = `
+                <span class="trello-label-text">${name}</span>
+                <button class="trello-remove-label-btn" onclick="removeLabelFromCard(${labelId})" title="Remove label">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            // Add to labels list (before the picker)
+            const picker = labelsList.querySelector('.trello-label-picker');
+            if (picker) {
+                labelsList.insertBefore(labelElement, picker);
+            } else {
+                labelsList.appendChild(labelElement);
+            }
+
+            // Save to localStorage
+            saveCardLabels();
+
+            // Update card display if modal is open
+            updateCardLabelsDisplay();
+
+            showMessage(`Label "${name}" added to card!`, 'success');
+        }
+
+        function saveCardLabels() {
+            const labelsList = document.getElementById('trello-labels-list');
+            if (!labelsList) return;
+
+            const labels = [];
+            const labelElements = labelsList.querySelectorAll('.trello-label');
+            
+            labelElements.forEach(label => {
+                labels.push({
+                    id: label.getAttribute('data-label-id'),
+                    name: label.getAttribute('data-label-name'),
+                    color: label.getAttribute('data-label-color')
+                });
+            });
+
+            // Save to localStorage with card ID
+            const cardId = getCurrentCardId();
+            if (cardId) {
+                localStorage.setItem(`card-labels-${cardId}`, JSON.stringify(labels));
+            }
+        }
+
+        function loadCardLabels(cardId) {
+            const labelsList = document.getElementById('trello-labels-list');
+            if (!labelsList) return;
+
+            // Clear existing labels
+            const existingLabels = labelsList.querySelectorAll('.trello-label');
+            existingLabels.forEach(label => label.remove());
+
+            // Load from localStorage
+            const savedLabels = localStorage.getItem(`card-labels-${cardId}`);
+            if (savedLabels) {
+                const labels = JSON.parse(savedLabels);
+                labels.forEach(label => {
+                    const labelElement = document.createElement('span');
+                    labelElement.className = `trello-label ${label.color}`;
+                    labelElement.setAttribute('data-label-id', label.id);
+                    labelElement.setAttribute('data-label-name', label.name);
+                    labelElement.setAttribute('data-label-color', label.color);
+                    labelElement.innerHTML = `
+                        <span class="trello-label-text">${label.name}</span>
+                        <button class="trello-remove-label-btn" onclick="removeLabelFromCard(${label.id})" title="Remove label">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    labelsList.appendChild(labelElement);
+                });
+            }
+        }
+
+        function getCurrentCardId() {
+            // Get current card ID from modal or context
+            const modal = document.getElementById('trello-modal');
+            if (modal && modal.style.display !== 'none') {
+                return modal.getAttribute('data-card-id') || 'default';
+            }
+            return 'default';
+        }
+
+        function updateCardLabelsDisplay() {
+            const labelsList = document.getElementById('trello-labels-list');
+            if (!labelsList) return;
+
+            const labels = [];
+            const labelElements = labelsList.querySelectorAll('.trello-label');
+            
+            labelElements.forEach(label => {
+                labels.push({
+                    id: label.getAttribute('data-label-id'),
+                    name: label.getAttribute('data-label-name'),
+                    color: label.getAttribute('data-label-color')
+                });
+            });
+
+            // Update card display in board
+            updateCardLabelsInBoard(labels);
+        }
+
+        function updateCardLabelsInBoard(labels) {
+            // Find the current card in the board and update its labels
+            const cardId = getCurrentCardId();
+            if (cardId === 'default') return;
+
+            const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
+            if (!cardElement) return;
+
+            // Update card labels display
+            const cardLabelsContainer = cardElement.querySelector('.card-labels');
+            if (cardLabelsContainer) {
+                cardLabelsContainer.innerHTML = '';
+                labels.forEach(label => {
+                    const labelSpan = document.createElement('span');
+                    labelSpan.className = `card-label ${label.color}`;
+                    labelSpan.textContent = label.name;
+                    cardLabelsContainer.appendChild(labelSpan);
+                });
+            }
+        }
+
+        function removeLabelFromCard(labelId) {
+            const labelElement = document.querySelector(`[data-label-id="${labelId}"]`);
+            if (labelElement) {
+                const labelName = labelElement.getAttribute('data-label-name');
+                labelElement.remove();
+                
+                // Save changes to localStorage
+                saveCardLabels();
+                
+                // Update card display
+                updateCardLabelsDisplay();
+                
+                showMessage(`Label "${labelName}" removed from card!`, 'info');
+            }
+        }
+
+        function createNewLabel() {
+            const name = prompt('Enter label name:');
+            if (name && name.trim()) {
+                const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink', 'sky', 'lime', 'grey'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                const labelId = Date.now(); // Generate unique ID
+                
+                // Add to localStorage
+                const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+                const newLabel = {
+                    id: labelId,
+                    name: name.trim(),
+                    color: randomColor,
+                    description: 'Custom label',
+                    created: Date.now()
+                };
+                labels.push(newLabel);
+                localStorage.setItem('trello-labels', JSON.stringify(labels));
+                
+                // Refresh the labels list
+                populateAvailableLabels();
+                showMessage(`Label "${name.trim()}" created!`, 'success');
+            }
+        }
+
+        function editLabel(labelId) {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            const label = labels.find(l => l.id === labelId);
+            if (!label) return;
+
+            const newName = prompt('Enter new label name:', label.name);
+            if (newName && newName.trim() && newName.trim() !== label.name) {
+                label.name = newName.trim();
+                localStorage.setItem('trello-labels', JSON.stringify(labels));
+                populateAvailableLabels();
+                showMessage(`Label renamed to "${newName.trim()}"!`, 'success');
+            }
+        }
+
+        function editLabelName(labelId) {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            const label = labels.find(l => l.id === labelId);
+            if (!label) return;
+
+            const newName = prompt('Enter new label name:', label.name);
+            if (newName && newName.trim() && newName.trim() !== label.name) {
+                label.name = newName.trim();
+                localStorage.setItem('trello-labels', JSON.stringify(labels));
+                populateAvailableLabels();
+                showMessage(`Label renamed to "${newName.trim()}"!`, 'success');
+            }
+        }
+
+        function editLabelDescription(labelId) {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            const label = labels.find(l => l.id === labelId);
+            if (!label) return;
+
+            const newDescription = prompt('Enter new description:', label.description);
+            if (newDescription && newDescription.trim() !== label.description) {
+                label.description = newDescription.trim();
+                localStorage.setItem('trello-labels', JSON.stringify(labels));
+                populateAvailableLabels();
+                showMessage(`Label description updated!`, 'success');
+            }
+        }
+
+        function changeLabelColor(labelId) {
+            const colors = [
+                { name: 'Red', value: 'red' },
+                { name: 'Orange', value: 'orange' },
+                { name: 'Yellow', value: 'yellow' },
+                { name: 'Green', value: 'green' },
+                { name: 'Blue', value: 'blue' },
+                { name: 'Purple', value: 'purple' },
+                { name: 'Pink', value: 'pink' },
+                { name: 'Sky', value: 'sky' },
+                { name: 'Lime', value: 'lime' },
+                { name: 'Grey', value: 'grey' }
+            ];
+
+            const colorOptions = colors.map((color, index) => 
+                `${index + 1}. ${color.name}`
+            ).join('\n');
+
+            const choice = prompt(`Choose a color:\n${colorOptions}\n\nEnter number (1-${colors.length}):`);
+            const colorIndex = parseInt(choice) - 1;
+
+            if (colorIndex >= 0 && colorIndex < colors.length) {
+                const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+                const label = labels.find(l => l.id === labelId);
+                if (label) {
+                    label.color = colors[colorIndex].value;
+                    localStorage.setItem('trello-labels', JSON.stringify(labels));
+                    populateAvailableLabels();
+                    showMessage(`Label color changed to ${colors[colorIndex].name}!`, 'success');
+                }
+            }
+        }
+
+        function deleteLabel(labelId) {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            const label = labels.find(l => l.id === labelId);
+            if (!label) return;
+
+            if (confirm(`Delete label "${label.name}"? This will remove it from all cards.`)) {
+                const updatedLabels = labels.filter(l => l.id !== labelId);
+                localStorage.setItem('trello-labels', JSON.stringify(updatedLabels));
+                populateAvailableLabels();
+                showMessage(`Label "${label.name}" deleted!`, 'success');
+            }
+        }
+
+        function duplicateLabel(labelId) {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            const label = labels.find(l => l.id === labelId);
+            if (!label) return;
+
+            const newLabel = {
+                id: Date.now(),
+                name: `${label.name} Copy`,
+                color: label.color,
+                description: label.description,
+                created: Date.now()
+            };
+
+            labels.push(newLabel);
+            localStorage.setItem('trello-labels', JSON.stringify(labels));
+            populateAvailableLabels();
+            showMessage(`Label "${newLabel.name}" created!`, 'success');
+        }
+
+        function manageLabels() {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            const labelCount = labels.length;
+            
+            const message = `Label Management\n\nTotal Labels: ${labelCount}\n\nActions:\n1. View all labels\n2. Clear all labels\n3. Reset to defaults\n4. Sort by name\n5. Sort by color\n6. Sort by date\n\nEnter number (1-6):`;
+            
+            const choice = prompt(message);
+            const choiceNum = parseInt(choice);
+            
+            switch(choiceNum) {
+                case 1:
+                    viewAllLabels();
+                    break;
+                case 2:
+                    clearAllLabels();
+                    break;
+                case 3:
+                    resetToDefaults();
+                    break;
+                case 4:
+                    sortLabelsByName();
+                    break;
+                case 5:
+                    sortLabelsByColor();
+                    break;
+                case 6:
+                    sortLabelsByDate();
+                    break;
+                default:
+                    showMessage('Invalid choice!', 'error');
+            }
+        }
+
+        function viewAllLabels() {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            const labelList = labels.map((label, index) => 
+                `${index + 1}. ${label.name} (${label.color}) - ${label.description}`
+            ).join('\n');
+            
+            alert(`All Labels:\n\n${labelList}`);
+        }
+
+        function clearAllLabels() {
+            if (confirm('Clear all labels? This cannot be undone.')) {
+                localStorage.removeItem('trello-labels');
+                populateAvailableLabels();
+                showMessage('All labels cleared!', 'success');
+            }
+        }
+
+        function resetToDefaults() {
+            if (confirm('Reset to default labels? This will replace all current labels.')) {
+                localStorage.removeItem('trello-labels');
+                populateAvailableLabels();
+                showMessage('Labels reset to defaults!', 'success');
+            }
+        }
+
+        function sortLabelsByName() {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            labels.sort((a, b) => a.name.localeCompare(b.name));
+            localStorage.setItem('trello-labels', JSON.stringify(labels));
+            populateAvailableLabels();
+            showMessage('Labels sorted by name!', 'success');
+        }
+
+        function sortLabelsByColor() {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            labels.sort((a, b) => a.color.localeCompare(b.color));
+            localStorage.setItem('trello-labels', JSON.stringify(labels));
+            populateAvailableLabels();
+            showMessage('Labels sorted by color!', 'success');
+        }
+
+        function sortLabelsByDate() {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            labels.sort((a, b) => b.created - a.created);
+            localStorage.setItem('trello-labels', JSON.stringify(labels));
+            populateAvailableLabels();
+            showMessage('Labels sorted by date!', 'success');
+        }
+
+        function importLabels() {
+            const jsonData = prompt('Paste JSON data to import labels:');
+            if (jsonData && jsonData.trim()) {
+                try {
+                    const importedLabels = JSON.parse(jsonData);
+                    if (Array.isArray(importedLabels)) {
+                        const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+                        const newLabels = importedLabels.map(label => ({
+                            ...label,
+                            id: Date.now() + Math.random(),
+                            created: Date.now()
+                        }));
+                        labels.push(...newLabels);
+                        localStorage.setItem('trello-labels', JSON.stringify(labels));
+                        populateAvailableLabels();
+                        showMessage(`${newLabels.length} labels imported!`, 'success');
+                    } else {
+                        showMessage('Invalid JSON format!', 'error');
+                    }
+                } catch (e) {
+                    showMessage('Invalid JSON data!', 'error');
+                }
+            }
+        }
+
+        function exportLabels() {
+            const labels = JSON.parse(localStorage.getItem('trello-labels')) || [];
+            const jsonData = JSON.stringify(labels, null, 2);
+            const textArea = document.createElement('textarea');
+            textArea.value = jsonData;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showMessage('Labels copied to clipboard!', 'success');
         }
 
         function toggleMembersPanel() {
@@ -5364,7 +7117,7 @@
             memberPicker.innerHTML = `
                 <div class="trello-member-picker-content">
                     <div class="trello-member-picker-header">
-                        <h4>Add Members</h4>
+                        <h4>Board Members</h4>
                         <button class="trello-close-member-picker" onclick="toggleMembersPanel()">
                             <i class="fas fa-times"></i>
                         </button>
@@ -5372,15 +7125,23 @@
                     <div class="trello-member-picker-body">
                         <div class="trello-member-search-group">
                             <input type="text" id="trello-member-search" class="trello-member-search-input" 
-                                   placeholder="Search members by name or email...">
+                                   placeholder="Search board members...">
                             <i class="fas fa-search trello-search-icon"></i>
                         </div>
-                        <div class="trello-suggested-members" id="trello-suggested-members">
-                            <!-- Suggested members will be populated here -->
+                        <div class="trello-board-members-section">
+                            <h5 class="trello-section-title">
+                                <i class="fas fa-users"></i> Board Members
+                            </h5>
+                            <div class="trello-board-members-list" id="trello-board-members-list">
+                                <!-- Board members will be populated here -->
+                            </div>
                         </div>
                         <div class="trello-member-actions">
                             <button class="trello-invite-member-btn" onclick="inviteNewMember()">
-                                <i class="fas fa-user-plus"></i> Invite New Member
+                                <i class="fas fa-user-plus"></i> Invite to Board
+                            </button>
+                            <button class="trello-manage-members-btn" onclick="manageBoardMembers()">
+                                <i class="fas fa-cog"></i> Manage Members
                             </button>
                         </div>
                     </div>
@@ -5389,8 +7150,8 @@
 
             container.appendChild(memberPicker);
 
-            // Populate suggested members
-            populateSuggestedMembers();
+            // Populate board members
+            populateBoardMembers();
 
             // Focus on search input
             setTimeout(() => {
@@ -5402,44 +7163,155 @@
             const searchInput = document.getElementById('trello-member-search');
             if (searchInput) {
                 searchInput.addEventListener('input', function() {
-                    filterSuggestedMembers(this.value);
+                    filterBoardMembers(this.value);
                 });
             }
         }
 
-        function populateSuggestedMembers() {
-            const container = document.getElementById('trello-suggested-members');
+        function populateBoardMembers() {
+            const container = document.getElementById('trello-board-members-list');
             if (!container) return;
 
-            // Sample suggested members
-            const suggestedMembers = [
-                { id: 1, name: 'John Doe', email: 'john@example.com', avatar: 'JD', online: true },
-                { id: 2, name: 'Jane Smith', email: 'jane@example.com', avatar: 'JS', online: false },
-                { id: 3, name: 'Mike Johnson', email: 'mike@example.com', avatar: 'MJ', online: true },
-                { id: 4, name: 'Sarah Wilson', email: 'sarah@example.com', avatar: 'SW', online: false },
-                { id: 5, name: 'Alex Brown', email: 'alex@example.com', avatar: 'AB', online: true }
+            // Board members data (in real app, this would come from server)
+            const boardMembers = [
+                { id: 1, name: 'John Doe', email: 'john@example.com', avatar: 'JD', role: 'Admin', online: true },
+                { id: 2, name: 'Jane Smith', email: 'jane@example.com', avatar: 'JS', role: 'Member', online: true },
+                { id: 3, name: 'Mike Johnson', email: 'mike@example.com', avatar: 'MJ', role: 'Member', online: false },
+                { id: 4, name: 'Sarah Wilson', email: 'sarah@example.com', avatar: 'SW', role: 'Observer', online: true },
+                { id: 5, name: 'David Brown', email: 'david@example.com', avatar: 'DB', role: 'Member', online: false },
+                { id: 6, name: 'Lisa Davis', email: 'lisa@example.com', avatar: 'LD', role: 'Member', online: true }
             ];
 
             container.innerHTML = '';
-            suggestedMembers.forEach(member => {
+            boardMembers.forEach(member => {
                 const memberElement = document.createElement('div');
-                memberElement.className = 'trello-suggested-member';
+                memberElement.className = 'trello-board-member';
+                memberElement.setAttribute('data-member-id', member.id);
+                memberElement.setAttribute('data-member-name', member.name);
+                memberElement.setAttribute('data-member-email', member.email);
                 memberElement.innerHTML = `
-                    <div class="trello-member-info">
-                        <div class="trello-member-avatar ${member.online ? 'online' : ''}">
+                    <div class="trello-board-member-info">
+                        <div class="trello-board-member-avatar ${member.online ? 'online' : 'offline'}">
                             ${member.avatar}
                         </div>
-                        <div class="trello-member-details">
-                            <div class="trello-member-name">${member.name}</div>
-                            <div class="trello-member-email">${member.email}</div>
+                        <div class="trello-board-member-details">
+                            <div class="trello-board-member-name">${member.name}</div>
+                            <div class="trello-board-member-email">${member.email}</div>
+                            <div class="trello-board-member-role">${member.role}</div>
                         </div>
                     </div>
-                    <button class="trello-add-member-btn" onclick="addMemberToCard(${member.id}, '${member.name}', '${member.email}', '${member.avatar}')">
-                        <i class="fas fa-plus"></i>
-                    </button>
+                    <div class="trello-board-member-actions">
+                        <button class="trello-add-to-card-btn" onclick="addBoardMemberToCard(${member.id}, '${member.name}', '${member.email}', '${member.avatar}')" title="Add to card">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="trello-member-options-btn" onclick="showMemberOptions(${member.id})" title="Options">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
                 `;
                 container.appendChild(memberElement);
             });
+        }
+
+        function filterBoardMembers(searchTerm) {
+            const members = document.querySelectorAll('.trello-board-member');
+            const term = searchTerm.toLowerCase();
+
+            members.forEach(member => {
+                const name = member.querySelector('.trello-board-member-name').textContent.toLowerCase();
+                const email = member.querySelector('.trello-board-member-email').textContent.toLowerCase();
+                const role = member.querySelector('.trello-board-member-role').textContent.toLowerCase();
+                
+                if (name.includes(term) || email.includes(term) || role.includes(term)) {
+                    member.style.display = 'flex';
+                } else {
+                    member.style.display = 'none';
+                }
+            });
+        }
+
+        function addBoardMemberToCard(memberId, name, email, avatar) {
+            // Check if member is already on the card
+            const existingMember = document.querySelector(`[data-member-id="${memberId}"]`);
+            if (existingMember && existingMember.closest('#trello-members-list')) {
+                showMessage('Member already assigned to this card!', 'warning');
+                return;
+            }
+
+            // Add member to card
+            addMemberToCard(memberId, name, email, avatar);
+            
+            // Close the member picker
+            const picker = document.querySelector('.trello-member-picker');
+            if (picker) {
+                picker.remove();
+            }
+        }
+
+        function showMemberOptions(memberId) {
+            const member = document.querySelector(`[data-member-id="${memberId}"]`);
+            if (!member) return;
+
+            // Remove existing options menu
+            const existingMenu = document.querySelector('.trello-member-options-menu');
+            if (existingMenu) {
+                existingMenu.remove();
+            }
+
+            // Create options menu
+            const menu = document.createElement('div');
+            menu.className = 'trello-member-options-menu';
+            menu.innerHTML = `
+                <div class="trello-member-options-content">
+                    <button onclick="viewMemberProfile(${memberId})" class="trello-option-item">
+                        <i class="fas fa-user"></i> View Profile
+                    </button>
+                    <button onclick="sendMessageToMember(${memberId})" class="trello-option-item">
+                        <i class="fas fa-envelope"></i> Send Message
+                    </button>
+                    <button onclick="changeMemberRole(${memberId})" class="trello-option-item">
+                        <i class="fas fa-user-tag"></i> Change Role
+                    </button>
+                    <hr class="trello-option-divider">
+                    <button onclick="removeFromBoard(${memberId})" class="trello-option-item danger">
+                        <i class="fas fa-user-minus"></i> Remove from Board
+                    </button>
+                </div>
+            `;
+
+            // Position menu
+            const memberRect = member.getBoundingClientRect();
+            menu.style.position = 'absolute';
+            menu.style.top = `${memberRect.bottom + 5}px`;
+            menu.style.left = `${memberRect.left}px`;
+            menu.style.zIndex = '1000';
+
+            document.body.appendChild(menu);
+
+            // Close menu when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', function closeMenu(e) {
+                    if (!menu.contains(e.target) && !member.contains(e.target)) {
+                        menu.remove();
+                        document.removeEventListener('click', closeMenu);
+                    }
+                });
+            }, 100);
+        }
+
+        function manageBoardMembers() {
+            showMessage('Board member management coming soon!', 'info');
+        }
+
+        function removeFromBoard(memberId) {
+            const member = document.querySelector(`[data-member-id="${memberId}"]`);
+            if (!member) return;
+
+            const name = member.getAttribute('data-member-name');
+            if (confirm(`Remove ${name} from the board?`)) {
+                member.remove();
+                showMessage(`${name} removed from board!`, 'success');
+            }
         }
 
         function filterSuggestedMembers(searchTerm) {
@@ -5476,10 +7348,19 @@
             memberElement.setAttribute('data-member-name', name);
             memberElement.setAttribute('data-member-email', email);
             memberElement.innerHTML = `
-                <span class="trello-member-initials">${avatar}</span>
-                <button class="trello-remove-member-btn" onclick="removeMemberFromCard(${memberId})" title="Remove member">
-                    <i class="fas fa-times"></i>
-                </button>
+                <div class="trello-member-avatar online">${avatar}</div>
+                <div class="trello-member-info">
+                    <div class="trello-member-name">${name}</div>
+                    <div class="trello-member-email">${email}</div>
+                </div>
+                <div class="trello-member-actions">
+                    <button class="trello-member-menu-btn" onclick="toggleMemberMenu(${memberId})" title="Member options">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <button class="trello-remove-member-btn" onclick="removeMemberFromCard(${memberId})" title="Remove member">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             `;
 
             // Add to members list (before the picker)
@@ -5490,7 +7371,9 @@
                 membersList.appendChild(memberElement);
             }
 
-            showMessage(`${name} added to card!`, 'success');
+            // Update member count
+            updateMemberCount();
+            showMessage(`Member "${name}" added to card!`, 'success');
         }
 
         function removeMemberFromCard(memberId) {
@@ -5498,7 +7381,120 @@
             if (memberElement) {
                 const memberName = memberElement.getAttribute('data-member-name');
                 memberElement.remove();
+                updateMemberCount();
                 showMessage(`${memberName} removed from card!`, 'info');
+            }
+        }
+
+        function toggleMemberMenu(memberId) {
+            const member = document.querySelector(`[data-member-id="${memberId}"]`);
+            if (!member) return;
+
+            // Remove existing menu
+            const existingMenu = document.querySelector('.trello-member-menu');
+            if (existingMenu) {
+                existingMenu.remove();
+            }
+
+            // Create member menu
+            const menu = document.createElement('div');
+            menu.className = 'trello-member-menu';
+            menu.innerHTML = `
+                <div class="trello-member-menu-content">
+                    <button onclick="changeMemberRole(${memberId})" class="trello-menu-item">
+                        <i class="fas fa-user-tag"></i> Change Role
+                    </button>
+                    <button onclick="sendMessageToMember(${memberId})" class="trello-menu-item">
+                        <i class="fas fa-envelope"></i> Send Message
+                    </button>
+                    <button onclick="viewMemberProfile(${memberId})" class="trello-menu-item">
+                        <i class="fas fa-user"></i> View Profile
+                    </button>
+                    <hr class="trello-menu-divider">
+                    <button onclick="removeMemberFromCard(${memberId})" class="trello-menu-item danger">
+                        <i class="fas fa-user-minus"></i> Remove from Card
+                    </button>
+                </div>
+            `;
+
+            // Position menu
+            const memberRect = member.getBoundingClientRect();
+            menu.style.position = 'absolute';
+            menu.style.top = `${memberRect.bottom + 5}px`;
+            menu.style.left = `${memberRect.left}px`;
+            menu.style.zIndex = '1000';
+
+            document.body.appendChild(menu);
+
+            // Close menu when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', function closeMenu(e) {
+                    if (!menu.contains(e.target) && !member.contains(e.target)) {
+                        menu.remove();
+                        document.removeEventListener('click', closeMenu);
+                    }
+                });
+            }, 100);
+        }
+
+        function changeMemberRole(memberId) {
+            const member = document.querySelector(`[data-member-id="${memberId}"]`);
+            if (!member) return;
+
+            const name = member.getAttribute('data-member-name');
+            const roles = ['Member', 'Admin', 'Observer'];
+            const currentRole = 'Member'; // Default role
+            
+            const roleSelect = document.createElement('select');
+            roleSelect.className = 'trello-role-select';
+            roles.forEach(role => {
+                const option = document.createElement('option');
+                option.value = role;
+                option.textContent = role;
+                if (role === currentRole) option.selected = true;
+                roleSelect.appendChild(option);
+            });
+
+            if (confirm(`Change role for ${name}?`)) {
+                const newRole = roleSelect.value;
+                showMessage(`Role changed to ${newRole} for ${name}!`, 'success');
+            }
+        }
+
+        function sendMessageToMember(memberId) {
+            const member = document.querySelector(`[data-member-id="${memberId}"]`);
+            if (!member) return;
+
+            const name = member.getAttribute('data-member-name');
+            const email = member.getAttribute('data-member-email');
+            const message = prompt(`Send message to ${name} (${email}):`);
+            
+            if (message && message.trim()) {
+                showMessage(`Message sent to ${name}!`, 'success');
+            }
+        }
+
+        function viewMemberProfile(memberId) {
+            const member = document.querySelector(`[data-member-id="${memberId}"]`);
+            if (!member) return;
+
+            const name = member.getAttribute('data-member-name');
+            const email = member.getAttribute('data-member-email');
+            
+            showMessage(`Viewing profile for ${name} (${email})`, 'info');
+        }
+
+        function updateMemberCount() {
+            const membersList = document.getElementById('trello-members-list');
+            const memberCount = membersList ? membersList.children.length : 0;
+            
+            // Update member count in sidebar
+            const memberButton = document.querySelector('.trello-sidebar-btn[onclick*="toggleMembersPanel"]');
+            if (memberButton) {
+                const buttonText = memberButton.querySelector('span');
+                if (buttonText) {
+                    buttonText.textContent = `Members (${memberCount})`;
+                }
             }
         }
 
@@ -5517,7 +7513,194 @@
         }
 
         function toggleChecklistPanel() {
-            showMessage('Checklist panel functionality coming soon!', 'info');
+            const container = document.getElementById('trello-checklist-items');
+            if (!container) return;
+
+            // Remove existing checklist picker if any
+            const existingPicker = document.querySelector('.trello-checklist-picker');
+            if (existingPicker) {
+                existingPicker.remove();
+                return;
+            }
+
+            // Create dynamic checklist picker
+            const checklistPicker = document.createElement('div');
+            checklistPicker.className = 'trello-checklist-picker';
+            checklistPicker.innerHTML = `
+                <div class="trello-checklist-picker-content">
+                    <div class="trello-checklist-picker-header">
+                        <h4>Manage Checklist</h4>
+                        <button class="trello-close-checklist-picker" onclick="toggleChecklistPanel()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="trello-checklist-picker-body">
+                        <div class="trello-checklist-actions">
+                            <button class="trello-add-checklist-btn" onclick="addNewChecklist()">
+                                <i class="fas fa-plus"></i> Add New Checklist
+                            </button>
+                            <button class="trello-clear-checklist-btn" onclick="clearAllChecklist()">
+                                <i class="fas fa-trash"></i> Clear All
+                            </button>
+                        </div>
+                        <div class="trello-checklist-templates">
+                            <h5>Quick Templates:</h5>
+                            <div class="trello-template-buttons">
+                                <button class="trello-template-btn" onclick="loadChecklistTemplate('development')">
+                                    Development Tasks
+                                </button>
+                                <button class="trello-template-btn" onclick="loadChecklistTemplate('review')">
+                                    Review Process
+                                </button>
+                                <button class="trello-template-btn" onclick="loadChecklistTemplate('testing')">
+                                    Testing Checklist
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(checklistPicker);
+        }
+
+        function addNewChecklist() {
+            alert("hiii");
+            const input = document.getElementById('trello-new-checklist-item');
+            if (!input) return;
+
+            const text = input.value.trim();
+            if (!text) {
+                showMessage('Please enter a checklist item!', 'error');
+                return;
+            }
+
+            const container = document.getElementById('trello-checklist-items');
+            const itemElement = document.createElement('div');
+            itemElement.className = 'trello-checklist-item';
+            itemElement.innerHTML = `
+                <input type="checkbox" onchange="toggleChecklistItem(${Date.now()})">
+                <label>${escapeHtml(text)}</label>
+                <button class="trello-remove-checklist-item" onclick="removeChecklistItem(this)" title="Remove item">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            container.appendChild(itemElement);
+            input.value = '';
+            
+            // Update progress
+            updateChecklistProgress();
+            showMessage('Checklist item added!', 'success');
+        }
+
+        function removeChecklistItem(button) {
+            const item = button.closest('.trello-checklist-item');
+            if (item) {
+                item.style.animation = 'trello-comment-slide-out 0.3s ease-out';
+                setTimeout(() => {
+                    item.remove();
+                    updateChecklistProgress();
+                    showMessage('Checklist item removed!', 'info');
+                }, 300);
+            }
+        }
+
+        function toggleChecklistItem(itemId) {
+            const item = document.querySelector(`input[onchange="toggleChecklistItem(${itemId})"]`).closest('.trello-checklist-item');
+            if (item) {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                const label = item.querySelector('label');
+                
+                if (checkbox.checked) {
+                    item.classList.add('completed');
+                    label.style.textDecoration = 'line-through';
+                    label.style.color = '#5e6c84';
+                } else {
+                    item.classList.remove('completed');
+                    label.style.textDecoration = 'none';
+                    label.style.color = '#172b4d';
+                }
+                
+                updateChecklistProgress();
+                showMessage('Checklist item updated!', 'success');
+            }
+        }
+
+        function updateChecklistProgress() {
+            const items = document.querySelectorAll('.trello-checklist-item');
+            const completedItems = document.querySelectorAll('.trello-checklist-item.completed');
+            
+            const progress = items.length > 0 ? (completedItems.length / items.length) * 100 : 0;
+            
+            const progressFill = document.getElementById('trello-progress-fill');
+            const progressText = document.getElementById('trello-progress-text');
+            
+            if (progressFill) {
+                progressFill.style.width = `${progress}%`;
+            }
+            
+            if (progressText) {
+                progressText.textContent = `${Math.round(progress)}%`;
+            }
+        }
+
+        function clearAllChecklist() {
+            if (confirm('Are you sure you want to clear all checklist items?')) {
+                const container = document.getElementById('trello-checklist-items');
+                container.innerHTML = '';
+                updateChecklistProgress();
+                showMessage('All checklist items cleared!', 'info');
+            }
+        }
+
+        function loadChecklistTemplate(template) {
+            const templates = {
+                development: [
+                    'Write code',
+                    'Test functionality',
+                    'Code review',
+                    'Documentation',
+                    'Deploy to staging'
+                ],
+                review: [
+                    'Initial review',
+                    'Check requirements',
+                    'Test edge cases',
+                    'Performance check',
+                    'Final approval'
+                ],
+                testing: [
+                    'Unit tests',
+                    'Integration tests',
+                    'UI testing',
+                    'Performance testing',
+                    'Security testing'
+                ]
+            };
+
+            const items = templates[template] || [];
+            const container = document.getElementById('trello-checklist-items');
+            
+            // Clear existing items
+            container.innerHTML = '';
+            
+            // Add template items
+            items.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'trello-checklist-item';
+                itemElement.innerHTML = `
+                    <input type="checkbox" onchange="toggleChecklistItem(${Date.now() + index})">
+                    <label>${item}</label>
+                    <button class="trello-remove-checklist-item" onclick="removeChecklistItem(this)" title="Remove item">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                container.appendChild(itemElement);
+            });
+            
+            updateChecklistProgress();
+            showMessage(`${template} template loaded!`, 'success');
         }
 
         function toggleDueDatePanel() {
@@ -5649,29 +7832,232 @@
         }
 
         function toggleDescriptionEdit() {
-            showMessage('Description edit functionality coming soon!', 'info');
+            const container = document.getElementById('trello-description-display');
+            if (!container) return;
+
+            // Check if already in edit mode
+            const existingEditor = container.querySelector('.trello-description-editor');
+            if (existingEditor) {
+                // Save and exit edit mode
+                saveDescription();
+                return;
+            }
+
+            // Get current description
+            const currentText = container.textContent.trim();
+            
+            // Create editor
+            const editor = document.createElement('div');
+            editor.className = 'trello-description-editor';
+            editor.innerHTML = `
+                <textarea class="trello-description-textarea" placeholder="Add a more detailed description...">${currentText}</textarea>
+                <div class="trello-description-actions">
+                    <button class="trello-save-description-btn" onclick="saveDescription()">
+                        <i class="fas fa-check"></i> Save
+                    </button>
+                    <button class="trello-cancel-description-btn" onclick="cancelDescriptionEdit()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            `;
+
+            // Replace content with editor
+            container.innerHTML = '';
+            container.appendChild(editor);
+
+            // Focus on textarea
+            const textarea = editor.querySelector('.trello-description-textarea');
+            if (textarea) {
+                textarea.focus();
+                textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+            }
+        }
+
+        function saveDescription() {
+            const container = document.getElementById('trello-description-display');
+            const textarea = container.querySelector('.trello-description-textarea');
+            
+            if (!textarea) return;
+
+            const newText = textarea.value.trim();
+            
+            // Update display
+            if (newText) {
+                container.innerHTML = `<div class="trello-description-content">${escapeHtml(newText)}</div>`;
+                container.classList.remove('empty');
+            } else {
+                container.innerHTML = '<div class="trello-description-empty">No description</div>';
+                container.classList.add('empty');
+            }
+
+            showMessage('Description saved!', 'success');
+        }
+
+        function cancelDescriptionEdit() {
+            const container = document.getElementById('trello-description-display');
+            const originalText = container.getAttribute('data-original-text') || '';
+            
+            if (originalText) {
+                container.innerHTML = `<div class="trello-description-content">${escapeHtml(originalText)}</div>`;
+                container.classList.remove('empty');
+            } else {
+                container.innerHTML = '<div class="trello-description-empty">No description</div>';
+                container.classList.add('empty');
+            }
         }
 
         function addTrelloChecklistItem() {
             const input = document.getElementById('trello-new-checklist-item');
             const text = input.value.trim();
             
-            if (text) {
-                const container = document.getElementById('trello-checklist-items');
-                const itemElement = document.createElement('div');
-                itemElement.className = 'trello-checklist-item';
-                itemElement.innerHTML = `
-                    <input type="checkbox" onchange="toggleChecklistItem(${Date.now()})">
-                    <label>${text}</label>
-                `;
-                container.appendChild(itemElement);
-                input.value = '';
-                showMessage('Checklist item added!', 'success');
+            if (!text) {
+                showMessage('Please enter a checklist item!', 'error');
+                return;
+            }
+
+            const container = document.getElementById('trello-checklist-items');
+            const itemId = Date.now();
+            const itemElement = document.createElement('div');
+            itemElement.className = 'trello-checklist-item';
+            itemElement.setAttribute('data-item-id', itemId);
+            itemElement.innerHTML = `
+                <div class="trello-checklist-item-content">
+                    <input type="checkbox" id="checklist-${itemId}" onchange="toggleTrelloChecklistItem(${itemId})">
+                    <label for="checklist-${itemId}" class="trello-checklist-label">${escapeHtml(text)}</label>
+                </div>
+                <div class="trello-checklist-item-actions">
+                    <button class="trello-edit-checklist-item" onclick="editTrelloChecklistItem(${itemId})" title="Edit item">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="trello-remove-checklist-item" onclick="removeTrelloChecklistItem(${itemId})" title="Remove item">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(itemElement);
+            input.value = '';
+            
+            // Update progress
+            updateTrelloChecklistProgress();
+            showMessage('Checklist item added!', 'success');
+        }
+
+        function toggleTrelloChecklistItem(itemId) {
+            const item = document.querySelector(`[data-item-id="${itemId}"]`);
+            if (!item) return;
+
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            const label = item.querySelector('.trello-checklist-label');
+            
+            if (checkbox.checked) {
+                item.classList.add('completed');
+                label.style.textDecoration = 'line-through';
+                label.style.color = '#5e6c84';
+                showMessage('Item completed!', 'success');
+            } else {
+                item.classList.remove('completed');
+                label.style.textDecoration = 'none';
+                label.style.color = '#172b4d';
+                showMessage('Item unchecked!', 'info');
+            }
+            
+            updateTrelloChecklistProgress();
+        }
+
+        function editTrelloChecklistItem(itemId) {
+            const item = document.querySelector(`[data-item-id="${itemId}"]`);
+            if (!item) return;
+
+            const label = item.querySelector('.trello-checklist-label');
+            const currentText = label.textContent;
+            
+            // Create edit input
+            const editInput = document.createElement('input');
+            editInput.type = 'text';
+            editInput.className = 'trello-checklist-edit-input';
+            editInput.value = currentText;
+            editInput.style.width = '100%';
+            editInput.style.padding = '4px 8px';
+            editInput.style.border = '1px solid #0079bf';
+            editInput.style.borderRadius = '4px';
+            
+            // Replace label with input
+            label.style.display = 'none';
+            label.parentNode.insertBefore(editInput, label);
+            editInput.focus();
+            editInput.select();
+            
+            // Handle save
+            const saveEdit = () => {
+                const newText = editInput.value.trim();
+                if (newText && newText !== currentText) {
+                    label.textContent = newText;
+                    showMessage('Checklist item updated!', 'success');
+                }
+                label.style.display = 'block';
+                editInput.remove();
+            };
+            
+            // Handle cancel
+            const cancelEdit = () => {
+                label.style.display = 'block';
+                editInput.remove();
+            };
+            
+            // Event listeners
+            editInput.addEventListener('blur', saveEdit);
+            editInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    saveEdit();
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    cancelEdit();
+                }
+            });
+        }
+
+        function removeTrelloChecklistItem(itemId) {
+            const item = document.querySelector(`[data-item-id="${itemId}"]`);
+            if (!item) return;
+
+            if (confirm('Are you sure you want to remove this checklist item?')) {
+                item.style.animation = 'trello-comment-slide-out 0.3s ease-out';
+                setTimeout(() => {
+                    item.remove();
+                    updateTrelloChecklistProgress();
+                    showMessage('Checklist item removed!', 'info');
+                }, 300);
             }
         }
 
-        function toggleChecklistItem(itemId) {
-            showMessage('Checklist item toggled!', 'success');
+        function updateTrelloChecklistProgress() {
+            const items = document.querySelectorAll('.trello-checklist-item');
+            const completedItems = document.querySelectorAll('.trello-checklist-item.completed');
+            
+            const total = items.length;
+            const completed = completedItems.length;
+            const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+            
+            // Update progress bar
+            const progressFill = document.getElementById('trello-progress-fill');
+            const progressText = document.getElementById('trello-progress-text');
+            
+            if (progressFill) {
+                progressFill.style.width = `${progress}%`;
+                progressFill.style.backgroundColor = progress === 100 ? '#61bd4f' : '#0079bf';
+            }
+            
+            if (progressText) {
+                progressText.textContent = `${completed}/${total} (${progress}%)`;
+            }
+            
+            // Update checklist title with progress
+            const checklistTitle = document.querySelector('.trello-section-header h3');
+            if (checklistTitle && total > 0) {
+                checklistTitle.innerHTML = `<i class="fas fa-check-square"></i> Checklist (${completed}/${total})`;
+            }
         }
 
         function addTrelloComment() {
@@ -7063,6 +9449,7 @@
             initializeDynamicInteractions();
             initializeAjaxHandlers();
             initializeAnimations();
+            loadAllCardLabels();
             
             // Task input toggle
             $('#toggleTaskInput').click(function () {
@@ -7073,6 +9460,38 @@
                 }
             });
         });
+
+        function loadAllCardLabels() {
+            // Load labels for all cards on the board
+            const cards = document.querySelectorAll('[data-card-id]');
+            cards.forEach(card => {
+                const cardId = card.getAttribute('data-card-id');
+                if (cardId) {
+                    loadCardLabelsForBoard(cardId);
+                }
+            });
+        }
+
+        function loadCardLabelsForBoard(cardId) {
+            const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
+            if (!cardElement) return;
+
+            const cardLabelsContainer = cardElement.querySelector('.card-labels');
+            if (!cardLabelsContainer) return;
+
+            // Load from localStorage
+            const savedLabels = localStorage.getItem(`card-labels-${cardId}`);
+            if (savedLabels) {
+                const labels = JSON.parse(savedLabels);
+                cardLabelsContainer.innerHTML = '';
+                labels.forEach(label => {
+                    const labelSpan = document.createElement('span');
+                    labelSpan.className = `card-label ${label.color}`;
+                    labelSpan.textContent = label.name;
+                    cardLabelsContainer.appendChild(labelSpan);
+                });
+            }
+        }
 
         // Initialize Board with jQuery
         function initializeBoard() {
@@ -7784,8 +10203,8 @@
             
             $message.css({
                 'position': 'fixed',
-                'top': '20px',
-                'right': '20px',
+                'top': '18px',
+                'right': '365px',
                 'background': type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6',
                 'color': 'white',
                 'padding': '16px 20px',
@@ -7802,7 +10221,7 @@
                 'transform': 'translateX(0)'
             }, 300);
             
-            // Auto remove after 5 seconds
+            //Auto remove after 5 seconds
             setTimeout(function() {
                 $message.animate({
                     'opacity': '0',
