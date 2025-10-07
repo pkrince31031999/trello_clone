@@ -6,7 +6,7 @@ class Database {
     private $host = "localhost";
     private $db_name = "trello_clone";
     private $username = "root";
-    private $password = "password";
+    private $password = "";
 
     private function __construct() {
         $this->connection = new PDO(
@@ -14,6 +14,7 @@ class Database {
             $this->username,
             $this->password
         );
+
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

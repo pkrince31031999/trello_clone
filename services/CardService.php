@@ -93,4 +93,7 @@ class CardService {
         return $this->cardRepository->updateCardPositions($soureListId, $targetListId, $sourceCardIds, $targetCardIds);
     }
 
+    // public function archiveCard($cardId) {
+    //     return $this->cardRepository->archiveCard($cardId);
+    // }
 }

@@ -63,10 +63,8 @@ class CardController {
             
             $activityDetail = $this->activityService->getActivityByCardId($cardId);
             if($activityDetail) {
-                $responseData['comments']['author_details'] = $this->userService->findById($_SESSION['user_id']);
-                print_r($responseData['comments']['author_details']);die;
+                $authorDetails = $this->userService->findById($_SESSION['user_id']);
                 $responseData['comments'] = $activityDetail;   
-                print_r($responseData);die;
             }
 
             $boardMembers = $this->boardService->getBoardMembers($_GET['boardId']);
@@ -193,6 +191,15 @@ class CardController {
                 $response = json_encode(array('success' => false, 'message' => "Comment is required.")); 
             }
             echo $response;
+        }
+    }
+
+    public function archivedCard($cardId) {
+        $isArchived = $this->cardService->archiveCard($cardId);
+        if($isArchived){
+            return json_encode(array('success' => true, 'message' => 'card archived successfully.'));
+        }else{
+            return json_encode(array('success' => false, 'message' => 'failed to archived card.'));
         }
     }
 }

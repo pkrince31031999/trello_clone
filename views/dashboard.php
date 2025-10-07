@@ -1096,14 +1096,15 @@
                     boardDescription: boardDescription
                 },
                 success: function(response) {
+                    const data = JSON.parse(response);
                     setLoading(false);
-                    if (response.success) {
-                        showNotification(response.message, 'success');
+                    if (data.success == true) {
+                        showNotification(data.message, 'success');
                         setTimeout(() => {
                             window.location.href = 'index.php?action=showDashboard&controller=board';
                         }, 1500);
                     } else {
-                        showNotification(response.error || 'Failed to create board', 'error');
+                        showNotification(data.error || 'Failed to create board', 'error');
                     }
                 },
                 error: function(xhr, status, error) {

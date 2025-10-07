@@ -5817,7 +5817,7 @@
                 <div class="trello-modal-header-left">
                     <div class="trello-modal-title">
                         <h2 id="trello-card-title" contenteditable="true">Card Title</h2>
-                        <span class="trello-modal-subtitle">in list <strong id="trello-list-name">List Name</strong></span>
+                        <!-- <span class="trello-modal-subtitle">in list <strong id="trello-list-name">List Name</strong></span> -->
                     </div>
                 </div>
                 <div class="trello-modal-header-right">
@@ -6549,7 +6549,7 @@
                     </div>
                     <div class="trello-comment-content">
                         <div class="trello-comment-header">
-                            <span class="trello-comment-author">${comment.author}</span>
+                            <span class="trello-comment-author">${comment.username}</span>
                             <span class="trello-comment-time">${comment.created_at}</span>
                         </div>
                         <div class="trello-comment-text">${comment.message}</div>
@@ -7874,6 +7874,7 @@
         }
 
         function saveDescription() {
+            alert('prince');
             const container = document.getElementById('trello-description-display');
             const textarea = container.querySelector('.trello-description-textarea');
             
@@ -8121,6 +8122,7 @@
         }
 
         function editComment(button) {
+            alert('prince');
             const comment = button.closest('.trello-comment');
             const textElement = comment.querySelector('.trello-comment-text');
             const originalText = textElement.textContent;
@@ -8253,7 +8255,27 @@
         }
 
         function archiveTrelloCard() {
-            showMessage('Archive card functionality coming soon!', 'info');
+            
+            if (confirm('Are you sure you want to archive this card?')) {
+                $.ajax({
+                url: 'index.php?action=archivedCard&controller=card',
+                method: 'POST',
+                data: {
+                    cardId: cardId
+                },
+                success: function(response) {
+                    if (response.success == true) {
+                        showMessage('Card archived successfully!', 'success');
+                    } else {
+                        showMessage('Failed to archived card!', 'error');
+                    }
+                },
+                error: function() {
+                    showMessage('Error Occur while archived card!', 'error');
+                }
+                });
+            }
+            // showMessage('Archive card functionality coming soon!', 'info');
         }
 
         function deleteTrelloCard() {
@@ -8519,9 +8541,25 @@
             showMessage('Watch card functionality coming soon!', 'info');
         }
 
-        function archiveCard() {
+        function archiveCard(cardId) {
             if (confirm('Are you sure you want to archive this card?')) {
-                showMessage('Card archived successfully!', 'success');
+                $.ajax({
+                url: 'index.php?action=archivedCard&controller=card',
+                method: 'POST',
+                data: {
+                    cardId: cardId
+                },
+                success: function(response) {
+                    if (response.success == true) {
+                        showMessage('Card archived successfully!', 'success');
+                    } else {
+                        showMessage('Failed to archived card!', 'error');
+                    }
+                },
+                error: function() {
+                    showMessage('Error Occur while archived card!', 'error');
+                }
+                });
             }
         }
 

@@ -21,7 +21,7 @@ class MySQLActivityRepository implements ActivityRepositoryInterface
     }
 
     public function getActivityByCardId() {
-        $stmt = $this->conn->prepare('SELECT * FROM activities WHERE card_id = ? ORDER BY created_at DESC');
+        $stmt = $this->conn->prepare('SELECT ac.*,u.username,u.email FROM activities as ac LEFT JOIN users as u ON ac.user_id = u.id WHERE ac.card_id = ? ORDER BY ac.created_at DESC');
         $stmt->execute([$_GET['cardid']]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
