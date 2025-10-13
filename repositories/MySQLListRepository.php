@@ -36,10 +36,11 @@ class MySQLListRepository implements ListRepositoryInterface
         return $stmt->execute([$listId]);
     }
 
-    public function updateList(Lists $list)
+    public function updateList($list)
     {
-        $stmt = $this->conn->prepare("UPDATE lists SET name = ? WHERE id = ?");
-        return $stmt->execute([$listName, $listId]);
+        $listData = $list->toArray();
+        $stmt = $this->conn->prepare("UPDATE lists SET title = ? WHERE id = ?");
+        return $stmt->execute([$listData['title'], $listData['id']]);
     }
 
     public function moveList($listId, $boardId)
@@ -59,15 +60,20 @@ class MySQLListRepository implements ListRepositoryInterface
     {
         $stmt = $this->conn->prepare("SELECT * FROM lists");
         $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getRowCountListsByBoardId($boardId)
     {
         $stmt = $this->conn->prepare("SELECT COUNT(*) FROM lists WHERE board_id = ?");
         $stmt->execute([$boardId]);
-        return $stmt->rowCount();
+        return $stmt->fetchColumn();
     }
 
+    public function getListCount() {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM lists");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
 
 }

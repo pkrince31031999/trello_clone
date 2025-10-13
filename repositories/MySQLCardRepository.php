@@ -176,4 +176,10 @@ class MySQLCardRepository implements CardRepositoryInterface
         }
         return $affectedRows;
     }
+
+    public function getCardCount() {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM cards");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
 }

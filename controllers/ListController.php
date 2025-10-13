@@ -29,15 +29,15 @@ class ListController {
     public function createList() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $list = new Lists();
-            $list->setTitle($_POST['listName']);
+            $list->setTitle($_POST['Title']);
             $list->setBoardId($_POST['boardId']);
             $listCount = $this->listService->getRowCountListsByBoardId($_POST['boardId']);
             $list->setPosition($listCount + 1);
             $isListCreated = $this->listService->createList($list);
             if($isListCreated) {
-                 $response = json_encode(array('success' => true, 'message' => "List created successfully."));   
+                 $response = json_encode(array('status' => true, 'message' => "List created successfully."));   
             }else{
-                 $response = json_encode(array('success' => false, 'message' => 'Failed to create list.'));
+                 $response = json_encode(array('status' => false, 'message' => 'Failed to create list.'));
             }
             echo $response;
         }

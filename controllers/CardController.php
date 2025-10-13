@@ -86,6 +86,7 @@ class CardController {
             $card->setCreatedBy($_SESSION['user_id'] ?? 0);
             $isCardCreated = $this->cardService->createCard($card);
             if($isCardCreated) {
+                $card->setId($isCardCreated);
                 $activityData['card_id']   = $isCardCreated;
                 $activityData['message']   = $_SESSION['user_name'] ." created a card ";
                 $activityData['user_name'] = $_SESSION['user_name'];
@@ -94,7 +95,7 @@ class CardController {
                 $activityData['action']    = "Card Created";
                 $isActivityCreated   = $this->activityService->createActivity($activityData);
                 if($isActivityCreated) {
-                    $response = array('success' => true, 'message' => 'Card created successfully.');
+                    $response = array('success' => true, 'message' => 'Card created successfully.', 'card' => $card->toArray());
                 }
                     
             }else{
@@ -110,12 +111,17 @@ class CardController {
     }
 
     public function deleteCard($cardId) {
-        return $this->cardService->deleteCard($cardId);
+        $isDeleted = $this->cardService->deleteCard($cardId);
+        if($isDeleted) {
+            $response = array('success' => true, 'message' => 'Card deleted successfully.');
+        }else{
+            $response = array('success' => false, 'message' => 'Failed to delete card.');
+        }
+        echo json_encode($response);
     }
 
     public function updateCardPositions() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $soureListId   = isset($_POST['sourceListId'])  && !empty($_POST['sourceListId'])  ? $_POST['sourceListId']  : 0;
             $targetListId  = isset($_POST['targetListId'])  && !empty($_POST['targetListId'])  ? $_POST['targetListId']  : 0;
             $sourceCardIds = isset($_POST['sourceCardIds']) && !empty($_POST['sourceCardIds']) ? $_POST['sourceCardIds'] : [];

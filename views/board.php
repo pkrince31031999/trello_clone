@@ -165,20 +165,45 @@
 
         /* Dynamic Date Picker Styles */
         .trello-date-picker {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            max-width: 90vw;
             background: white;
             border: 1px solid #e2e4e6;
-            border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
-            margin-top: 8px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            animation: modalSlideIn 0.3s ease-out;
         }
 
         .trello-date-picker-content {
-            padding: 16px;
+            padding: 20px;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Modal backdrop */
+        .trello-date-picker::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
         }
 
         .trello-date-picker-header {
@@ -300,20 +325,36 @@
 
         /* Dynamic Member Picker Styles */
         .trello-member-picker {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            max-width: 90vw;
+            max-height: 80vh;
             background: white;
             border: 1px solid #e2e4e6;
-            border-radius: 8px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
-            margin-top: 8px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            animation: modalSlideIn 0.3s ease-out;
+            overflow-y: auto;
         }
 
         .trello-member-picker-content {
-            padding: 16px;
+            padding: 20px;
+        }
+
+        /* Modal backdrop for member picker */
+        .trello-member-picker::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
         }
 
         .trello-member-picker-header {
@@ -442,10 +483,14 @@
             color: #5e6c84;
         }
 
+        
+
         .trello-add-member-btn {
-            width: 28px;
+            width: auto;
+            min-width: 28px;
             height: 28px;
             border: none;
+            padding: 8px 12px;
             background: #0079bf;
             color: white;
             border-radius: 4px;
@@ -453,8 +498,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            font-size: 14px;
             transition: all 0.2s ease;
+            gap: 6px;
         }
 
         .trello-add-member-btn:hover {
@@ -1258,6 +1304,22 @@
             opacity: 1;
         }
 
+        .trello-remove-member-btn {
+            background: #ff6b6b;
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .trello-remove-member-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+
         .trello-member-menu-btn,
         .trello-remove-member-btn {
             width: 24px;
@@ -1668,7 +1730,13 @@
 
         /* Responsive Enhancements for Dynamic Features */
         @media (max-width: 768px) {
-            .trello-date-picker,
+            .trello-date-picker {
+                width: 90%;
+                max-width: 400px;
+                max-height: 80vh;
+                overflow-y: auto;
+            }
+            
             .trello-member-picker,
             .trello-label-picker,
             .trello-checklist-picker {
@@ -2320,6 +2388,111 @@
 
         .add-card-btn:active {
             transform: translateY(0);
+        }
+
+        /* Add List Styles */
+        .add-list-container {
+            min-width: 280px;
+            margin-left: 20px;
+        }
+
+        .add-list-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.05);
+            border: 2px dashed #fff;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .add-list-btn:hover {
+            background: rgba(17, 109, 116, 0.1);
+            border-color:rgb(13, 37, 148);
+            color:#fff;
+            transform: translateY(-2px);
+        }
+
+        .add-list-btn:active {
+            transform: translateY(0);
+        }
+
+        .create-list-form {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.3s ease;
+        }
+
+        .create-list-form input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .create-list-form input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .create-list-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .create-list-submit {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .create-list-submit:hover {
+            background: #5a6fd8;
+        }
+
+        .create-list-cancel {
+            background: transparent;
+            border: none;
+            color: #666;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .create-list-cancel:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Advanced Drag and Drop Animations */
@@ -5688,6 +5861,10 @@
                 <i class="fas fa-home"></i>
                 Dashboard
             </button>
+            <button class="header-btn" onclick="window.location.href='index.php?controller=admin&action=showLogin'" style="background: #ff6b6b;">
+                <i class="fas fa-shield-alt"></i>
+                Admin
+            </button>
         </div>
     </header>
 
@@ -5806,6 +5983,23 @@
                 </button>
             </div>
         <?php endforeach; ?>
+        
+        <!-- Add List Button -->
+        <div class="add-list-container">
+            <button class="add-list-btn" onclick="showCreateListForm()">
+                <i class="fas fa-plus"></i>
+                Add another list
+            </button>
+            <div class="create-list-form" id="createListForm" style="display: none;">
+                <input type="text" id="newListTitle" placeholder="Enter list title..." maxlength="100">
+                <div class="create-list-actions">
+                    <button class="create-list-submit" onclick="createNewList()">Add List</button>
+                    <button class="create-list-cancel" onclick="hideCreateListForm()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Trello-like Card Modal -->
@@ -6170,12 +6364,13 @@
                 url: 'index.php?action=createCard&controller=card',
                 data: cardData,
                 success: function(response) {
-                    if (response.success) {
-                        createNewCardElement(response.card, listId);
+                    const data = JSON.parse(response);
+                    if (data.success == true) {
+                        createNewCardElement(data.card, listId);
                         showMessage('Card created successfully!', 'success');
                         closeCardInput();
                     } else {
-                        showMessage(response.message || 'Failed to create card', 'error');
+                        showMessage(data.message || 'Failed to create card', 'error');
                     }
                 },
                 error: function(xhr, status, error) {
@@ -6291,6 +6486,115 @@
             div.textContent = text;
             return div.innerHTML;
         }
+
+        // Create List Functions
+        function showCreateListForm() {
+            const form = document.getElementById('createListForm');
+            const input = document.getElementById('newListTitle');
+            
+            if (form && input) {
+                form.style.display = 'block';
+                input.focus();
+                input.value = '';
+            }
+        }
+
+        function hideCreateListForm() {
+            const form = document.getElementById('createListForm');
+            if (form) {
+                form.style.display = 'none';
+            }
+        }
+
+        function createNewList() {
+            const input = document.getElementById('newListTitle');
+            const listTitle = input.value.trim();
+            
+            if (!listTitle) {
+                showMessage('Please enter a list title', 'error');
+                return;
+            }
+            
+            const boardId = document.querySelector('.dashboard').getAttribute('data-board-id');
+            
+            // Show loading state
+            const submitBtn = document.querySelector('.create-list-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Creating...';
+            submitBtn.disabled = true;
+            
+            // Make AJAX request to create list
+            $.ajax({
+                type: 'POST',
+                url: 'index.php?action=createList&controller=list',
+                data: { boardId: boardId, Title: listTitle},
+                success: function(response) {
+                    const data = JSON.parse(response);
+                    if (data.status == true) {
+                        hideCreateListForm();
+                        showMessage('List created successfully!', 'success');
+                        window.location.reload();
+                        setTimeout(() => {
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }, 1500);
+                            // closeCardInput();
+                    } else {
+                            showMessage(response.message || 'Failed to create card', 'error');
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error creating card:', error);
+                    showMessage('Error creating card. Please try again.', 'error');
+                }
+                        
+
+            });
+            // fetch('index.php', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded',
+            //     },
+            //     body: `action=createList&controller=list&listName=${encodeURIComponent(listTitle)}&boardId=${boardId}`
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     if (data.success) {
+            //         // Hide the form
+            //         hideCreateListForm();
+                    
+            //         // Reload the page to show the new list
+            //         window.location.reload();
+            //     } else {
+            //         showMessage(data.message || 'Failed to create list', 'error');
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error('Error creating list:', error);
+            //     showMessage('Error creating list. Please try again.', 'error');
+            // })
+            // .finally(() => {
+            //     // Reset button state
+            //     submitBtn.textContent = originalText;
+            //     submitBtn.disabled = false;
+            // });
+        }
+
+        // Handle Enter key in list title input
+        document.addEventListener('DOMContentLoaded', function() {
+            const listTitleInput = document.getElementById('newListTitle');
+            if (listTitleInput) {
+                listTitleInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        createNewList();
+                    } else if (e.key === 'Escape') {
+                        hideCreateListForm();
+                    }
+                });
+            }
+        });
 
         function initializeCardDragAndDrop(cardElement) {
             if (typeof $.fn.draggable !== 'undefined') {
@@ -6415,7 +6719,9 @@
             // populateTrelloLabels(card.labels);
             
             // Populate members
-            populateTrelloMembers(cards.members);
+            if(cards.members) {
+                populateTrelloMembers(cards.members);
+            }
             
             // Populate checklist
             //populateTrelloChecklist(card.checklist);
@@ -6427,8 +6733,11 @@
            // populateTrelloAttachments(card.attachments);
             
             // Populate description
-            populateTrelloDescription(cards.description);
-            
+            if(cards.description && typeof cards.description === 'object') {
+                populateTrelloDescription(cards.description);
+            }
+
+            populateActionButtons(cards.id);
             // Populate comments
             populateTrelloComments(cards.comments);
         }
@@ -6559,6 +6868,25 @@
             });
         }
 
+        function populateActionButtons(cardId) {
+            alert(cardId);
+            const container = document.querySelector('.trello-sidebar-section');
+            container.innerHTML = '';
+            
+            const actionButton1 = `
+                <button class="trello-edit-card-btn" onclick="editTrelloCard(${cardId})">
+                    <i class="fas fa-edit"></i> Edit Card
+                </button>
+            `;
+            container.appendChild(actionButton1);
+
+            const actionButton2 = `
+                <button class="trello-delete-card-btn" onclick="deleteTrelloCard(${cardId})">
+                    <i class="fas fa-trash"></i> Delete Card
+                </button>
+            `;
+            container.appendChild(actionButton2);
+        }
         // Trello Modal Action Functions
         function toggleLabelsPanel() {
             const container = document.getElementById('trello-labels-list');
@@ -7149,6 +7477,28 @@
             `;
 
             container.appendChild(memberPicker);
+
+            // Add click-outside-to-close functionality
+            const closeModal = (e) => {
+                if (!memberPicker.contains(e.target)) {
+                    toggleMembersPanel();
+                    document.removeEventListener('click', closeModal);
+                }
+            };
+
+            // Add event listener after a short delay to prevent immediate closing
+            setTimeout(() => {
+                document.addEventListener('click', closeModal);
+                
+                // Add ESC key to close
+                const handleEscKey = (e) => {
+                    if (e.key === 'Escape') {
+                        toggleMembersPanel();
+                        document.removeEventListener('keydown', handleEscKey);
+                    }
+                };
+                document.addEventListener('keydown', handleEscKey);
+            }, 100);
 
             // Populate board members
             populateBoardMembers();
@@ -7754,6 +8104,28 @@
 
             container.appendChild(datePicker);
 
+            // Add click-outside-to-close functionality
+            const closeModal = (e) => {
+                if (!datePicker.contains(e.target)) {
+                    toggleDueDatePanel();
+                    document.removeEventListener('click', closeModal);
+                }
+            };
+
+            // Add event listener after a short delay to prevent immediate closing
+            setTimeout(() => {
+                document.addEventListener('click', closeModal);
+                
+                // Add ESC key to close
+                const handleEscKey = (e) => {
+                    if (e.key === 'Escape') {
+                        toggleDueDatePanel();
+                        document.removeEventListener('keydown', handleEscKey);
+                    }
+                };
+                document.addEventListener('keydown', handleEscKey);
+            }, 100);
+
             // Set current date as default
             const today = new Date();
             const dateInput = document.getElementById('trello-due-date-input');
@@ -8278,9 +8650,31 @@
             // showMessage('Archive card functionality coming soon!', 'info');
         }
 
-        function deleteTrelloCard() {
-            showMessage('Delete card functionality coming soon!', 'info');
-        }
+        function deleteTrelloCard(cardId) {
+            alert(cardId);
+            if (confirm('Are you sure you want to delete this card?')) {
+                $.ajax({
+                url: 'index.php?action=deleteCard&controller=card',
+                method: 'POST',
+                data: {
+                    cardId: cardId
+                },
+                success: function(response) {
+                    const data = JSON.parse(response);
+                    if (response.success == true) {
+                        showMessage('Card deleted successfully!', 'success');
+                    } else {
+                        showMessage('Failed to delete card!', 'error');
+                    }
+                },
+                error: function() {
+                    showMessage('Error Occur while delete card!', 'error');
+                }
+                });
+            }
+            // showMessage('Delete card functionality coming soon!', 'info');
+        }   
+        
 
         // Enhanced UI Interactions
         function initializeAdvancedInteractions() {
@@ -8882,6 +9276,7 @@
         // Enhanced Drag and Drop
         let draggedCard = null;
         let draggedOverBoard = null;
+        let sourceListId = null;
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeDragAndDrop();
@@ -8958,6 +9353,7 @@
 
         function handleDragStart(e) {
             draggedCard = this;
+            sourceListId = this.closest('.board').getAttribute('data-list-id');
             this.classList.add('drag-start', 'dragging');
             e.dataTransfer.effectAllowed = 'move';
             e.dataTransfer.setData('text/html', this.outerHTML);
@@ -9013,6 +9409,7 @@
             this.style.transform = '';
             this.style.zIndex = '';
             draggedCard = null;
+            sourceListId = null;
             
             // Remove drag ghost
             const ghost = document.querySelector('.drag-ghost');
@@ -9064,38 +9461,108 @@
                     
                     showMessage('Card moved successfully!', 'success');
                     
-                    // Update card position in database
-                    updateCardPosition(draggedCard, targetContainer);
+                    // Enhanced position update with comprehensive data
+                    updateCardPositionsEnhanced(draggedCard, sourceContainer, targetContainer);
                 }
             }
         }
 
-        function updateCardPosition(card, newContainer) {
-            const cardId = card.dataset.cardId;
-            const newListId = newContainer.closest('.board').dataset.listId;
+        // function updateCardPosition(card, newContainer) {
+        //     alert('updateCardPosition');
+        //     const cardId = card.dataset.cardId;
+        //     const newListId = newContainer.closest('.board').dataset.listId;
             
-            // Send AJAX request to update card position
-            fetch('index.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+        //     // Send AJAX request to update card position
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: 'index.php?action=updateCardPositions&controller=card',
+        //         data: { cardId: cardId, newListId: newListId, boardId: boardId},
+        //         success: function(response) {
+        //             const data = JSON.parse(response);
+        //             if (data.status == true) {
+        //                 showMessage('Card position updated successfully!', 'success');
+        //             } else {
+        //                 showMessage(data.message || 'Failed to update card position', 'error');
+        //             }
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.error('Error updating card position:', error);
+        //             showMessage('Error updating card position', 'error');
+        //         }
+        //     });
+        // }
+
+        function updateCardPositionsEnhanced(movedCard, sourceContainer, targetContainer) {
+            // Handle both jQuery objects and DOM elements
+            const cardElement = movedCard.jquery ? movedCard[0] : movedCard;
+            const sourceElement = sourceContainer.jquery ? sourceContainer[0] : sourceContainer;
+            const targetElement = targetContainer.jquery ? targetContainer[0] : targetContainer;
+            
+            const cardId = cardElement.getAttribute('data-card-id');
+            const targetListId = targetElement.closest('.board').getAttribute('data-list-id');
+            const sourceListId = sourceElement.closest('.board').getAttribute('data-list-id');
+            const boardId = document.querySelector('.dashboard').getAttribute('data-board-id');
+            
+            // Recalculate positions for both source and target lists
+            const sourceList = document.querySelector(`.board[data-list-id="${sourceListId}"]`);
+            const targetList = targetElement.closest('.board');
+
+            const sourceCardIds = Array.from(sourceList.querySelectorAll('.card')).map((card, index) => ({
+                cardId: card.getAttribute('data-card-id'),
+                position: index + 1
+            }));
+
+            const targetCardIds = Array.from(targetList.querySelectorAll('.card')).map((card, index) => ({
+                cardId: card.getAttribute('data-card-id'),
+                position: index + 1
+            }));
+
+            // Send AJAX request to update positions in the database
+            $.ajax({
+                type: "POST",
+                url: "index.php?action=updateCardPositions&controller=card",
+                data: {
+                    sourceListId,
+                    sourceCardIds,
+                    targetListId,
+                    targetCardIds,
+                    movedCardId: cardId,
+                    boardId: boardId
                 },
-                body: `action=moveCard&controller=card&cardId=${cardId}&newListId=${newListId}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log('Card position updated successfully');
-                } else {
-                    console.error('Failed to update card position:', data.message);
-                    showMessage('Failed to update card position', 'error');
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                    } else {
+                        alert(response.error);   
+                    } 
+                },
+                error: function (xhr, status, error) {
+                    alert(error);
                 }
-            })
-            .catch(error => {
-                console.error('Error updating card position:', error);
-                showMessage('Error updating card position', 'error');
             });
         }
+
+            // fetch('index.php', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded',
+            //     },
+            //     body: `action=moveCard&controller=card&cardId=${cardId}&newListId=${newListId}`
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     if (data.success) {
+            //         console.log('Card position updated successfully');
+            //     } else {
+            //         console.error('Failed to update card position:', data.message);
+            //         showMessage('Failed to update card position', 'error');
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error('Error updating card position:', error);
+            //     showMessage('Error updating card position', 'error');
+            // });
+        
 
         function initializeAnimations() {
             // Add entrance animations to cards and boards
@@ -9637,7 +10104,7 @@
                         
                         if (targetContainer[0] !== sourceContainer[0]) {
                             targetContainer.append(card);
-                            updateCardPosition(card, targetContainer);
+                            updateCardPositionsEnhanced(card, sourceContainer, targetContainer);
                             showMessage('Card moved successfully!', 'success');
                         }
                     }
@@ -9654,7 +10121,10 @@
                     },
                     update: function(event, ui) {
                         if (ui.sender) {
-                            updateCardPosition(ui.item, $(this));
+                            // Get source and target containers from the sortable event
+                            const sourceContainer = ui.sender[0];
+                            const targetContainer = this;
+                            updateCardPositionsEnhanced(ui.item[0], sourceContainer, targetContainer);
                         }
                     }
                 });
@@ -9667,9 +10137,11 @@
         // Fallback drag and drop implementation
         function initializeFallbackDragAndDrop() {
             let draggedCard = null;
+            let sourceListId = null;
             
             $('.card').on('dragstart', function(e) {
                 draggedCard = $(this);
+                sourceListId = $(this).closest('.board').attr('data-list-id');
                 $(this).addClass('dragging');
                 $('.board, .board-cards').addClass('drop-zone-active');
             });
@@ -9678,6 +10150,7 @@
                 $(this).removeClass('dragging');
                 $('.board, .board-cards').removeClass('drop-zone-active');
                 draggedCard = null;
+                sourceListId = null;
             });
             
             $('.board, .board-cards').on('dragover', function(e) {
@@ -9699,7 +10172,7 @@
                     
                     if (targetContainer[0] !== sourceContainer[0]) {
                         targetContainer.append(draggedCard);
-                        updateCardPosition(draggedCard, targetContainer);
+                        updateCardPositionsEnhanced(draggedCard[0], sourceContainer[0], targetContainer[0]);
                         showMessage('Card moved successfully!', 'success');
                     }
                 }
@@ -9983,31 +10456,31 @@
         }
 
         // AJAX Functions
-        function updateCardPosition(card, container) {
-            const cardId = $(card).data('card-id');
-            const newListId = container.closest('.board').data('list-id');
+        // function updateCardPosition(card, container) {
+        //     const cardId = $(card).data('card-id');
+        //     const newListId = container.closest('.board').data('list-id');
             
-            $.ajax({
-                url: 'index.php',
-                method: 'POST',
-                data: {
-                    action: 'moveCard',
-                    controller: 'card',
-                    cardId: cardId,
-                    newListId: newListId
-                },
-                success: function(response) {
-                    if (response.success) {
-                        console.log('Card position updated successfully');
-                    } else {
-                        showMessage('Failed to update card position', 'error');
-                    }
-                },
-                error: function() {
-                    showMessage('Error updating card position', 'error');
-                }
-            });
-        }
+        //     $.ajax({
+        //         url: 'index.php',
+        //         method: 'POST',
+        //         data: {
+        //             action: 'moveCard',
+        //             controller: 'card',
+        //             cardId: cardId,
+        //             newListId: newListId
+        //         },
+        //         success: function(response) {
+        //             if (response.success) {
+        //                 console.log('Card position updated successfully');
+        //             } else {
+        //                 showMessage('Failed to update card position', 'error');
+        //             }
+        //         },
+        //         error: function() {
+        //             showMessage('Error updating card position', 'error');
+        //         }
+        //     });
+        // }
 
         // Card-specific AJAX functions
         function updateCardTitle(card, newTitle) {

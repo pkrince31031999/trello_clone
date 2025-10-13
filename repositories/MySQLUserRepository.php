@@ -76,5 +76,11 @@ class MySQLUserRepository implements UserRepositoryInterface {
         $responseUserDetailsByIds = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $responseUserDetailsByIds;
     }
+
+    public function getUserCount() {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM users");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
     
 }

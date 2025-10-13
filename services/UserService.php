@@ -58,4 +58,16 @@ class UserService {
     public function getUserDetailsByIds($userId) {
         return $this->userRepo->getUserDetailsByIds($userId);
     }
+
+    public function getAllUsers() {
+        return $this->userRepo->getAll();
+    }
+
+    public function getUserCount() {
+        return $this->userRepo->getUserCount();
+    }
+
+    public function deleteUser($userId) {
+        return $this->userRepo->delete($userId);
+    }
 }
