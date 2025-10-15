@@ -84,7 +84,7 @@ class BoardController {
             }else{
                 $response = json_encode(array('success' => false, 'message' => 'Failed to create board.'));
             }
-            echo $response; exit;
+            echo $response; 
        }
     }
 }

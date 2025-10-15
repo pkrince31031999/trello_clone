@@ -63,6 +63,7 @@ class CardController {
             
             $activityDetail = $this->activityService->getActivityByCardId($cardId);
             if($activityDetail) {
+                $authorDetails = $this->userService->findById($_SESSION['user_id']);
                 $responseData['comments'] = $activityDetail;   
             }
 
@@ -70,7 +71,7 @@ class CardController {
             if($boardMembers) {
                 $responseData['boardMembers'] = $boardMembers;
             }
-            echo json_encode($responseData);
+            echo json_encode( array('status' => true, 'card' => $responseData));
         }
        
     }
@@ -85,6 +86,7 @@ class CardController {
             $card->setCreatedBy($_SESSION['user_id'] ?? 0);
             $isCardCreated = $this->cardService->createCard($card);
             if($isCardCreated) {
+                $card->setId($isCardCreated);
                 $activityData['card_id']   = $isCardCreated;
                 $activityData['message']   = $_SESSION['user_name'] ." created a card ";
                 $activityData['user_name'] = $_SESSION['user_name'];
@@ -93,7 +95,7 @@ class CardController {
                 $activityData['action']    = "Card Created";
                 $isActivityCreated   = $this->activityService->createActivity($activityData);
                 if($isActivityCreated) {
-                    $response = array('success' => true, 'message' => 'Card created successfully.');
+                    $response = array('success' => true, 'message' => 'Card created successfully.', 'card' => $card->toArray());
                 }
                     
             }else{
@@ -109,12 +111,17 @@ class CardController {
     }
 
     public function deleteCard($cardId) {
-        return $this->cardService->deleteCard($cardId);
+        $isDeleted = $this->cardService->deleteCard($cardId);
+        if($isDeleted) {
+            $response = array('success' => true, 'message' => 'Card deleted successfully.');
+        }else{
+            $response = array('success' => false, 'message' => 'Failed to delete card.');
+        }
+        echo json_encode($response);
     }
 
     public function updateCardPositions() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $soureListId   = isset($_POST['sourceListId'])  && !empty($_POST['sourceListId'])  ? $_POST['sourceListId']  : 0;
             $targetListId  = isset($_POST['targetListId'])  && !empty($_POST['targetListId'])  ? $_POST['targetListId']  : 0;
             $sourceCardIds = isset($_POST['sourceCardIds']) && !empty($_POST['sourceCardIds']) ? $_POST['sourceCardIds'] : [];
@@ -164,6 +171,41 @@ class CardController {
     }
 
     public function addCardComment(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $comment = isset($_POST['comment']) && !empty($_POST['comment']) ? $_POST['comment'] : '';
+            $boardId = $_POST['boardId'];
+            $cardId  = $_POST['cardId'];
+            $action  = $_POST['action'];
+            $userId  = $_SESSION['user_id'];
+              
+            if(!empty($comment))
+            {
+                $activityData['message']   = $comment;
+                $activityData['user_name'] = $_SESSION['user_name'];
+                $activityData['user_id']   = $userId;
+                $activityData['board_id']  = $boardId;
+                $activityData['action']    = $action;
+                $activityData['card_id']   = $cardId;
+                $isActivityCreated   = $this->activityService->createActivity($activityData);
+                if($isActivityCreated)
+                {
+                     $response = json_encode(array('success' => true, 'message' => "add Comment successfully."));   
+                }else{
+                    $response = json_encode(array('success' => false, 'message' => "failed to add Comment."));
+                }
+            }else{
+                $response = json_encode(array('success' => false, 'message' => "Comment is required.")); 
+            }
+            echo $response;
+        }
+    }
 
+    public function archivedCard($cardId) {
+        $isArchived = $this->cardService->archiveCard($cardId);
+        if($isArchived){
+            return json_encode(array('success' => true, 'message' => 'card archived successfully.'));
+        }else{
+            return json_encode(array('success' => false, 'message' => 'failed to archived card.'));
+        }
     }
 }

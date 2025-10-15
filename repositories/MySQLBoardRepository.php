@@ -119,4 +119,10 @@ class MySQLBoardRepository implements BoardRepositoryInterface
     //     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     //     return $row;
     // }
+
+    public function getBoardCount() {
+        $stmt = $this->conn->prepare("SELECT COUNT(*) FROM boards");
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
 }

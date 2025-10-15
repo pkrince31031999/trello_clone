@@ -48,4 +48,8 @@ class BoardService {
     public function getBoardMembers($boardId){
         return $this->boardRepo->getBoardMembers($boardId);
     }
+
+    public function getBoardCount() {
+        return $this->boardRepo->getBoardCount();
+    }
 }

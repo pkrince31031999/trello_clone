@@ -16,7 +16,6 @@ class ListService {
         return $this->listRepo->getListById($id);
     }
 
-
     public function createList(Lists $data) {
         return $this->listRepo->createList($data);
     }
@@ -35,6 +34,10 @@ class ListService {
 
     public function getRowCountListsByBoardId($boardId) {
         return $this->listRepo->getRowCountListsByBoardId($boardId);
+    }
+
+    public function getListCount() {
+        return $this->listRepo->getListCount();
     }
         
 }

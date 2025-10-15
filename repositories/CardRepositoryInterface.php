@@ -4,7 +4,7 @@
      public function getCardById($id);
      public function createCard(Card $cardData);
      public function updateCard(Card $cardData, $id);
-     public function deleteCard($id);
+     public function deleteCard(Card $id);
      public function moveCard($id, $listId);
      public function archiveCard($id);
      public function unarchiveCard($id);
